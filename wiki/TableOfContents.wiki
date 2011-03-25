@@ -26,7 +26,7 @@ FAQ
 	* override mapping to views
 	* default layouts
 	* custom layouts
-	* Ajax related calls
+	* Ajax related APIs
 	* download of files
 	* streaming of data to client
 	* upload of files
