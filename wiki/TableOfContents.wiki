@@ -1,0 +1,72 @@
+#summary One-sentence summary of this page.
+
+FAQ
+
+  # Why FreeMarker?
+  # Why Guice? - configuration oin code, easier to understand, lightweight - does not bring many dependencies
+  # Why ActiveJDBC - faster, no configuration, little code, has APIs for web, validations, JSON, XML
+  # Why Maven - typical structure, familiar to devs, convention based
+  # Why app.controllers?
+  # Why Carbon 5?
+
+
+1. Gettign started - hello world application
+  * ad-hoc development and prototyping - add controllers, actions and views on the fly without container restart
+
+2. MVN pattern - controller, model/data, view
+3. Controller explained - actions -> view templates, naming conventions, mapping URLs to controllers/actions/views
+	* standard controllers + HTTP method annotations
+	* RESTful controllers
+	* default mapping to views
+	* override mapping to views
+	* default layouts
+	* custom layouts
+	* Ajax related calls
+	* download of files
+	* streaming of data to client
+	* upload of files
+	* session management
+	* cookies
+        * built in logging
+        * logging of request parameters
+
+         
+
+
+
+6. Dependency injection - in tests as well as at runtime
+7. Configuration
+	* active_env
+	* Configure datasources for different environments
+7. Filters - global, controller, action
+	* configuration
+	* exception handling
+8. Testing
+	* JSpec
+	* ControllerSpec
+	* DBControllerSpec
+	* IntegrationSpec
+	* DBIntegrationSpec
+	* AppIntegrationSpec
+	
+9. Views
+	* FreeMarker
+
+10. Tags
+	* link_to
+	* Flash	 
+	* confirmation
+	* form
+	* render - partials
+	* content_for, yield
+	
+11. Captcha
+
+
+ActiveWeb Development cycle (True BDD)
+  # Migration
+  # Model
+  # Model Spec
+  # Controller Spec
+  # Controller
+  # View
