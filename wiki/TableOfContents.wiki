@@ -14,10 +14,11 @@ FAQ
   # Why Carbon 5?
 
 
-1. Gettign started - hello world application
+1.  Gettign started - hello world application
   * ad-hoc development and prototyping - add controllers, actions and views on the fly without container restart
 
-2. MVN pattern - controller, model/data, view
+2. MVC pattern - controller, model/data, view
+
 3. Controller explained - actions -> view templates, naming conventions, mapping URLs to controllers/actions/views
 	* standard controllers + HTTP method annotations
 	* RESTful controllers
@@ -35,17 +36,15 @@ FAQ
         * logging of request parameters
 
          
+4. Dependency injection - in tests as well as at runtime
 
-
-
-6. Dependency injection - in tests as well as at runtime
-7. Configuration
+5. Configuration
 	* active_env
 	* Configure datasources for different environments
-7. Filters - global, controller, action
+6. Filters - global, controller, action
 	* configuration
 	* exception handling
-8. Testing
+7. Testing
 	* JSpec
 	* ControllerSpec
 	* DBControllerSpec
@@ -53,16 +52,19 @@ FAQ
 	* DBIntegrationSpec
 	* AppIntegrationSpec
 	
-9. Views
+8. Views
 	* FreeMarker
 
-10. Tags
-	* link_to
-	* Flash	 
-	* confirmation
-	* form
-	* render - partials
-	* content_for, yield
+  *  Tags
+    ** link_to
+    ** Flash	 
+    ** confirmation
+    ** form
+    ** render - partials
+    ** content_for, yield
+
+  * Custom tag development
+
 	
 11. Captcha
 
