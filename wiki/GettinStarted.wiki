@@ -44,4 +44,4 @@ In this case, the action `index` does not have any code, the framework will pass
 /WEB-INF/views/greeting/index.ftl
 }}}
 
-Where `/WEB-INF/views/` is a base location for all views, directory "greeting" is named after controller, and a view template "index" is called to render because action "index" of the controller was executed.
+Where `/WEB-INF/views/` is a base location for all views, directory "greeting" is named after controller, and a view template "index" is called to render because action "index" of the controller was executed. The content of the `index.ftl` will be displayed in browser.
