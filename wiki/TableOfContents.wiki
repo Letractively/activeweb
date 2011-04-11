@@ -9,7 +9,7 @@
 
 
 
-1.  [Getting started - hello world application]
+1.  GettinStarted - Hello world application
   * ad-hoc development and prototyping - add controllers, actions and views on the fly without container restart
 
 2. MVC pattern - controller, model/data, view
