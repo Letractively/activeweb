@@ -1,5 +1,7 @@
 #summary getting started, the simplest ActiveWeb appplication
 
+<wiki:toc max_depth="2" />
+
 = Introduction =
 
 At the heart of an !ActiveWeb application is a controller. A controller is a component whose role is to accept and process an HTTP request. This is similar to a Servlet, or a controller class in !SpringMVC, Action class in Struts 1 or a controller in Ruby on Rails.
