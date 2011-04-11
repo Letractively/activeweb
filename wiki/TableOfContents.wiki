@@ -8,10 +8,13 @@
 
 
 
+
 1.  Gettign started - hello world application
   * ad-hoc development and prototyping - add controllers, actions and views on the fly without container restart
 
 2. MVC pattern - controller, model/data, view
+
+2.2 Structure of !ActiveWeb project
 
 3. Controller explained - actions -> view templates, naming conventions, mapping URLs to controllers/actions/views
 	* standard controllers + HTTP method annotations
