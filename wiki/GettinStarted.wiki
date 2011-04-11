@@ -1,4 +1,4 @@
-#summary getting started, the simplest !ActiveWeb appplication
+#summary getting started, the simplest ActiveWeb appplication
 
 = Introduction =
 
@@ -43,4 +43,3 @@ In this case, the action `index` does not have any code, the framework will pass
 }}}
 
 Where `/WEB-INF/views/` is a base location for all views, directory "greeting" is named after controller, and a view template "index" is called to render because action "index" of the controller was executed.
-
