@@ -8,11 +8,12 @@
 
 
 
-1. 5MinuteGuideToActiveWeb
-1.  GettinStarted - Hello world application
+1. FiveMinuteGuideToActiveWeb
+
+2.  GettingStarted - Hello world application
   * ad-hoc development and prototyping - add controllers, actions and views on the fly without container restart
 
-2. MVC pattern - controller, model/data, view
+2.1 MVC pattern - controller, model/data, view
 
 2.2 Structure of !ActiveWeb project
 
