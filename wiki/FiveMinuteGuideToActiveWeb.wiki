@@ -1,4 +1,4 @@
-#summary 5 minute guide, the simplest ActiveWeb application
+#summary 5 minute guide and the simplest dynamic ActiveWeb application
 
 <wiki:toc max_depth="2" />
 
