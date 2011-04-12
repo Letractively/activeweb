@@ -1,0 +1,47 @@
+#summary 5 minute guide, the simplest ActiveWeb application
+
+<wiki:toc max_depth="2" />
+
+= Introduction =
+
+At the heart of an !ActiveWeb application is a controller. A controller is a component whose role is to accept and process an HTTP request. This is similar to a Servlet, or a controller class in SpringMVC, Action class in Struts 1 or a controller in Ruby on Rails.
+
+Here is an example of the simplest controller:
+
+{{{
+public class GreetingController extends AppController{
+   public void index(){}
+}
+}}}
+
+==URL mapping convention==
+Controllers are automatically mapped to a URL, such that a controller name is underscored (without the word Controller). Here is an example: 
+{{{
+http://localhost:8080/testapp/greeting
+}}}
+
+When this URL is accessed, the `GreetingController` is executed. Since no further information is provided on the URL, the `index()` method will be processed. Controller methods processed as a result of an HTTP request are called *actions*.
+
+==Action Mapping Convention==
+If the URL contained more information, let's say:
+{{{
+http://localhost:8080/testapp/greeting/hello
+}}}
+then the system would expect that the controller would have a "hello" action, as in:
+{{{
+public class GreetingController extends AppController{
+   public void hello(){}
+}
+}}}
+
+However, as in the previous example, the action is omitted, which causes the framework to fall back on a default action "index".
+
+
+==View Mapping Convention==
+
+In this case, the action `index` does not have any code, the framework will pass control to a view. This view will be looked for under:
+{{{
+/WEB-INF/views/greeting/index.ftl
+}}}
+
+Where `/WEB-INF/views/` is a base location for all views, directory "greeting" is named after controller, and a view template "index" is called to render because action "index" of the controller was executed. The content of the `index.ftl` will be displayed in browser.
