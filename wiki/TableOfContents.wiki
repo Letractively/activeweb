@@ -13,7 +13,7 @@
 2.  GettingStarted - Hello world application
   * ad-hoc development and prototyping - add controllers, actions and views on the fly without container restart
 
-2.1 MVC pattern - controller, model/data, view
+2.1 MvcPattern - controller, model/data, view
 
 2.2 Structure of !ActiveWeb project
 
