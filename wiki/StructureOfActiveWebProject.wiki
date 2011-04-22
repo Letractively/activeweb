@@ -1,0 +1,15 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+!ActiveWeb is a Maven project, and as such has all the usual Maven conventions. This allows developers to become productive quickly, since locations of artifacts is the same as for a typical Maven Web. 
+
+However, there are some specifics regarding !ActiveWeb, which are discussed below.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
