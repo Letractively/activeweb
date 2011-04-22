@@ -34,6 +34,8 @@ For instance, in some of our projects, we keep models in a different shared modu
 =Location of services=
 The package `app.services` is a mere suggestion where they need to be located. If a service is not shared across many projects, it makes sense to place it into this package. If a service is used in other places, it migth actually be in a completely different module.
 
+!ActiveWeb also provides automatic dependency injection of services into controllers and filters. The chosen DI container for !ActiveWeb is [http://code.google.com/p/google-guice/ Google Guice]. For more information, please refer to [DependencyInjection Dependency injection].
+
 =Location of views=
 !ActiveWeb uses (currently) [http://freemarker.sourceforge.net/ FreeMarker] for rendering and does not use JSPs. For reasons on this decision, please refer to  the [FAQ].
 The !FreeMarker templates are located in directory `src/main/webapp/WEB-INF/views`. 
