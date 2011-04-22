@@ -7,68 +7,62 @@
 [FAQ]
 
 
-
 1. FiveMinuteGuideToActiveWeb
 
 2.  GettingStarted - Hello world application
   * ad-hoc development and prototyping - add controllers, actions and views on the fly without container restart
-
 2.1 MvcPattern
 
 2.2 [StructureOfActiveWebProject Structure of ActiveWeb project]
 
 3. Controller explained - actions -> view templates, naming conventions, mapping URLs to controllers/actions/views
-	* standard controllers + HTTP method annotations
-	* RESTful controllers
-	* default mapping to views
-	* override mapping to views
-	* default layouts
-	* custom layouts
-	* Ajax related APIs
-	* download of files
-	* streaming of data to client
-	* upload of files
-	* session management
-	* cookies
-        * built in logging
-        * logging of request parameters
 
-         
+  * standard controllers + HTTP method annotations
+  * RESTful controllers
+  * default mapping to views
+  * override mapping to views
+  * default layouts
+  * custom layouts
+  * Ajax related APIs
+  * download of files
+  * streaming of data to client
+  * upload of files
+  * session management
+  *  cookies
+  * built in logging
+  * logging of request parameters
 4. [DependencyInjection Dependency injection] - in tests as well as at runtime
 
 5. [Configuration]
-	* ACTIVE_ENV 
-	* Configure datasources for different environments
+  * ACTIVE_ENV 
+  * Configure datasources for different environments
+
 6. Filters - global, controller, action
-	* configuration
-	* exception handling
+  * configuration
+  * exception handling
+
 7. Testing
-	* JSpec
-        * DBSpec
-	* ControllerSpec
-	* DBControllerSpec
-	* IntegrationSpec
-	* DBIntegrationSpec
-	* AppIntegrationSpec
-	
+  * JSpec
+  * DBSpec
+  * ControllerSpec
+  * DBControllerSpec
+  * IntegrationSpec
+  * DBIntegrationSpec
+  * AppIntegrationSpec
+
 8. Views
   * templates
   * layouts
-  * FreeMarker
-  
+  * FreeMarker  
   *  Tags
-    ** link_to
-    ** Flash	 
-    ** confirmation
-    ** form
-    ** render - partials
-    ** content_for, yield
-
+    *  link_to
+    *  Flash	 
+    *  confirmation
+    *  form
+    *  render - partials
+    *  content_for, yield
   * Custom tag development
-
-	
 11. Captcha
-
 
 12. ActiveWeb Development cycle (True BDD)
   # Migration
