@@ -10,9 +10,23 @@
 However, there are some specifics regarding !ActiveWeb, which are discussed below.
 
 
-= Location of !ActiveWeb Controllers =
+http://activeweb.googlecode.com/files/aw-structure.png
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+
+
+=Configuration=
+
+In the image above, you can see that the there is a package `app.config`. This package contains 2 - 3 classes responsible for configuration of your project. !ActiveWeb does not have property files, XML or any other text based files for configuration. In fact, it barely has any configuration. Most configuration of the application is dealing with configuring database connections.For more on configuration, see here: [Configuration]
+
+
+= Location of controllers =
+
+Controllers are _always_ located in a package `app.controllers`. At first this looks strange, and uncomfortable, but this is a requirement of the framework and a general convention. Developers after a while get used to and start to appreciate it.  A controller is a Web component, and as such is not a subject of sharing across multiple applications. This means that controllers of one web applications will not intermingle with controllers of another. 
+This approach yields the following benefits:
+  * !ActiveWeb application structure is identical from one project to another, making it easier to onboard new developers
+  * Controllers are compiled on the fly and reloaded on every request in development mode. This provides for unprecedented speed of development
+
+= Location of models=
+
+!ActiveWeb has a good integration with [http://code.google.com/p/activejdbc/ ActiveJDBC], and the `app.models` package is for ActiveJDBC models. However, while this is a convention and a recommendation, there is no hard requirement on the part of framework o keep models in this package or even in this module. 
+For instance, in some of our projects, we keep models in a shared module so that we can share a DB layer access across multiple projects. 
