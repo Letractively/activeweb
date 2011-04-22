@@ -1,4 +1,7 @@
-#summary One-sentence summary of this page.
+#summary learn about the structure of ActiveWeb project
+
+<wiki:toc max_depth="2" />
+
 
 = Introduction =
 
@@ -7,7 +10,7 @@
 However, there are some specifics regarding !ActiveWeb, which are discussed below.
 
 
-= Details =
+= Location of ActiveWeb Controllers =
 
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_
