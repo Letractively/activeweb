@@ -52,8 +52,10 @@
 	* AppIntegrationSpec
 	
 8. Views
-	* FreeMarker
-
+  * templates
+  *layouts
+  * FreeMarker
+  
   *  Tags
     ** link_to
     ** Flash	 
