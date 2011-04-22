@@ -29,4 +29,14 @@ This approach yields the following benefits:
 = Location of models=
 
 !ActiveWeb has a good integration with [http://code.google.com/p/activejdbc/ ActiveJDBC], and the `app.models` package is for ActiveJDBC models. However, while this is a convention and a recommendation, there is no hard requirement on the part of framework o keep models in this package or even in this module. 
-For instance, in some of our projects, we keep models in a shared module so that we can share a DB layer access across multiple projects. 
+For instance, in some of our projects, we keep models in a different shared module so that we can share a DB layer access across multiple projects. 
+
+=Location of services=
+The package `app.services` is a mere suggestion where they need to be located. If a service is not shared across many projects, it makes sense to place it into this package. If a service is used in other places, it migth actually be in a completely different module.
+
+=Location of views=
+!ActiveWeb uses (currently) [http://freemarker.sourceforge.net/ FreeMarker] for rendering and does not use JSPs. For reasons on this decision, please refer to  the [FAQ].
+The FreeMarker templates are located in directory `src/main/webapp/.WEB-INF/views`. 
+The subdirectories indicate controller names. 
+
+In an example above, 
