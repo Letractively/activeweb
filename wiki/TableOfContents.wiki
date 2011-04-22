@@ -15,7 +15,7 @@
 
 2.1 MvcPattern
 
-2.2 Structure of !ActiveWeb project
+2.2 [StructureOfActiveWebProject Structure of ActiveWeb project]
 
 3. Controller explained - actions -> view templates, naming conventions, mapping URLs to controllers/actions/views
 	* standard controllers + HTTP method annotations
