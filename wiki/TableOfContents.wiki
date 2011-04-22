@@ -34,7 +34,7 @@
         * logging of request parameters
 
          
-4. Dependency injection - in tests as well as at runtime
+4. [DependencyInjection Dependency injection] - in tests as well as at runtime
 
 5. [Configuration]
 	* ACTIVE_ENV 
