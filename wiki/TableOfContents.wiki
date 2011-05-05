@@ -41,6 +41,7 @@
   * default layouts
   * custom layouts 
   * layouts
+  * partials
   * FreeMarker  
   *  Tags
     *  link_to
