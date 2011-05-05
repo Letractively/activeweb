@@ -1,0 +1,65 @@
+#summary learn all about ActiveWeb controllers
+
+
+==Introduction==
+
+
+Controllers are at the heart of an !ActiveWeb application. These are classes wich designed to process an HTTP request. They are somewhat similar to Java Servlets, but even more similar to Ruby on Rails, Grails and SpringMVC controllers. A simplest controller looks like this:
+{{{
+public class GreetingController extends AppController{
+   public void index(){}
+}
+}}}
+
+A controller above is a working controller, even though it does not have any code in it. Such a controller is automatically mapped to a URL"
+{{{
+http://host:port/context/greeting
+}}}
+
+==Controller actions==
+
+A controller action is a method that is designed to process an HTTP request. For example, in the example above, the URL will be mapped to the "action" index by default. However, if the URL looked like this:
+{{{
+http://host:port/context/greeting/hello
+}}}
+then it would map to action "hello":
+{{{
+public class GreetingController extends AppController{
+   public void hello(){}
+}
+}}}
+
+
+==Standard controllers and HTTP methods==
+
+The HTTP specification defines methods: GET, POST, DELETE, PUT, CONNECT and HEAD. Currently ActiveWeb supports  GET, POST, DELETE, PUT, as the most used methods. 
+
+An HTTP request is not only mapped to an action, but also its HTTP method must correspond to an action's HTTP method. Action HTTP methods are configured with annotations, {{{@GET, @POST, @PUT, and @DELETE}}}. 
+
+
+
+<table>
+<tbody  border="1">
+<tr >
+<td >
+<font color="navy">*However, if annotation is missing, an action is mapped to HTTP GET method.* </font></td>
+</tr>
+</tbody>
+</table>
+
+
+    * standard controllers + HTTP method annotations
+    * RESTful controllers
+    * default mapping to views
+    * override mapping to views
+    * default layouts
+    * custom layouts
+    * Ajax related APIs
+    * download of files
+    * streaming of data to client
+    * upload of files
+    * session management
+    * cookies
+    * built in logging
+    * logging of request parameters 
+    * Thread safe
