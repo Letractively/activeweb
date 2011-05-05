@@ -38,6 +38,8 @@
 
 8. Views
   * templates
+  * default layouts
+  * custom layouts 
   * layouts
   * FreeMarker  
   *  Tags
