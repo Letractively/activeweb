@@ -219,6 +219,7 @@ Hello, my name is: ${name}
 }}}
 
 You could have guessed that the output will look like:
+"Hello, my name is: John Doe"
 
 =Working with controllers=
 ==Getting request parameters=
