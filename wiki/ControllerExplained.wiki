@@ -1,5 +1,7 @@
 #summary learn all about ActiveWeb controllers
 
+<wiki:toc max_depth="2" />
+
 
 =Introduction=
 
@@ -131,19 +133,21 @@ class UniversityBooksController{..} // ===> controller path: /university_books
 Example 3
 {{{
 package app.controllers.depaul;
-class UniversityBooksController{..} // ===> controller path: /depaul/books
+class UniversityBooksController{..} // ===> controller path: /depaul/university_books
 }}}
 
 
 Example 4
 {{{
 package app.controllers.depaul.chicago;
-class UniversityBooksController{..} // ===> controller path: /depaul/chicago/books
+class UniversityBooksController{..} // ===> controller path: /depaul/chicago/university_books
 }}}
+
+
 
 =V in MVC=
 
-!ActiveWeb does not use JSPs. Period. Instead it uses [FreeMarker http://freemarker.sourceforge.net/] (FM). The FM templates are located in this directory:
+!ActiveWeb does not use JSPs. Period. Instead it uses [http://freemarker.sourceforge.net/ FreeMarker] (FM). The FM templates are located in this directory:
 {{{
 src/main/webapp/WEB-INF/views
 }}}
@@ -151,13 +155,123 @@ src/main/webapp/WEB-INF/views
 
 =Mapping to views=
 
-The directory: `src/main/webapp/WEB-INF/views` has subdirectories. These subdirectories are named after controllers. 
+The directory: `src/main/webapp/WEB-INF/views` has subdirectories. These subdirectories are named after controller paths. This makes it easy to find FM templates (views)  associated with controllers. 
+
+==Default mapping to views==
+
+Under normal circumstances, the HTTP request is applied to an action, and then the framework passes control to a view. Under these conditions, there is no need for any configuration or code. 
+
+Example: if a HTTP GET request is sent to this URL: `http://hostname/context/greeting`, then the framework will invoke a GreetingControoller, and by default action `index`:
+{{{
+public class GreetingController extends AppController{
+   public void index(){}
+}
+}}}
+
+After execution of action, the !ActiveWeb will find a template: 
+{{{
+src/main/webapp/WEB-INF/views/greeting/index.ftl
+}}}
+will render it, and send results to the browser. 
+
+!ActiveWeb in the same spirit as ActiveJDBC does not have any configuration files. Most actions are based on conventions. 
+
+==Override mapping to views==
+
+In some cases, you need to override default mapping to views. YOu will use a `render()` method for this: 
+{{{
+public class GreetingController extends AppController{
+   public void index(){
+      //some code here
+      render("show");
+   }
+}
+}}}
+
+The `render("show");` will signal to ActiveWeb  that instead of "index", you want to render "show".
+Since you did not provide any other information, !ActiveWeb will assume that this view will be found at the same location:
+{{{
+src/main/webapp/WEB-INF/views/greeting/show.ftl
+}}}
 
 
-    * default mapping to views
-    * override mapping to views
-    * default layouts
-    * custom layouts
+=Passing data to views=
+
+Passing data to views is done with two methods:
+  * assign(name, value)
+  * view(name, value)
+
+There is no difference between these methods, they are aliases. 
+
+Example:
+
+{{{
+public class GreetingController extends AppController{
+   public void index(){
+       view("name", "John Doe");
+   }
+}
+}}}
+
+The corresponding view can look like this:
+{{{
+Hello, my name is: ${name}
+}}}
+
+You could have guessed that the output will look like:
+
+=Working with controllers=
+==Getting request parameters=
+Getting request parameters is the most important part of any web application. !ActiveWeb provides a few methods to achieve this goal:
+
+*getting a single parameter* 
+
+{{{
+public class GreetingController extends AppController{
+   public void index(){
+       String name = param("name");
+   }
+}
+}}}
+
+*getting all single parameters* 
+
+{{{
+public class GreetingController extends AppController{
+   public void index(){
+      Map<String, String[]> allParams = params();
+   }
+}
+}}}
+
+
+*getting all values for a single parameter* 
+
+This is in cases for submit parameters with multiple values, such as selects:
+
+{{{
+public class GreetingController extends AppController{
+   public void index(){
+      List<String> names = params("names");
+   }
+}
+}}}
+
+
+*getting a first value from each submitted parameted* 
+
+This is in cases for submit parameters with multiple values, such as selects:
+
+{{{
+public class GreetingController extends AppController{
+   public void index(){
+      Map<String, String> firstValues = params1st()
+   }
+}
+}}}
+
+Sections to be added to this page:
+
     * Ajax related APIs
     * download of files
     * streaming of data to client
