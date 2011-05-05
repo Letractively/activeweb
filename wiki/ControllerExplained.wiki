@@ -1,7 +1,7 @@
 #summary learn all about ActiveWeb controllers
 
 
-==Introduction==
+=Introduction=
 
 
 Controllers are at the heart of an !ActiveWeb application. These are classes wich designed to process an HTTP request. They are somewhat similar to Java Servlets, but even more similar to Ruby on Rails, Grails and SpringMVC controllers. A simplest controller looks like this:
@@ -16,7 +16,7 @@ A controller above is a working controller, even though it does not have any cod
 http://host:port/context/greeting
 }}}
 
-==Controller actions==
+=Controller actions=
 
 A controller action is a method that is designed to process an HTTP request. For example, in the example above, the URL will be mapped to the "action" index by default. However, if the URL looked like this:
 {{{
@@ -30,7 +30,7 @@ public class GreetingController extends AppController{
 }}}
 
 
-==Standard controllers and HTTP methods==
+=Controllers and HTTP methods=
 
 The HTTP specification defines methods: GET, POST, DELETE, PUT, CONNECT and HEAD. Currently ActiveWeb supports  GET, POST, DELETE, PUT, as the most used methods. 
 
@@ -43,6 +43,7 @@ An HTTP request is not only mapped to an action, but also its HTTP method must c
 </td>
 </tr>
 </table>
+
 This makes it unnecessary to use annotations except cases when you need so-called "destructive" action. A destructive action is the one that is designed to change a state of a resource (in REST style of web programming). 
 
 Here is an example of a destructive action is:
@@ -56,12 +57,103 @@ public class BooksController extends AppController{
 
 !ActiveWeb promotes REST-style web programming and will not allow to access an action that is configured for one HTTP method with another. For instance, I you try to access the `GreetingController#index` with HTTP method POST, you would get an exception:
 {{{
-activeweb.ControllerException: Cannot access action app.controllers.GreetingController.index with HTTP method: 'POST' because it is configured for method: 'GET'
+activeweb.ControllerException: Cannot access action 
+app.controllers.GreetingController.index with HTTP method: 'POST' because it is 
+configured for method: 'GET'
+}}}
+
+=RESTful controllers=
+
+A restful controller is almost the same as a regular controller. The difference is that in a standard controller you can define any number of actions and configure them with annotations to accept any HTTP methods. RESTful controllers by contrast have a fixed set of actions and these actions will accept certain HTTP methods. In order to create a RESTful controller, you need to do two things:
+
+  # Add `@RESTful` annotation to the controller class 
+  # Provide a fixed set of action methods in the body of controller
+
+Here is an example of a RESTful controller taken from Kitchensink application:
+
+{{{
+@RESTful
+public class RpostsController extends AppController {
+
+    public void index(){...}
+
+    public void newForm(){...}
+
+    public void create(){...}
+
+    public void show(){...}
+
+    public void destroy(){...}
+}}}
+A RESTful controller is allowed to have 7 methods, and they all are automatically mapped to the following URSs and HTTP methods:
+{{{
+==========================================================================================
+verb    path                   action          used for
+==========================================================================================
+GET     /books                 index 	       display a list of all books
+GET     /books/new_form        new_form        return an HTML form for creating a new book
+POST    /books                 create 	       create a new book
+GET     /books/id              show            display a specific book
+GET     /books/id/edit_form    edit_form       return an HTML form for editing a books
+PUT     /books/id              update          update a specific book
+DELETE 	/books/id              destroy         delete a specific book
+}}}
+
+There is no need to add any other annotations to RESTful controllers.
+
+If you examine the table above, you will see that a combination of a path and HTTP method is mapped to an action. For instance, a path '/books' is mapped twice, with GET HTTP method to action `index`, an with POST to action `create`. This makes for elegant, REST-style URLs and leads ultimately to better user experience. 
+
+=Location of controllers in project=
+
+The page [StructureOfActiveWebProject Structure of a web project] states that controllers are located in a package:
+{{{
+app.controllers
+}}}
+
+!ActiveWeb specifies that all controllers are located in this package or sub-packages. 
+
+=Controller paths=
+A controller path is made of a sub-package and a controller name. A controller name is _not_ a class name, but rather underscored, flattened name part of a class simple name. 
+
+Example 1
+{{{
+package app.controllers;
+class BooksController{..} // ===> controller path: /books
 }}}
 
 
-    * standard controllers + HTTP method annotations
-    * RESTful controllers
+Example 2:
+{{{
+package app.controllers;
+class UniversityBooksController{..} // ===> controller path: /university_books
+}}}
+
+Example 3
+{{{
+package app.controllers.depaul;
+class UniversityBooksController{..} // ===> controller path: /depaul/books
+}}}
+
+
+Example 4
+{{{
+package app.controllers.depaul.chicago;
+class UniversityBooksController{..} // ===> controller path: /depaul/chicago/books
+}}}
+
+=V in MVC=
+
+!ActiveWeb does not use JSPs. Period. Instead it uses [FreeMarker http://freemarker.sourceforge.net/] (FM). The FM templates are located in this directory:
+{{{
+src/main/webapp/WEB-INF/views
+}}}
+
+
+=Mapping to views=
+
+The directory: `src/main/webapp/WEB-INF/views` has subdirectories. These subdirectories are named after controllers. 
+
+
     * default mapping to views
     * override mapping to views
     * default layouts
