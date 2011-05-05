@@ -15,22 +15,8 @@
 
 2.2 [StructureOfActiveWebProject Structure of ActiveWeb project]
 
-3. Controller explained - actions -> view templates, naming conventions, mapping URLs to controllers/actions/views
+3. [ControllerExplained Controllers explained]
 
-  * standard controllers + HTTP method annotations
-  * RESTful controllers
-  * default mapping to views
-  * override mapping to views
-  * default layouts
-  * custom layouts
-  * Ajax related APIs
-  * download of files
-  * streaming of data to client
-  * upload of files
-  * session management
-  *  cookies
-  * built in logging
-  * logging of request parameters
 4. [DependencyInjection Dependency injection] - in tests as well as at runtime
 
 5. [Configuration]
