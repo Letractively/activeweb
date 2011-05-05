@@ -252,7 +252,7 @@ This is in cases for submit parameters with multiple values, such as selects:
 {{{
 public class GreetingController extends AppController{
    public void index(){
-      List<String> names = params("names");
+      List<String> states = params("states");
    }
 }
 }}}
