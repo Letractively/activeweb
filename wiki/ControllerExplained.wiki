@@ -36,15 +36,28 @@ The HTTP specification defines methods: GET, POST, DELETE, PUT, CONNECT and HEAD
 
 An HTTP request is not only mapped to an action, but also its HTTP method must correspond to an action's HTTP method. Action HTTP methods are configured with annotations, {{{@GET, @POST, @PUT, and @DELETE}}}. 
 
-
-
-<table border =1>
+<table border = "1">
 <tr> 
 <td>
-<font color="navy">*However, if annotation is missing, an action is mapped to HTTP GET method.* </font>
+<font color="navy">*However, if annotation is missing, an action is mapped to HTTP GET method by default* </font>
 </td>
 </tr>
 </table>
+This makes it unnecessary to use annotations except cases when you need so-called "destructive" action. A destructive action is the one that is designed to change a state of a resource (in REST style of web programming). 
+
+Here is an example of a destructive action is:
+{{{
+public class BooksController extends AppController{
+
+   @PUT
+   public void updateBook(){}
+}
+}}}
+
+!ActiveWeb promotes REST-style web programming and will not allow to access an action that is configured for one HTTP method with another. For instance, I you try to access the `GreetingController#index` with HTTP method POST, you would get an exception:
+{{{
+activeweb.ControllerException: Cannot access action app.controllers.GreetingController.index with HTTP method: 'POST' because it is configured for method: 'GET'
+}}}
 
 
     * standard controllers + HTTP method annotations
