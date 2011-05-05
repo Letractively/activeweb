@@ -38,13 +38,9 @@ An HTTP request is not only mapped to an action, but also its HTTP method must c
 
 
 
-<table>
-<tbody  border="1">
-<tr >
-<td >
-<font color="navy">*However, if annotation is missing, an action is mapped to HTTP GET method.* </font></td>
-</tr>
-</tbody>
+<table border =1>
+<font color="navy">*However, if annotation is missing, an action is mapped to HTTP GET method.* </font>
+
 </table>
 
 
