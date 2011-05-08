@@ -26,7 +26,7 @@ In case an environment variable <code>ACTIVE_ENV</code> is not provided, the fra
 !ActiveWeb promotes a style of development where one database used for testing, but a different one used under normal execution.
 When tests are executed, a "test" database is used, and when a project is run in a normal mode, a "development" database is used. Having a separate database for testing ensures safety of data in the development database.
 
-==Example of configuration==
+==Example configuration==
 <pre>
  1. public class DbConfig extends AbstractDBConfig {
  2.  public void init() {
