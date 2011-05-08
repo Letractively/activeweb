@@ -44,4 +44,58 @@ The code above is an example from Kitchensink project. Lets examine it line by l
  * Line 5: This is a configuration of DB connection for "hudson" environment, but for "testing" mode. The "hudson" environment is a computer where this project is built by Hudson - the continuous integration server. Since Hudson  computer is fully automated, and this project is not running there in "standard" mode, there is no standard configuration for hudson environment, just one for testing.
  * Line 6: This is configuration similar to one on line 3, but for "production" environment.
 
+=Filter configuration=
+
+Controller filters are similar to that of Servlet filters, but designed to wrap execution of controllers. They can be used for many tasks that need to trigger before and after execution of a controller, such as login in, loggin, opening a DB connection, timing, etc.
+
+All filters a implementations of this interface:
+{{{
+package activeweb;
+public interface ControllerFilter {
+    void before();
+    void after();
+    void onException(Exception e);
+}
+}}}
+
+Configuration of filters is done in a class called `app.config.AppControllerConfig`, which needs to extend `activeweb.AbstractControllerConfig`. This class provides ways to bind filters to controllers. It has coarse grain methods for binding as well as
+fine grained.
+<font color="navy">
+<code>
+Filters before() methods are executed in the same order as filters are registered.</code></font>
+
+
+==Adding global filters==
+
+Adding a global filter adds it to all controllers. It makes sense to use this to add timing filters, logging filters, etc.
+
+{{{
+public class AppControllerConfig{
+ addGlobalFilters(activeweb.controller_filters.ControllerFilter...);
+}
+}}}
+
+
+==Adding controller filters==
+
+To add filters to specific controllers:
+
+{{{
+public class AppControllerConfig{
+  add(activeweb.controller_filters.ControllerFilter...).to(HomeController.class);
+}
+}}}
+
+Both the "add()" an the "to()" methods take in varargs, allowing to bind multiple filters to multiple controllers in one line of code.
+
+<font color="navy"><code>Filters' after() methods are executed in the opposite order as filters are registered.</code></font>
+
+
+==Adding filters to specific actions==
  
+Here is an example of adding a filter to specific actions:
+{{{
+public class AppControllerConfig{
+add(mew TimingFilter(), new DBConnectionFilter()).to(PostsController.class).forActions("index", "show");
+}
+}}}
