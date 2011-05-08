@@ -71,7 +71,7 @@ Adding a global filter adds it to all controllers. It makes sense to use this to
 
 {{{
 public class AppControllerConfig{
- addGlobalFilters(activeweb.controller_filters.ControllerFilter...);
+  addGlobalFilters(activeweb.controller_filters.ControllerFilter...);
 }
 }}}
 
@@ -96,6 +96,6 @@ Both the "add()" an the "to()" methods take in varargs, allowing to bind multipl
 Here is an example of adding a filter to specific actions:
 {{{
 public class AppControllerConfig{
-add(mew TimingFilter(), new DBConnectionFilter()).to(PostsController.class).forActions("index", "show");
+  add(mew TimingFilter(), new DBConnectionFilter()).to(PostsController.class).forActions("index", "show");
 }
 }}}
