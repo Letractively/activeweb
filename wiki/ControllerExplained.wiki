@@ -38,13 +38,7 @@ The HTTP specification defines methods: GET, POST, DELETE, PUT, CONNECT and HEAD
 
 An HTTP request is not only mapped to an action, but also its HTTP method must correspond to an action's HTTP method. Action HTTP methods are configured with annotations, {{{@GET, @POST, @PUT, and @DELETE}}}. 
 
-<table border = "1">
-<tr> 
-<td>
-<font color="navy">*However, if annotation is missing, an action is mapped to HTTP GET method by default* </font>
-</td>
-</tr>
-</table>
+<font color="navy"><code>*However, if annotation is missing, an action is mapped to HTTP GET method by default*</code></font>
 
 This makes it unnecessary to use annotations except cases when you need so-called "destructive" action. A destructive action is the one that is designed to change a state of a resource (in REST style of web programming). 
 
@@ -176,9 +170,9 @@ will render it, and send results to the browser.
 
 !ActiveWeb in the same spirit as ActiveJDBC does not have any configuration files. Most actions are based on conventions. 
 
-==Override mapping to views==
+==Override mapping to relative views==
 
-In some cases, you need to override default mapping to views. YOu will use a `render()` method for this: 
+In some cases, you need to override default mapping to views. You will use a `render()` method for this: 
 {{{
 public class GreetingController extends AppController{
    public void index(){
@@ -188,12 +182,27 @@ public class GreetingController extends AppController{
 }
 }}}
 
-The `render("show");` will signal to ActiveWeb  that instead of "index", you want to render "show".
+The `render("show");` will signal to !ActiveWeb  that instead of "index", you want to render "show".
 Since you did not provide any other information, !ActiveWeb will assume that this view will be found at the same location:
 {{{
 src/main/webapp/WEB-INF/views/greeting/show.ftl
 }}}
 
+==Override mapping to absolute views==
+
+Sometimes you need to call a view that "belongs" to a different controller, or even some shared view. In that case, you can specify an "absolute" path to a view like this:
+{{{
+public class GreetingController extends AppController{
+   public void index(){
+      //some code here
+      render("/shared/show");
+   }
+}
+}}}
+!ActiveWeb will use the following view to render:
+{{{
+src/main/webapp/WEB-INF/views/shared/show.ftl
+}}}
 
 =Passing data to views=
 
