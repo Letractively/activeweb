@@ -3,7 +3,7 @@
 
 = Introduction =
 
-!ActiveWeb _does not use_ property files, XML, Yaml or any other text files for configuration. The amount of configuration in !ActiveWeb project in general is condenced to absolute minimum, and whatever configuration still needs to be done is done in Java code. 
+!ActiveWeb _does not use_ property files, XML, Yaml or any other text files for configuration. The amount of configuration in !ActiveWeb project in general is condenced to absolute minimum, and whatever configuration still needs to be done is done in Java code. There are a few advantages of this approach: auto-suggestions by IDE, documentation at finger tips, and some level of comfort from Java compiler.
 
 !ActiveWeb uses two application classes for configuration: `app.config.AppControllerConfig` and `app.config.DbConfig`. Both of these classes are initialized from a third application level class called `app.config.AppBootstrap`.
 
