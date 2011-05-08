@@ -231,10 +231,10 @@ You could have guessed that the output will look like:
 "Hello, my name is: John Doe"
 
 =Working with controllers=
-==Getting request parameters=
+==Getting request parameters==
 Getting request parameters is the most important part of any web application. !ActiveWeb provides a few methods to achieve this goal:
 
-*getting a single parameter* 
+===getting a single parameter===
 
 {{{
 public class GreetingController extends AppController{
@@ -244,7 +244,7 @@ public class GreetingController extends AppController{
 }
 }}}
 
-*getting all single parameters* 
+===getting all single parameters===
 
 {{{
 public class GreetingController extends AppController{
@@ -255,7 +255,7 @@ public class GreetingController extends AppController{
 }}}
 
 
-*getting all values for a single parameter* 
+===getting all values for a single parameter===
 
 This is in cases for submit parameters with multiple values, such as selects:
 
@@ -268,7 +268,7 @@ public class GreetingController extends AppController{
 }}}
 
 
-*getting a first value from each submitted parameted* 
+===getting a first value from each submitted parameter=== 
 
 This is in cases for submit parameters with multiple values, such as selects:
 
@@ -281,9 +281,46 @@ public class GreetingController extends AppController{
 }}}
 The return value is a map where keys are names of all parameters, while values are first value for each parameter, even if such parameter has more than one value submitted.
 
+==Ajax APIs==
+
+===detecting if a request is Ajax===
+
+Controllers (and filters alike) provide a simple way to detect if a request is a from an XmlHttpRequest in browser:
+{{{
+public class GreetingController extends AppController{
+   public void index(){
+      if(xhr()){
+         ...
+      }else{
+         ...
+      }
+   }
+}
+}}}
+The `xhr();` method also has an alias: `isXhr();`.
+
+===Responding to an Ajax call===
+
+!ActiveWeb provides a simple but powerful method `respond(..)`:
+
+{{{
+public class GreetingController extends AppController{
+   public void index(){
+      respond("<message>hello</message>").contentType("text/xml").status(200);
+   }
+}
+}}}
+
+It is easy to use this method to send plain text, XML, JSON, or any other text format as a response to Ajax call.
+
+<font color="navy"><code>*Method respond(..) is also great for building REST services, where a client is not 
+a browser and responce format is not HTML.*
+</code></font>
+
+
+
 Sections to be added to this page:
 
-    * Ajax related APIs
     * download of files
     * streaming of data to client
     * upload of files
