@@ -228,7 +228,9 @@ Hello, my name is: ${name}
 }}}
 
 You could have guessed that the output will look like:
+{{{
 "Hello, my name is: John Doe"
+}}}
 
 =Getting request parameters=
 Getting request parameters is the most important part of any web application. !ActiveWeb provides a few methods to achieve this goal:
