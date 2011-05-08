@@ -230,11 +230,10 @@ Hello, my name is: ${name}
 You could have guessed that the output will look like:
 "Hello, my name is: John Doe"
 
-=Working with controllers=
-==Getting request parameters==
+=Getting request parameters=
 Getting request parameters is the most important part of any web application. !ActiveWeb provides a few methods to achieve this goal:
 
-===getting a single parameter===
+==getting a single parameter==
 
 {{{
 public class GreetingController extends AppController{
@@ -244,7 +243,7 @@ public class GreetingController extends AppController{
 }
 }}}
 
-===getting all parameters===
+==getting all parameters==
 
 {{{
 public class GreetingController extends AppController{
@@ -255,7 +254,7 @@ public class GreetingController extends AppController{
 }}}
 
 
-===getting all values for a single parameter===
+==getting all values for a single parameter==
 
 This is in cases for submit parameters with multiple values, such as selects:
 
@@ -268,7 +267,7 @@ public class GreetingController extends AppController{
 }}}
 
 
-===getting a first value from each submitted parameter=== 
+==getting a first value from each submitted parameter==
 
 This is in cases for submit parameters with multiple values, such as selects:
 
@@ -281,9 +280,9 @@ public class GreetingController extends AppController{
 }}}
 The return value is a map where keys are names of all parameters, while values are first value for each parameter, even if such parameter has more than one value submitted.
 
-==Ajax APIs==
+=Ajax APIs=
 
-===detecting if a request is Ajax===
+==detecting if a request is Ajax==
 
 Controllers (and filters alike) provide a simple way to detect if a request is a from an XmlHttpRequest in browser:
 {{{
@@ -299,7 +298,7 @@ public class GreetingController extends AppController{
 }}}
 The `xhr();` method also has an alias: `isXhr();`.
 
-===Responding to an Ajax call===
+==Responding to an Ajax call==
 
 !ActiveWeb provides a simple but powerful method `respond(..)`:
 
