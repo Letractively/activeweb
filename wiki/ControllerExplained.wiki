@@ -279,6 +279,7 @@ public class GreetingController extends AppController{
    }
 }
 }}}
+The return value is a map where keys are names of all parameters, while values are first value for each parameter, even if such parameter has more than one value submitted.
 
 Sections to be added to this page:
 
