@@ -6,7 +6,7 @@
 =Introduction=
 
 
-Controllers are at the heart of an !ActiveWeb application. These are classes wich designed to process an HTTP request. They are somewhat similar to Java Servlets, but even more similar to Ruby on Rails, Grails and SpringMVC controllers. A simplest controller looks like this:
+Controllers are at the heart of an !ActiveWeb application. These are classes wich designed to process an HTTP request. They are somewhat similar to Java Servlets, but even more similar to Ruby on Rails, Grails anall sind SpringMVC controllers. A simplest controller looks like this:
 {{{
 public class GreetingController extends AppController{
    public void index(){}
@@ -244,7 +244,7 @@ public class GreetingController extends AppController{
 }
 }}}
 
-===getting all single parameters===
+===getting all parameters===
 
 {{{
 public class GreetingController extends AppController{
