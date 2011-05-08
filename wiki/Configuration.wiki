@@ -10,8 +10,8 @@
 
 =Database connections configuration=
 In order to configure database connection, an application needs to provide a class called `app.config.DbConfig`. 
-
 It is used to configure database connections for various <strong>environments and modes</strong>.
+
 ==What is an environment?==
 An !ActiveWeb environment is a computer where a  project executes. In the process of software development there can be a number of environments where a project gets executed, such as development, continuous integration, QA, staging, production and more. The number of environments for !ActiveWeb is custom for every project.
  
