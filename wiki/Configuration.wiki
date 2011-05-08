@@ -48,7 +48,7 @@ The code above is an example from Kitchensink project. Lets examine it line by l
 
 Controller filters are similar to that of Servlet filters, but designed to wrap execution of controllers. They can be used for many tasks that need to trigger before and after execution of a controller, such as login in, loggin, opening a DB connection, timing, etc.
 
-All filters a implementations of this interface:
+All filters implement this interface:
 {{{
 package activeweb;
 public interface ControllerFilter {
