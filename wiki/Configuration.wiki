@@ -12,21 +12,21 @@
 In order to configure database connection, an application needs to provide a class called `app.config.DbConfig`. 
 
 It is used to configure database connections for various <strong>environments and modes</strong>.
-<h4> What is an environment?</h4>
+==What is an environment?==
 An !ActiveWeb environment is a computer where a  project executes. In the process of software development there can be a number of environments where a project gets executed, such as development, continuous integration, QA, staging, production and more. The number of environments for !ActiveWeb is custom for every project.
  
-<h4>How to specify an environment</h4>
+==How to specify an environment==
 An environment is specified by an environment variable: <code>ACTIVE_ENV</code> Every computer where an !ActiveWeb project gets executed, needs to have this variable specified. This value is used to determine which DB connections need to be initialized.
 
-<h4>Default environment</h4>
+==Default environment==
 In case an environment variable <code>ACTIVE_ENV</code> is not provided, the framework defaults to "development". 
 
-<h4>What is a mode?</h4>
+==What is a mode?==
 !ActiveWeb defines two modes of operation: "standard", which is also implicit, and "testing". Standard mode is used during regular run of the program, and testing used during the build when tests are executed.
 !ActiveWeb promotes a style of development where one database used for testing, but a different one used under normal execution.
 When tests are executed, a "test" database is used, and when a project is run in a normal mode, a "development" database is used. Having a separate database for testing ensures safety of data in the development database.
 
-<h4> Example of configuration</h4>
+==Example of configuration==
 <pre>
  1. public class DbConfig extends AbstractDBConfig {
  2.  public void init() {
