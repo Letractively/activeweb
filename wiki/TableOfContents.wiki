@@ -20,8 +20,7 @@
 4. [DependencyInjection Dependency injection] - in tests as well as at runtime
 
 5. [Configuration]
-  * ACTIVE_ENV 
-  * Configure datasources for different environments
+
 
 6. Filters - global, controller, action
   * configuration
