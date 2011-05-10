@@ -10,7 +10,7 @@ Create two empty schemas in MySQL DB:
   * simple_development
   * simple_test
 
-= Download simple example app =
+= Download example app =
 
 Getting started is easy, download this simple application:
 [http://activeweb.googlecode.com/files/simple.zip Simlpe ActiveWeb Project]
