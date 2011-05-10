@@ -5,8 +5,6 @@
 Getting started is easy, download this simple application:
 [http://activeweb.googlecode.com/files/simple.zip Simlpe ActiveWeb Project]
 
-
-
 = Code modifications =
 
 Modify JDBC connection parameters in:
