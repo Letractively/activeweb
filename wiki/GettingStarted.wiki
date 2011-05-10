@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary three steps to get started
 
 = Download simple example app =
 
@@ -23,4 +23,3 @@ mvn jetty:run
 = Navigate with browser=
 
 Hit this URL: [http://localhost:8080/simple-example/]
-
