@@ -303,7 +303,7 @@ public class GreetingController extends AppController{
 }}}
 The `xhr();` method also has an alias: `isXhr();`.
 
-==Responding to an Ajax call==
+==Responding to Ajax call==
 
 !ActiveWeb provides a simple but powerful method `respond(..)`:
 
