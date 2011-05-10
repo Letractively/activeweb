@@ -1,5 +1,15 @@
 #summary three steps to get started
 
+=Pre-requisites=
+
+  * Java :)
+  * Maven 2
+  * MySQL
+
+Create two empty schemas in MySQL DB:
+  * simple_development
+  * simple_test
+
 = Download simple example app =
 
 Getting started is easy, download this simple application:
