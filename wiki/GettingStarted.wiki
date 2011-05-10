@@ -1,0 +1,26 @@
+#summary One-sentence summary of this page.
+
+= Download simple example app =
+
+Getting started is easy, download this simple application:
+[http://activeweb.googlecode.com/files/simple.zip Simlpe ActiveWeb Project]
+
+
+
+= Code modifications =
+
+Modify JDBC connection parameters in:
+  * class `app.config.DbConfig`
+  * jetty-env.xml
+  * pom.xml
+
+=Run the application=
+
+{{{
+mvn jetty:run
+}}}
+
+= Navigate with browser=
+
+Hit this URL: [http://localhost:8080/simple-example/]
+
