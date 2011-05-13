@@ -29,7 +29,7 @@ When tests are executed, a "test" database is used, and when a project is run in
 ==Example configuration==
 <pre>
  1. public class DbConfig extends AbstractDBConfig {
- 2.  public void init() {
+ 2.  public void init(AppContext context) {
  3.      environment("development").jndi("jdbc/kitchensink_development");
  4.      environment("development").testing().jdbc("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/kitchensink_test", "root", "****");
  5.      environment("hudson").testing().jdbc("com.mysql.jdbc.Driver", "jdbc:mysql://172.30.64.31/kitchensink_test", "root", "****");
@@ -71,7 +71,10 @@ Adding a global filter adds it to all controllers. It makes sense to use this to
 
 {{{
 public class AppControllerConfig{
-  addGlobalFilters(new TimingFilter());
+  public void init(AppContext context) {
+    addGlobalFilters(new TimingFilter());
+  }
+
 }
 }}}
 
@@ -82,7 +85,9 @@ To add filters to specific controllers:
 
 {{{
 public class AppControllerConfig{
-  add(new TimingFilter()).to(HomeController.class);
+  public void init(AppContext context) {
+    add(new TimingFilter()).to(HomeController.class);
+  }
 }
 }}}
 
@@ -96,6 +101,8 @@ Both the "add()" an the "to()" methods take in varargs, allowing to bind multipl
 Here is an example of adding a filter to specific actions:
 {{{
 public class AppControllerConfig{
-  add(new TimingFilter(), new DBConnectionFilter()).to(PostsController.class).forActions("index", "show");
+  public void init(AppContext context) {
+    add(new TimingFilter(), new DBConnectionFilter()).to(PostsController.class).forActions("index", "show");
+  }
 }
 }}}
