@@ -25,6 +25,7 @@
 6. Filters - global, controller, action
   * configuration
   * exception handling
+  * logging filters
 
 7. Testing
   * JSpec
