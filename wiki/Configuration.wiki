@@ -31,7 +31,7 @@ When tests are executed, a "test" database is used, and when a project is run in
  1. public class DbConfig extends AbstractDBConfig {
  2.  public void init(AppContext context) {
  3.      environment("development").jndi("jdbc/kitchensink_development");
- 4.      environment("development").testing().jdbc("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/kitchensink_test", "root", "****");
+ 4.      environment("development").testing().jdbc("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/kitchensink_development", "root", "****");
  5.      environment("hudson").testing().jdbc("com.mysql.jdbc.Driver", "jdbc:mysql://172.30.64.31/kitchensink_test", "root", "****");
  6.      environment("production").jndi("jdbc/kitchensink_production");
  7.  }
