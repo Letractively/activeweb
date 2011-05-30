@@ -318,7 +318,7 @@ public class GreetingController extends AppController{
 It is easy to use this method to send plain text, XML, JSON, or any other text format as a response to Ajax call.
 
 ----
-<font color="navy">Method `respond(..)` is also great for building REST services, where a client is not a browser and responce format is not HTML.
+<font color="navy">Method `respond(..)` is good for building REST services, where a client is not a browser and responce format is not HTML.
 </font>
 ----
 
