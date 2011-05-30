@@ -434,4 +434,3 @@ logInfo(..);
 Controllers are thread safe. An instance of a controller is created to process each and every request, and then discarded. This means that if you create instance variables in controller, this variable will not interfere with another value form another request. 
 
 However, creation of instance variables in controller classes is considered a bad coding practice in general, because it is vulnerable to side effects. While controllers are objects in OO language (Java), they need to be treated as procedural devices when it comes to processing HTTP requests. This means that every action should be completely self-sufficient and not rely on some instance variable set by another action or that a method invoked from an action should not depend on an instance variable set higher up the stack.
-    * Thread safe
