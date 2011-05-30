@@ -396,12 +396,12 @@ public class HomeController extends AppController{
 
 Other methods available on a session object are:
 {{{
-  get(String) - to get a single value
-  remove(name)
-  names() - to get a list of all objects in session
-  getCreationTime()
-  invalidate()
-  setTimeToLive(seconds)
+  session().get(String);// to get a single value
+  session().remove(name);// remove object by name
+  session().names();// to get a list of all objects in session
+  session().getCreationTime();// obvious
+  session().invalidate()// invalidate session
+  session().setTimeToLive(seconds)
 }}}
 
 =Cookies management=
