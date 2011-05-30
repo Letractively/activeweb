@@ -323,14 +323,106 @@ It is easy to use this method to send plain text, XML, JSON, or any other text f
 ----
 
 
+=Downloading of files=
 
-Sections to be added to this page:
+There are a few calls you can use for file download:
+  * sending files to a client:
 
-    * download of files
-    * streaming of data to client
-    * upload of files
-    * session management
-    * cookies
+{{{
+public class GetPdfController extends AppController{
+   public void index(){   
+     File f;
+      //... obtain file
+     sendFile(f).contentType("application/pdf").status(200);
+   }
+}
+}}}
+
+
+  * Streaming bytes to a client:
+
+{{{
+public class GetPdfController extends AppController{
+   public void index(){   
+     byte[] bytes;
+      //... obtain data
+     outputStream("application/pdf").write(bytes);
+   }
+}
+}}}
+
+  * Reading from InputStream and sending to client:
+
+{{{
+public class GetPdfController extends AppController{
+   public void index(){   
+     InputStream in;
+      //... point input stream to data
+     streamOut(in).contentType("applicaiton/pdf");
+   }
+}
+}}}
+
+=Uploading files=
+
+Controllers have a built-in facility for uploading data:
+{{{
+public class UploadController extends AppController{
+   public void index(){   
+
+        Iterator<FormItem> iterator = uploadedFiles();
+        
+        if (iterator.hasNext()){
+            FormItem item = iterator.next();
+            name = item.getName();
+            if(item.isFile()){
+                InputStream in = item.getInputStream());
+                ///process data
+            }               
+        }
+}
+}}}
+
+
+=Session management=
+A session object is accessed with a `session()` call inside controllers:
+{{{
+public class HomeController extends AppController{
+   public void index(){   
+     // get a value
+     session().put("name", value);
+   }
+}}}
+
+Other methods available on a session object are:
+{{{
+  get(String) - to get a single value
+  remove(name)
+  names() - to get a list of all objects in session
+  getCreationTime()
+  invalidate()
+  setTimeToLive(seconds)
+}}}
+
+=Cookies management=
+==Sending cookies to a client==
+  * `sendCookie(Cookie);` - sends a cookie to client
+  * `sendCookie(name, value);` simple short cut to do the same as above 
+  * `sendPermanentCookie(name, value);` - will send a cookie with time to live == 20 years
+
+==Getting cookies from request==
+
+  * `List<Cookie> cookies();` - gets a list of all cookies sent in request
+  * `Cookie cookie(name);` - retrieve an individual cookie
+  * `cookieValue(name)` - retrieve a cookie value by name of cookie
+
+
+=Logging=
+
+Controllers already have a way to log information to a log system. These methods are available for logging:
+
+
+
     * built in logging
     * logging of request parameters 
     * Thread safe
