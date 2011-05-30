@@ -396,33 +396,42 @@ public class HomeController extends AppController{
 
 Other methods available on a session object are:
 {{{
-  session().get(String);// to get a single value
-  session().remove(name);// remove object by name
-  session().names();// to get a list of all objects in session
-  session().getCreationTime();// obvious
-  session().invalidate()// invalidate session
-  session().setTimeToLive(seconds)
+  session().get(String);            // to get a single value
+  session().remove(name);           // remove object by name
+  session().names();                // to get a list of all objects in session
+  session().getCreationTime();      // obvious
+  session().invalidate();           // invalidate session
+  session().setTimeToLive(seconds); // set time to live
 }}}
 
 =Cookies management=
 ==Sending cookies to a client==
-  * `sendCookie(Cookie);` - sends a cookie to client
-  * `sendCookie(name, value);` simple short cut to do the same as above 
-  * `sendPermanentCookie(name, value);` - will send a cookie with time to live == 20 years
+{{{
+sendCookie(Cookie);               //sends a cookie to client
+sendCookie(name, value);          //simple short cut to do the same as above 
+sendPermanentCookie(name, value); //will send a cookie with time to live == 20 years
+}}}
 
 ==Getting cookies from request==
-
-  * `List<Cookie> cookies();` - gets a list of all cookies sent in request
-  * `Cookie cookie(name);` - retrieve an individual cookie
-  * `cookieValue(name)` - retrieve a cookie value by name of cookie
-
+{{{
+List<Cookie> cookies();//gets a list of all cookies sent in request
+Cookie cookie(name);   //retrieve an individual cookie
+cookieValue(name);     //retrieve a cookie value by name of cookie
+}}}
 
 =Logging=
 
 Controllers already have a way to log information to a log system. These methods are available for logging:
 
+{{{
+logDebug(..);
+logWarning(..);
+logError(..);
+logInfo(..);
+}}}
 
+=Threading issues=
+Controllers are thread safe. An instance of a controller is created to process each and every request, and then discarded. This means that if you create instance variables in controller, this variable will not interfere with another value form another request. 
 
-    * built in logging
-    * logging of request parameters 
+However, creation of instance variables in controller classes is considered a bad coding practice in general, because it is vulnerable to side effects. While controllers are objects in OO language (Java), they need to be treated as procedural devices when it comes to processing HTTP requests. This means that every action should be completely self-sufficient and not rely on some instance variable set by another action or that a method invoked from an action should not depend on an instance variable set higher up the stack.
     * Thread safe
