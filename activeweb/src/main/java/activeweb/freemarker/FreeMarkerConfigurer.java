@@ -14,19 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License. 
 */
 
-package app.config;
+package activeweb.freemarker;
 
-import activeweb.freemarker.AbstractFreeMarkerConfig;
-import freemarker.template.TemplateExceptionHandler;
+import freemarker.template.Configuration;
 
 /**
  * @author Igor Polevoy
  */
-public class FreeMarkerConfig extends AbstractFreeMarkerConfig {
-    //TODO: write test for custom tag registration
-    public void init() {
-        //this is to override a strange FreeMarker default processing of numbers 
-        getConfiguration().setNumberFormat("0.##");
-        getConfiguration().setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-    }
+public interface FreeMarkerConfigurer {
+
+    void configure(Configuration config);
 }

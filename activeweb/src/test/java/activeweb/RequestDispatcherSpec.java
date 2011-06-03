@@ -223,17 +223,6 @@ public class RequestDispatcherSpec extends RequestSpec {
         a(XPathHelper.selectText("//div[@id='content']", html)).shouldBeEqual("not found");
     }
 
-    @Test
-    public void shouldSend500IfTemplateIsNotParsable() throws ServletException, IOException {
-
-        request.setServletPath("/hello/bad-bad-template");
-        request.setMethod("GET");
-
-        dispatcher.doFilter(request, response, filterChain);
-        String html = response.getContentAsString();
-        a(XPathHelper.selectText("//div[@id='content']", html).contains("Unexpected end of file reached")).shouldBeTrue();
-    }
-
 
     @Test
     public void shouldRenderWithDefaultLayout() throws ServletException, IOException {
@@ -284,18 +273,12 @@ public class RequestDispatcherSpec extends RequestSpec {
         request.setMethod("GET");
         request.addHeader("X-Requested-With", "XMLHttpRequest");
         dispatcher.doFilter(request, response, filterChain);
-        String out = response.getContentAsString();        
+        String out = response.getContentAsString();
+        System.out.println(out);
         the(out.contains("activeweb.ControllerException: java.lang.ArithmeticException: / by zero; / by zero\n")).shouldBeTrue();
     }
 
 
-    @Test
-    public void shouldCallDestroyOnAppBootstrap() throws ServletException, IOException {
-        replaceErrorOut();
-        dispatcher.destroy();
-        a(getSystemErrContent()).shouldBeEqual("ahrrr! destroyed!");
-    }
-    
     PrintStream err;
 
     void replaceErrorOut() {

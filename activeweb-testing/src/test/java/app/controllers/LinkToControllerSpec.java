@@ -35,7 +35,7 @@ public class LinkToControllerSpec extends ControllerSpec {
     @Test
     public void shouldInferControllerNameFromContext(){
         request().integrateViews().get("index");
-        a(responseContent()).shouldBeEqual("<a href=\"/test_context/link_to/index2\" data-link=\"aw\">Index 2 </a>");
+        a(responseContent()).shouldBeEqual("<a href=\"/test_context/simple/index2\" data-link=\"aw\">Index 2 </a>");
     }
 
     @Test

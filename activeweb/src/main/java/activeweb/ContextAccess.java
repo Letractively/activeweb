@@ -33,16 +33,6 @@ class ContextAccess {
     private static ThreadLocal<String> actionName = new ThreadLocal<String>();
     private static ThreadLocal<String> controllerPath = new ThreadLocal<String>();
     private static ThreadLocal<Boolean> restful = new ThreadLocal<Boolean>();
-    private static ThreadLocal<AppContext> appContext = new ThreadLocal<AppContext>();
-
-
-    public static AppContext getAppContext() {
-        return appContext.get();
-    }
-
-    public static void setAppContext(AppContext appContext) {
-        ContextAccess.appContext.set(appContext);
-    }
 
     static void setControllerRegistry(ControllerRegistry controllerRegistry){
         registry.set(controllerRegistry);
@@ -108,12 +98,11 @@ class ContextAccess {
         restful.set(restfulVal);
     }
 
-    static void setTLs(HttpServletRequest req, HttpServletResponse resp, FilterConfig conf, ControllerRegistry reg, AppContext context) {
+    static void setTLs(HttpServletRequest req, HttpServletResponse resp, FilterConfig conf, ControllerRegistry reg) {        
         setHttpRequest(req);
         setHttpResponse(resp);
         setControllerRegistry(reg);
         setFilterConfig(conf);
-        setAppContext(context);
     }
 
     static void setRoute(MatchedRoute route){

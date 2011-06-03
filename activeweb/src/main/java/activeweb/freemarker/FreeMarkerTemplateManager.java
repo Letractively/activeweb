@@ -18,7 +18,6 @@ package activeweb.freemarker;
 import activeweb.InitException;
 import activeweb.TemplateManager;
 import activeweb.ViewException;
-import activeweb.ViewMissingException;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
@@ -53,12 +52,7 @@ public class FreeMarkerTemplateManager implements TemplateManager {
         config.setSharedVariable("render", new RenderTag());
         config.setSharedVariable("confirm", new ConfirmationTag());
         config.setSharedVariable("wrap", new WrapTag());
-
-        AbstractFreeMarkerConfig freeMarkerConfig = activeweb.Configuration.getFreeMarkerConfig();
-        if(freeMarkerConfig != null){
-            freeMarkerConfig.setConfiguration(config);
-            freeMarkerConfig.init();
-        }
+        activeweb.Configuration.getFreemarkerConfigurer().configure(config);
     }
 
     public void merge(Map values, String template, Writer writer) {
@@ -72,7 +66,7 @@ public class FreeMarkerTemplateManager implements TemplateManager {
 
         try {
 
-            if(activeweb.Configuration.getEnv().equals("development")){
+            if(activeweb.Configuration.instance().getEnv().equals("development")){
                 config.clearTemplateCache();
             }
             
@@ -104,10 +98,6 @@ public class FreeMarkerTemplateManager implements TemplateManager {
 
             FreeMarkerTL.setEnvironment(null);
             writer.flush();
-
-        }
-        catch(FileNotFoundException e){
-            throw new ViewMissingException(e);
         }
         catch(ViewException e){
             throw e;

@@ -30,24 +30,24 @@ public class DBSpecHelper {
         String dbConfigClassName = Configuration.get("dbconfig");
         try {
             Object dbconfig = Class.forName(dbConfigClassName).newInstance();
-            dbconfig.getClass().getMethod("init", AppContext.class).invoke(dbconfig, new AppContext());
+            dbconfig.getClass().getMethod("init").invoke(dbconfig);
         } catch (Exception e) {
             throw new RuntimeException("failed to initialize class " + dbConfigClassName
                     + " are you sure you defined this class?", e);
         }
 
-        Configuration.setTesting(true);
+        Configuration.instance().setTesting(true);
     }
 
     public static void clearConnectionWrappers() {
-        Configuration.clearConnectionWrappers();
+        Configuration.instance().clearConnectionWrappers();
     }
 
 
     public static void openTestConnections(){
         List<ConnectionSpecWrapper> connectionWrappers = getTestConnectionWrappers();
         if(connectionWrappers.isEmpty())
-            throw new InitException("There are no connection specs for testing in " + Configuration.getEnv() + " environment");
+            throw new InitException("There are no connection specs for testing in " + Configuration.instance().getEnv() + " environment");
 
         for (ConnectionSpecWrapper connectionWrapper : connectionWrappers) {
             DB db = new DB(connectionWrapper.getDbName());
@@ -71,7 +71,7 @@ public class DBSpecHelper {
     }
 
     private static List<ConnectionSpecWrapper> getTestConnectionWrappers() {
-        List<ConnectionSpecWrapper> allConnections = Configuration.getConnectionSpecWrappers();
+        List<ConnectionSpecWrapper> allConnections = Configuration.instance().getConnectionWrappers();
         List<ConnectionSpecWrapper> result = new LinkedList<ConnectionSpecWrapper>();
 
         for (ConnectionSpecWrapper connectionWrapper : allConnections) {

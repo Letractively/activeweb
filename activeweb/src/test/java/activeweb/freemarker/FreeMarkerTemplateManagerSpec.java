@@ -37,6 +37,7 @@ import static javalite.common.Collections.map;
  */
 public class FreeMarkerTemplateManagerSpec extends JSpecSupport {
 
+
     //private Configuration cfg;
     FreeMarkerTemplateManager manager = new FreeMarkerTemplateManager();
 
@@ -52,6 +53,8 @@ public class FreeMarkerTemplateManagerSpec extends JSpecSupport {
         a(sw.toString()).shouldBeEqual("hello: 1234567");
 
     }
+
+
 
     @Test
     public void shouldRenderTemplateInLayout() throws IOException, DocumentException {
@@ -105,6 +108,8 @@ public class FreeMarkerTemplateManagerSpec extends JSpecSupport {
         a(XPathHelper.selectText("//title", generated)).shouldEqual("");
     }
 
+
+
     @Test
     public void yieldShouldRenderMultipleChinksOfContentForSameName() throws IOException, DocumentException {
 
@@ -118,4 +123,5 @@ public class FreeMarkerTemplateManagerSpec extends JSpecSupport {
         String generated = sw.toString();
         a(XPathHelper.count("//script", generated)).shouldEqual(3);
     }
+
 }

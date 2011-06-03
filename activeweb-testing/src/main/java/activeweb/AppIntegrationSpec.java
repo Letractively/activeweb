@@ -33,15 +33,13 @@ import org.junit.Before;
 public abstract class AppIntegrationSpec extends IntegrationSpec{
 
     private boolean suppressDb = false;
-    private AppContext context = new AppContext();
-    private RequestDispatcher requestDispatcher = new RequestDispatcher();
 
     @Before
     public void beforeAppIntegrationSpec(){
-        requestDispatcher.initApp(context);
+        Bootstrap.initApp();
 
         if(!suppressDb){
-            Configuration.setTesting(true);
+            Configuration.instance().setTesting(true);
             DBSpecHelper.openTestConnections();
         }
     }
@@ -54,13 +52,6 @@ public abstract class AppIntegrationSpec extends IntegrationSpec{
         }
     }
 
-    /**
-     * Returns instance of {@link AppContext}
-     * @return instance of {@link AppContext}
-     */
-    public AppContext getContext() {
-        return context;
-    }
 
     /**
      * Takes controller path. A controller path is a full path  to controller starting from context and ending in a

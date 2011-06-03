@@ -49,7 +49,7 @@ import activeweb.controller_filters.ControllerFilter;
  *
  * @author Igor Polevoy
  */
-public abstract class AbstractControllerConfig implements AppConfig {
+public abstract class AbstractControllerConfig {
 
     public class FilterBuilder {
         private ControllerFilter[] filters;
@@ -120,5 +120,6 @@ public abstract class AbstractControllerConfig implements AppConfig {
     protected void addGlobalFilters(ControllerFilter... filters) {
         ContextAccess.getControllerRegistry().addGlobalFilters(filters);
     }
-    
+
+    protected abstract void init();
 }

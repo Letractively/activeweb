@@ -42,10 +42,6 @@ public class HttpSupport {
         logger.info(info);
     }
 
-    protected void logDebug(String info){
-        logger.debug(info);
-    }
-
     protected void logWarning(String info){
         logger.warn(info);
     }
@@ -358,18 +354,19 @@ public class HttpSupport {
 
     /**
      * Convenience method for downloading files. This method will force the browser to find a handler(external program)
-     *  for  this file (content type) and will provide a name of file to the browser. This method sets an HTTP header
-     * "Content-Disposition" based on a file name.
+     *  for  this file (content type) and will provide a name of file to the browser.
      *
      * @param file file to download.
+     * @param contentType content type: "application/pdf", "image/png", etc.
      * @return builder instance.
      * @throws FileNotFoundException thrown if file not found.
      */
-    protected HttpBuilder sendFile(File file) throws FileNotFoundException {
+    protected HttpBuilder sendFile(File file, String contentType) throws FileNotFoundException {
         try{
             StreamResponse resp = new StreamResponse(new FileInputStream(file));
             ContextAccess.setControllerResponse(resp);
             HttpBuilder builder = new HttpBuilder(resp);
+            builder.contentType(contentType);
             builder.header("Content-Disposition", "attachment; filename=" + file.getName());
             return builder;
         }catch(Exception e){
@@ -739,21 +736,6 @@ public class HttpSupport {
         return ContextAccess.getHttpRequest().getHeader(name);
     }
 
-    /**
-     * Returns all headers from a request keyed by header name.
-     *
-     * @return all headers from a request keyed by header name.
-     */
-    public Map<String, String> headers(){
-
-        Map<String, String> headers = new HashMap<String, String>();
-        Enumeration<String> names = ContextAccess.getHttpRequest().getHeaderNames();
-        while (names.hasMoreElements()) {
-            String name = names.nextElement();
-            headers.put(name, ContextAccess.getHttpRequest().getHeader(name));
-        }
-        return headers;
-    }
 
     /**
      * Adds a header to response.
@@ -801,6 +783,58 @@ public class HttpSupport {
     }
 
     /**
+     * Use to send file to HTTP client. Content type and headers will not be set.
+     * Response code will be set to 200.
+     *
+     * @param file path to file to send
+     */
+    protected void sendFile(String file) throws IOException {
+        sendFile(file, null, null, 200);
+    }
+
+    /**
+     * Use to send file to HTTP client. Status will be set to 200.
+     *
+     * @param file path to file to send
+     * @param contentType content type
+     */
+    protected void sendFile(String file, String contentType) throws IOException {
+        sendFile(file, contentType, null, 200);
+    }
+
+    /**
+     * Use to send file to HTTP client.
+     *
+     * @param file path to file to send. This path can be absolute or relative. 
+     * @param contentType content type
+     * @param headers set of headers.
+     * @param status status.
+     */
+    protected void sendFile(String file, String contentType, Map headers, int status) throws IOException {
+        InputStream in = null;
+        OutputStream out;
+        String filePath = file;
+
+        //TODO: this is a hard-coded path for Linux and Unix, will break on Windows. 
+        if(!file.startsWith("/")) {
+            filePath = getRealPath(file);
+        }
+        try {
+            in = new FileInputStream(filePath);
+            out = outputStream(contentType, headers, status);
+            byte[] buffer = new byte[2048];
+            int n;
+            while (-1 != (n = in.read(buffer))) {
+                out.write(buffer, 0, n);
+            }
+        } finally {
+            if (in != null) {
+                in.close();
+            }
+        }
+    }
+
+    /**
      * Use to send raw data to HTTP client. Content type and headers will not be set.
      * Response code will be set to 200.
      *
@@ -809,6 +843,7 @@ public class HttpSupport {
     protected OutputStream outputStream(){
         return outputStream(null, null, 200);
     }
+
 
     /**
      * Use to send raw data to HTTP client. Status will be set to 200.
@@ -913,14 +948,5 @@ public class HttpSupport {
      */
     protected boolean xhr(){
         return isXhr();
-    }
-
-    /**
-     * Returns instance of {@link activeweb.AppContext}.
-     *
-     * @return
-     */
-    protected AppContext appContext(){
-        return ContextAccess.getAppContext();
     }
 }

@@ -17,19 +17,13 @@ limitations under the License.
 package app.controllers;
 
 import activeweb.AppController;
-import activeweb.controller_filters.AbstractLoggingFilter;
-import activeweb.controller_filters.HeadersLogFilter;
 
 /**
  * @author Igor Polevoy
  */
 public class HomeController extends AppController {
 
-    public void index(){
-        
-        //how to disable logging of headers at run time:
-        appContext().get("headersLogger", HeadersLogFilter.class).logAtLevel(AbstractLoggingFilter.Level.DISABLED);
-    }
+    public void index(){}
 
     public void wrapped() {
         render("index").layout("/layouts/wrapped_layout");        

@@ -232,7 +232,6 @@ public class RequestBuilder {
         addParameterValues(request);
         try{
             AppController controller = createControllerInstance(getControllerClassName(controllerPath));
-            ContextAccess.setRoute(new MatchedRoute(controller, realAction, id));
             Injector injector = ContextAccess.getControllerRegistry().getInjector();
             if(injector != null && controller.injectable()){
                 injector.injectMembers(controller);

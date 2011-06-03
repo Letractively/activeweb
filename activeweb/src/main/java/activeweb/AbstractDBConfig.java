@@ -69,9 +69,11 @@ package activeweb;
  * 
  * @author Igor Polevoy
  */
-public abstract class AbstractDBConfig implements AppConfig {
+public abstract class AbstractDBConfig {
 
     public ConnectionBuilder environment(String environment){
         return new ConnectionBuilder(environment);
     }
+
+    public abstract void init();
 }

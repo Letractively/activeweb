@@ -14,13 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License. 
 */
 
-package app.controllers;
+package app.controllers.general;
 
 import activeweb.AppController;
 
 /**
  * @author Igor Polevoy
  */
-public class ActiveWebParamsController extends AppController {
+public class InfoController extends AppController {
     public void index(){}
+    public void help(){}
 }

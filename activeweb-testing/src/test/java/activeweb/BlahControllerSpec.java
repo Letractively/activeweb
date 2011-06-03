@@ -22,11 +22,6 @@ import org.junit.Test;
  * @author Igor Polevoy
  */
 public class BlahControllerSpec  extends ControllerSpec{
-    @Override
-    public void atStart() {
-        //nothing
-    }
-
     @Test
     public void ignore(){}
 }

@@ -37,21 +37,24 @@ public class RequestDispatcher implements Filter {
     private FilterConfig filterConfig;
     private List<String> exclusions = new ArrayList<String>();
     private ControllerRunner runner = new ControllerRunner();
-    private AppContext appContext;
-    private Bootstrap appBootstrap;
+
     private Router router;
 
     public void init(FilterConfig filterConfig) throws ServletException {
         this.filterConfig = filterConfig;        
         ControllerRegistry registry = new ControllerRegistry(filterConfig);
         filterConfig.getServletContext().setAttribute("controllerRegistry", registry);
-        
-        activeweb.Configuration.getTemplateManager().setServletContext(filterConfig.getServletContext());
+        Bootstrap.initTemplateManager(filterConfig.getServletContext());
         ContextAccess.setControllerRegistry(registry);//bootstrap below requires it
-        appContext = new AppContext();
-        filterConfig.getServletContext().setAttribute("appContext", appContext);
-        initApp(appContext);
-
+        try {
+            Bootstrap.initApp();
+        }
+        catch(InitException e){
+            throw e;
+        }
+        catch (Exception e) {
+            throw new ServletException(e);
+        }
         String exclusionsParam = filterConfig.getInitParameter("exclusions");
         if (exclusionsParam != null) {
             exclusions.addAll(Arrays.asList(exclusionsParam.split(",")));
@@ -62,38 +65,7 @@ public class RequestDispatcher implements Filter {
 
         router = new Router(filterConfig.getInitParameter("root_controller"));
 
-        logger.info("ActiveWeb: starting the app in environment: " + Configuration.getEnv());
-    }
-
-    protected void initApp(AppContext context){
-        initAppConfig(Configuration.getBootstrapClassName(), context, true);
-        //these are optional config classes:
-        initAppConfig(Configuration.getControllerConfigClassName(), context, false);
-        initAppConfig(Configuration.getDbConfigClassName(), context, false);
-
-    }
-
-    private void initAppConfig(String configClassName, AppContext context, boolean fail){
-
-        AppConfig appConfig = null;
-        try {
-            Class c = Class.forName(configClassName);
-            appConfig = (AppConfig) c.newInstance();
-            if(appConfig instanceof  Bootstrap){
-                appBootstrap = (Bootstrap) appConfig;
-            }
-        }
-        catch (Throwable e) {
-            if(fail){
-                throw new InitException("failed to create a new instance of class: " + configClassName
-                    + ", are you sure class exists and it has a default constructor?", e);
-            }else{
-                logger.debug("failed to create a new instance of class: " + configClassName
-                        + ", proceeding without it. " + e.getMessage());
-                return;
-            }
-        }
-        appConfig.init(context);
+        logger.info("ActiveWeb: starting the app in environment: " + Configuration.instance().getEnv());        
     }
 
 
@@ -106,8 +78,8 @@ public class RequestDispatcher implements Filter {
 
             HttpServletRequest request = (HttpServletRequest) req;
             HttpServletResponse response = (HttpServletResponse) resp;
-            ContextAccess.setTLs(request, response, filterConfig, getControllerRegistry(), appContext);
-
+            ContextAccess.setTLs(request, response, filterConfig, getControllerRegistry());
+            
             String uri = request.getServletPath();
             if (Util.blank(uri)) {
                 uri = "/";//different servlet implementations, damn.
@@ -116,7 +88,7 @@ public class RequestDispatcher implements Filter {
             boolean excluded = excluded(uri);
             if(excluded){
                 chain.doFilter(req, resp);
-                logger.debug("URI excluded: " + uri);
+                logger.info("URI excluded: " + uri);
                 return;
             }
 
@@ -124,9 +96,11 @@ public class RequestDispatcher implements Filter {
 
             if (route != null) {
                 ContextAccess.setRoute(route);
-
+                logger.info("================ New request: " + new Date() + " ================");
                 if (Configuration.logRequestParams()) {
-                    logger.info("================ New request: " + new Date() + " ================");
+                    logRequestHeaders((HttpServletRequest) req);
+                    logRequestProperties();
+                    logParameters((HttpServletRequest) req);
                 }
 
                 if (route.getId() != null) {
@@ -146,14 +120,21 @@ public class RequestDispatcher implements Filter {
             renderSystemError("/system/404", Configuration.getDefaultLayout(), 404, e);
         }catch (ActionNotFoundException e) {
             renderSystemError("/system/404", Configuration.getDefaultLayout(), 404, e);
-        }catch(ViewMissingException e){
-            renderSystemError("/system/404", Configuration.getDefaultLayout(), 404, e);
         }catch(ViewException e){
-            renderSystemError("/system/error", Configuration.getDefaultLayout(), 500, e);
+            renderSystemError("/system/404", Configuration.getDefaultLayout(), 404, e);
         }catch (Throwable e) {
             renderSystemError(e);
         }finally {
            ContextAccess.clear();
+        }
+    }
+
+    private void logRequestHeaders(HttpServletRequest request) {
+        Enumeration headers = request.getHeaderNames();
+        while (headers.hasMoreElements()) {
+            Object header = headers.nextElement();
+            Object value = request.getHeader(header.toString());
+            logger.info("Header: " + header + "=" + value);
         }
     }
 
@@ -180,7 +161,6 @@ public class RequestDispatcher implements Filter {
     private void renderSystemError(Throwable e) {
         renderSystemError("/system/error", null, 500, e);
     }
-
 
     private String getStackTraceString(Throwable e) {
         StringWriter sw = new StringWriter();
@@ -211,6 +191,15 @@ public class RequestDispatcher implements Filter {
         }
     }
 
+    private void logRequestProperties() {
+        HttpServletRequest request = ContextAccess.getHttpRequest();
+        logger.info("Request URL: " + request.getRequestURL());
+        logger.info("ContextPath: " + request.getContextPath());
+        logger.info("Query String: " + request.getQueryString());
+        logger.info("URI Full Path: " + request.getRequestURI());
+        logger.info("URI Path: " + request.getServletPath());
+        logger.info("Method: " + request.getMethod());
+    }
 
     private String getRequestProperties(){
         StringBuffer sb = new StringBuffer();
@@ -224,7 +213,13 @@ public class RequestDispatcher implements Filter {
         return sb.toString();
     }
     
-    public void destroy() {
-        appBootstrap.destroy(appContext);
+    private void logParameters(HttpServletRequest request) {
+        Map<String, Object> params = (Map<String, Object>) request.getParameterMap();
+        for (String key : params.keySet()) {
+            String[] values = (String[]) params.get(key);
+            logger.info("Param: " + key + " = " + Arrays.asList(values));
+        }
     }
+
+    public void destroy() {}
 }

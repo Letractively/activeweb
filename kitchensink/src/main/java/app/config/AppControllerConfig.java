@@ -16,8 +16,8 @@ limitations under the License.
 package app.config;
 
 import activeweb.AbstractControllerConfig;
-import activeweb.AppContext;
-import activeweb.controller_filters.*;
+import activeweb.controller_filters.DBConnectionFilter;
+import activeweb.controller_filters.TimingFilter;
 import app.controllers.PostsController;
 import app.controllers.RpostsController;
 
@@ -27,13 +27,9 @@ import app.controllers.RpostsController;
  */
 public class AppControllerConfig extends AbstractControllerConfig {
 
-    public void init(AppContext context) {
-
-        HeadersLogFilter headersLogger = new HeadersLogFilter();
-        context.set("headersLogger", headersLogger);
-        
-        addGlobalFilters(new TimingFilter(), new RequestPropertiesLogFilter(), new RequestParamsLogFilter(),
-                headersLogger);
+    @Override
+    public void init() {
+        addGlobalFilters(new TimingFilter());
         add(new DBConnectionFilter()).to(PostsController.class, RpostsController.class);
     }
 }

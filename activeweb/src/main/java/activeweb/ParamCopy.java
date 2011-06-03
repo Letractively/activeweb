@@ -44,8 +44,7 @@ class ParamCopy {
         assigns.put("context_path", ContextAccess.getHttpRequest().getContextPath());
         assigns.put("activeweb", map("controller", ContextAccess.getControllerPath(), 
                                       "action", ContextAccess.getActionName(),
-                                      "restful", ContextAccess.isRestful(),
-                                      "environment", Configuration.getEnv()));
+                                      "restful", ContextAccess.isRestful()));
     }
 
 

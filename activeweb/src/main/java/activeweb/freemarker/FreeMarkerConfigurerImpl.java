@@ -14,11 +14,16 @@ See the License for the specific language governing permissions and
 limitations under the License. 
 */
 
-package activeweb;
+package activeweb.freemarker;
+
+import freemarker.template.Configuration;
 
 /**
  * @author Igor Polevoy
  */
-public interface AppConfig {
-    void init(AppContext appContext);
+public class FreeMarkerConfigurerImpl implements FreeMarkerConfigurer{
+    
+    public void configure(Configuration config) {
+        config.setNumberFormat("0.##");
+    }
 }
