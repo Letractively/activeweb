@@ -125,3 +125,19 @@ Example output from `TimingFilter`:
 {{{
 52248 [920503681@qtp-1457284258-3] INFO activeweb.controller_filters.TimingFilter - Processed request in: 14 milliseconds
 }}}
+
+==!RequestPropertiesLogFilter==
+This filter will log properties of a request to a log system. It is useful for debugging. 
+Example output of this filter:
+{{{
+32644 [2132827533@qtp-1457284258-0] INFO activeweb.controller_filters.RequestPropertiesLogFilter - 
+Request URL: http://localhost:8080/kitchensink/
+ContextPath: /kitchensink
+Query String: null
+URI Full Path: /kitchensink/
+URI Path: /
+Method: GET
+}}}
+
+==!RequestParamsLogFilter==
+This filter will log parameters of the 
