@@ -34,3 +34,39 @@ public class GreeterModule extends AbstractModule {
 }}}
 
 In this module, we are binding a `GreeterImpl` to `Greater` interface as a singleton. You can call `bind()` method many times, setting up your object graph, but for this primitive example, we are using just one.
+
+
+=Injection of module into the application=
+
+The injection of a Guice module is executed as one line of code inside `AppBootstrap` class, like so:
+
+{{{
+public class AppBootstrap extends Bootstrap {
+    public void init(AppContext context) {       
+        setInjector(Guice.createInjector(new GreeterModule()));
+    }
+}
+}}}
+
+The `Guice.createInjector(..)` takes a varargs, meaning you can inject multiple modules at once. 
+
+=Consumption of injected dependencies=
+
+Whenever you need a service inside a controller, you will use an `@Inject` annotation provided by Google Guice:
+
+{{{
+1. public class HelloController extends AppController {
+2. 
+3.     private Greeter greeter;
+4. 
+5.     public void index(){
+6.         view("message", greeter.greet());
+7.     }
+8. 
+9.     @Inject
+10.    public void setGreeter( Greeter greeter) {
+11.        this.greeter = greeter;
+12.    }
+13. }
+}}}
+The `setGreeter(greeter)` (line 10) method is called by the framework and injects an instance of a `GreeterImpl` onto the `HelloController` controller just before it executes an action. Once the controller has a reference to the service, it can consume it (line 6).
