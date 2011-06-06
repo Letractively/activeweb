@@ -2,4 +2,35 @@
 
 = Introduction =
 
-content coming
+Dependency injection is an integral part of a typical Java application. !ActiveWeb supports seamless integration with [http://code.google.com/p/google-guice/ Google Guice]. 
+
+At the heart of a Google Guice DI, there is a concept of a module. 
+
+=Creation of Guice module=
+
+Lets say we have a simple interface Greeter:
+{{{
+public interface Greeter {
+    String greet();
+}
+}}}
+and implementation of this interface: 
+{{{
+public class GreeterImpl implements Greeter{    
+    public String greet() {
+        return "Hello from real greeter";        
+    }
+}
+}}}
+
+We can then create a new Guice module:
+{{{
+public class GreeterModule extends AbstractModule {
+    @Override
+    protected void configure() {
+        bind(Greeter.class).to(GreeterImpl.class).asEagerSingleton();
+    }
+}
+}}}
+
+In this module, we are binding a `GreeterImpl` to `Greater` interface as a singleton. You can call `bind()` method many times, setting up your object graph, but for this primitive example, we are using just one.
