@@ -5,7 +5,7 @@
 
 = Introduction =
 
-!ActiveWeb is a Maven project, and as such has all the usual Maven conventions. This allows developers to become productive quickly, since locations of artifacts is the same as for a typical Maven Web. 
+!ActiveWeb is a Maven project, and as such has all the usual Maven conventions. This allows developers to become productive quickly, since locations of artifacts are the same as for a typical Maven Web. 
 
 However, there are some specifics regarding !ActiveWeb, which are discussed below.
 
