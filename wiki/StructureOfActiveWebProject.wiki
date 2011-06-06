@@ -21,7 +21,7 @@ In the image above, you can see that the there is a package `app.config`. This p
 
 = Location of controllers =
 
-Controllers are _always_ located in a package `app.controllers`. At first this looks strange, and uncomfortable, but this is a requirement of the framework and a general convention. Developers after a while get used to and start to appreciate it.  A controller is a Web component, and as such is not a subject of sharing across multiple applications. This means that controllers of one web applications will not intermingle with controllers of another. 
+Controllers are _always_ located in a package `app.controllers` (and sub-packages). At first this looks strange, and uncomfortable, but this is a requirement of the framework and a general convention. Developers after a while get used to and start to appreciate it.  A controller is a Web component, and as such is not a subject of sharing across multiple applications. This means that controllers of one web applications will not intermingle with controllers of another. 
 This approach yields the following benefits:
   * !ActiveWeb application structure is identical from one project to another, making it easier to onboard new developers
   * Controllers are compiled on the fly and reloaded on every request in development mode. This provides for unprecedented speed of development
