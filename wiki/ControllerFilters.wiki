@@ -1,8 +1,72 @@
-#summary One-sentence summary of this page.
+#summary controller filters explained
+
+<wiki:toc max_depth="2" />
 
 = Introduction =
+Controller filters are similar to that of Servlet filters, but designed to wrap execution of controllers. They can be used for many tasks that need to trigger before and after execution of a controller, such as login in, loggin, opening a DB connection, timing, etc.
 
-Add your content here.
+All filters implement this interface:
+{{{
+package activeweb;
+public interface ControllerFilter {
+    void before();
+    void after();
+    void onException(Exception e);
+}
+}}}
+
+
+
+=Filter configuration=
+
+Configuration of filters is done in a class called `app.config.AppControllerConfig`, which needs to extend `activeweb.AbstractControllerConfig`. This class provides ways to bind filters to controllers. It has coarse grain methods for binding as well as
+fine grained.
+----
+<font color="navy">Filters before() methods are executed in the same order as filters are registered.</font>
+----
+
+==Adding global filters==
+
+Adding a global filter adds it to all controllers. It makes sense to use this to add timing filters, logging filters, etc.
+
+{{{
+public class AppControllerConfig{
+  public void init(AppContext context) {
+    addGlobalFilters(new TimingFilter());
+  }
+
+}
+}}}
+
+
+==Adding controller filters==
+
+To add filters to specific controllers:
+
+{{{
+public class AppControllerConfig{
+  public void init(AppContext context) {
+    add(new TimingFilter()).to(HomeController.class);
+  }
+}
+}}}
+
+Both the "add()" an the "to()" methods take in varargs, allowing to bind multiple filters to multiple controllers in one line of code.
+
+----
+<font color="navy">Filters' after() methods are executed in the opposite order as filters are registered.</font>
+----
+
+==Adding filters to specific actions==
+ 
+Here is an example of adding a filter to specific actions:
+{{{
+public class AppControllerConfig{
+  public void init(AppContext context) {
+    add(new TimingFilter(), new DBConnectionFilter()).to(PostsController.class).forActions("index", "show");
+  }
+}
+}}}
 
 
 
