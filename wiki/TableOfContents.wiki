@@ -22,7 +22,7 @@
 5. [Configuration]
 
 
-6. [Controller Filters] - global, controller, action
+6. [ControllerFilters] - global, controller, action
   * configuration
   * exception handling
   * logging filters
