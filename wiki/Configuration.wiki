@@ -43,3 +43,6 @@ The code above is an example from Kitchensink project. Lets examine it line by l
  * Line 4: This is a configuration of DB connection for "development" environment, but for "testing" mode. This connection will be used by unit and integration tests during the build.
  * Line 5: This is a configuration of DB connection for "hudson" environment, but for "testing" mode. The "hudson" environment is a computer where this project is built by Hudson - the continuous integration server. Since Hudson  computer is fully automated, and this project is not running there in "standard" mode, there is no standard configuration for hudson environment, just one for testing.
  * Line 6: This is configuration similar to one on line 3, but for "production" environment.
+----
+<font color="navy">Configuration of a database connection is just that - configuration. This code only configures a connection, but does not open it. To open a connection, you need to use DBConnectionFilter, for more, see [ControllerFilters]</font>
+----
