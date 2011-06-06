@@ -3,7 +3,11 @@
 <wiki:toc max_depth="2" />
 
 = Introduction =
-Controller filters are similar to that of Servlet filters, but designed to wrap execution of controllers. They can be used for many tasks that need to trigger before and after execution of a controller, such as login in, loggin, opening a DB connection, timing, etc.
+Controller filters are similar to that of Servlet filters, but designed to wrap execution of controllers. They can be used for many tasks that need to trigger before and after execution of a controller, such as login in, loggin, opening a DB connection, timing, etc. Controller filters are implementation of a [http://en.wikipedia.org/wiki/Chain-of-responsibility_pattern Chain of responsibility] design pattern.
+
+
+Filters are almost as powerful as controllers. They can inspect any aspects of a request, including request parameters, headers, etc. They can also pre-empt controllers and send different responses than a controller (think of a permission access filter for example, which will redirect to a login screen in case there is an attempt to access a protected resource).
+
 
 All filters implement this interface:
 {{{
@@ -14,8 +18,6 @@ public interface ControllerFilter {
     void onException(Exception e);
 }
 }}}
-
-
 
 =Filter configuration=
 
@@ -52,7 +54,6 @@ public class AppControllerConfig{
 }}}
 
 Both the "add()" an the "to()" methods take in varargs, allowing to bind multiple filters to multiple controllers in one line of code.
-
 ----
 <font color="navy">Filters' after() methods are executed in the opposite order as filters are registered.</font>
 ----
@@ -68,15 +69,21 @@ public class AppControllerConfig{
 }
 }}}
 
+=Exception handling=
 
+The `void onException(Exception e);` method can be used to handle exceptions occurred during execution of a controller of other (inner) filters. It is typical on a project to register a "catch all filter" as a global top-most filter. You probably saw default error page coming from the application server in cases when there is a failure in the application. If you declare a "catch all " filter, this can be avoided, and users would see a friendly page with a message.
 
-  * configuration
-  * exception handling
+Here is an example:
+ 
+{{{
+public class CatchAllFilter extends HttpSupportFilter {
+    public void onException(Exception e) {
+        logError(e.toString(), e);
+        render("/system/error", Collections.map("message", "Apologies for inconvenience");
+    }
+}
+}}}
+
+In the code snippet above, the `CatchAllFilter` will be given a change to log an exception to a log system, but then also to display a friendly styled error page in layout.
+
   * logging filters
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
