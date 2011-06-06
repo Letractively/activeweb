@@ -106,7 +106,7 @@ java.sql.Connection connection = Base.connection();
 }}}
 which gives you a full control over this connection.
 
-==TimingFilter==
+==!TimingFilter==
 
 Timing filter times how long a request takes to process and logs this to a logging system inside its `after()` method. 
 
