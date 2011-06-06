@@ -121,3 +121,7 @@ public class AppControllerConfig extends AbstractControllerConfig {
     }
 }
 }}}
+Example output from `TimingFilter`:
+{{{
+52248 [920503681@qtp-1457284258-3] INFO activeweb.controller_filters.TimingFilter - Processed request in: 14 milliseconds
+}}}
