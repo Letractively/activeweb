@@ -19,7 +19,7 @@ public class GreetingController extends AppController{
 }
 }}}
 
-==URL mapping convention==
+=URL mapping convention=
 Controllers are automatically mapped to a URL, such that a controller name is underscored (without the word Controller). Here is an example: 
 {{{
 http://localhost:8080/testapp/greeting
@@ -27,7 +27,7 @@ http://localhost:8080/testapp/greeting
 
 When this URL is accessed, the `GreetingController` is executed. Since no further information is provided on the URL, the `index()` method will be processed. Controller methods processed as a result of an HTTP request are called *actions*.
 
-==Action mapping convention==
+=Action mapping convention=
 If the URL contained more information, let's say:
 {{{
 http://localhost:8080/testapp/greeting/hello
@@ -42,7 +42,7 @@ public class GreetingController extends AppController{
 However, as in the previous example, the action is omitted, which causes the framework to fall back on a default action "index".
 
 
-==View mapping convention==
+=View mapping convention=
 
 In this case, the action `index` does not have any code, the framework will pass control to a view. This view will be looked for under:
 {{{
