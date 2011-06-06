@@ -86,4 +86,38 @@ public class CatchAllFilter extends HttpSupportFilter {
 
 In the code snippet above, the `CatchAllFilter` will be given a change to log an exception to a log system, but then also to display a friendly styled error page in layout.
 
-  * logging filters
+=Out of the box filters=
+
+!ActiveWeb provides a number of filters for easy configuration of projects. 
+
+==DBConnectionFilter==
+DBConnectionFilter is used to open a connection before execution of a controller and closes it after execution. 
+Here is an example of usage of this filter from Kitchensink project:
+{{{
+public class AppControllerConfig extends AbstractControllerConfig {
+    public void init(AppContext context) {
+        add(new DBConnectionFilter()).to(PostsController.class, RpostsController.class);
+    }
+}
+}}}
+In the example above, this filter is attached only to controllers PostsController and RpostsController, presumably other controllers do not require a DB connection. If you use [http://code.google.com/p/activejdbc/ ActiveJDBC] for persistence layer, you do not need to do anything else. If you just want to get access to the underlying DB connection, you can do this inside a controller or inner filter:
+{{{
+java.sql.Connection connection = Base.connection();
+}}}
+which gives you a full control over this connection.
+
+==TimingFilter==
+
+Timing filter times how long a request takes to process and logs this to a logging system inside its `after()` method. 
+
+It is best to have a timing filter to be registered as a global filter:
+
+{{{
+public class AppControllerConfig extends AbstractControllerConfig {
+
+    public void init(AppContext context) {
+        addGlobalFilters(new TimingFilter());
+       ....register other filters
+    }
+}
+}}}
