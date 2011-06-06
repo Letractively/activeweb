@@ -28,7 +28,6 @@ public class GreeterImpl implements Greeter{
 We can then create a new Guice module:
 {{{
 public class GreeterModule extends AbstractModule {
-    @Override
     protected void configure() {
         bind(Greeter.class).to(GreeterImpl.class).asEagerSingleton();
     }
