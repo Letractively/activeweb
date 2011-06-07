@@ -114,7 +114,6 @@ It is best to have a timing filter to be registered as a global filter:
 
 {{{
 public class AppControllerConfig extends AbstractControllerConfig {
-
     public void init(AppContext context) {
         addGlobalFilters(new TimingFilter());
        ....register other filters
