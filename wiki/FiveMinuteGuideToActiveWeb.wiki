@@ -63,5 +63,6 @@ The complete sequence of operations:
 [http://activeweb.googlecode.com/files/aw.png View image in full resolution]
 
 http://activeweb.googlecode.com/files/aw.png
-
-In this example, the code you see on the image above is all that there is. There are no XML files, no property or any other configuration files. 
+----
+<font color='navy'>In this example, the code you see on the image above is all that there is. There are no XML files, no property or any other configuration files. </font>
+----
