@@ -17,7 +17,7 @@ Create two empty schemas in MySQL DB:
 = Download example app =
 
 Getting started is easy, download this simple application:
-[http://activeweb.googlecode.com/files/simple.zip Simlpe ActiveWeb Project]
+[https://activeweb.googlecode.com/svn/trunk/activeweb-example-zip/activeweb-example-zip-1.0-SNAPSHOT-src.zip Simlpe ActiveWeb Project]
 
 = Code modifications =
 
