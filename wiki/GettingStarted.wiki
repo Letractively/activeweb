@@ -33,4 +33,4 @@ mvn jetty:run
 
 = Navigate with browser=
 
-Hit this URL: [http://localhost:8080/simple-example/]
+Hit this URL: [http://localhost:8080/activeweb-simple/]
