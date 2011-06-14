@@ -23,7 +23,6 @@ Getting started is easy, download this simple application:
 
 Modify JDBC connection parameters in:
   * class `app.config.DbConfig`
-  * jetty-env.xml
   * pom.xml
 
 =Run the application=
