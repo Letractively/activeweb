@@ -22,3 +22,5 @@ A controller in !ActiveWeb is a Java class which extends class `activeweb.AppCon
 At the heart of the !ActiveWeb project there is an MVC pattern - Model-View-Controller.
 
 For better understanding of control flow of HTTP request from controllers to views, please refer to FiveMinuteGuideToActiveWeb
+
+For more information on controllers, navigate to [Controllers Explained ControllerExplained] page
