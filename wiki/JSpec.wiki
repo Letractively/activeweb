@@ -2,7 +2,8 @@
 
 = Introduction =
 
-While ActiveWeb tests are written with a popular JUnit testing framework, traditionally expectations are written in [http://rspec.info/ RSpec] style using [http://code.google.com/p/activejdbc/wiki/JSpec JSpec]. 
+While !ActiveWeb tests are written with a popular JUnit testing framework, traditionally expectations are written in [http://rspec.info/ RSpec] style using [http://code.google.com/p/activejdbc/wiki/JSpec JSpec]. 
 ----
-Please, follow this link to learn more about [http://code.google.com/p/activejdbc/wiki/JSpec JSpec]. 
+
+*Please, follow this link to learn more about [http://code.google.com/p/activejdbc/wiki/JSpec JSpec]. *
 ----
