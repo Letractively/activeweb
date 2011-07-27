@@ -19,6 +19,8 @@
 
 5. [DatabaseConfiguration]
 
+5.1 [DatabaseMigrations]
+
 6. [ControllerFilters]
 
 7. Testing
