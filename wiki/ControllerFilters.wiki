@@ -84,7 +84,7 @@ public class CatchAllFilter extends HttpSupportFilter {
 }
 }}}
 
-In the code snippet above, the `CatchAllFilter` will be given a change to log an exception to a log system, but then also to display a friendly styled error page in layout.
+In the code snippet above, the `CatchAllFilter` will be given a chance to log an exception to a log system, but then also to display a friendly styled error page in layout.
 
 =Out of the box filters=
 
