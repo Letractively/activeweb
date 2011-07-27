@@ -45,7 +45,7 @@
   * FreeMarker  
   *  Tags
     *  link_to
-    *  Flash	 
+    *  [Flash]	 
     *  confirmation
     *  form
     *  render - partials
