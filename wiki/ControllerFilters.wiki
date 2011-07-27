@@ -147,3 +147,21 @@ Param: id=3
 Param: author=Igor Polevoy
 Param: title=What good for Ruby is good for Java: JSpec
 }}}
+
+==!HeadersLogFilter==
+This filter will dump all HTTP request headers: 
+{{{
+176576 [2090322800@qtp-1699024671-2] INFO activeweb.controller_filters.HeadersLogFilter - 
+Header: Accept-Language=en-us,en;q=0.5
+Header: Cookie=JSESSIONID=6trloxem6xib; remember_me=3f654b9f-8abd-4693-bf62-43ccc7c6
+Header: Host=localhost:8080
+Header: Content-Length=106
+Header: Accept-Charset=ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Header: Referer=http://localhost:8080/kitchensink/posts/edit_post/3
+Header: Accept-Encoding=gzip,deflate
+Header: Keep-Alive=115
+Header: User-Agent=Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.16) Gecko/20110323 Ubuntu/10.10 (maverick) Firefox/3.6.16
+Header: Content-Type=application/x-www-form-urlencoded
+Header: Connection=keep-alive
+Header: Accept=text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+}}}
