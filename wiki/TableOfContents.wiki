@@ -8,24 +8,14 @@
 
 
 1. FiveMinuteGuideToActiveWeb
-
 2.  GettingStarted - Hello world application
   * ad-hoc development and prototyping - add controllers, actions and views on the fly without container restart
 2.1 MvcPattern
-
 2.2 [StructureOfActiveWebProject Structure of ActiveWeb project]
-
 3. [ControllerExplained Controllers explained]
-
 4. [DependencyInjection Dependency injection] - in tests as well as at runtime
-
 5. [Configuration]
-
-
-6. [ControllerFilters] - global, controller, action
-  * configuration
-  * exception handling
-  * logging filters
+6. [ControllerFilters]
 
 7. Testing
   * JSpec
