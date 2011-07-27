@@ -23,7 +23,7 @@
 
 7. Testing
   * [JSpec]
-  * DBSpec
+  * [DBSpec]
   * ControllerSpec
   * DBControllerSpec
   * IntegrationSpec
