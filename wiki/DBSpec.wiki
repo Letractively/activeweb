@@ -19,12 +19,26 @@ Database configuration is described on DatabaseConfiguration page. DBSpec class 
  8.}
 }}}
 
-Specifically, line 4 configures a test connection to 
+Specifically, line 4 configures a test connection to be used during the test.
+In case you work with multiple databases, you can configure more than one test connection. DBSpec will open all connections marked for tests.
+
 =Transaction management=
 
 DBSpec will  start a transaction before the test and roll it back after the test, ensuring integrity of data in a test database, and also that different tests would not affect one another by modifying data in the database. 
 
-= Details =
+= Example of a DBSpec test =
+
+technically speaking you can use it for any test requiring a connection, but it eas developed for Model tests. Model tests are tests for ActiveJDBC models. In case you use Hibernate or another persistence framework, you will have to setup connections manually.
+
+Here is an example of a model we are testing:
+{{{
+public class Post extends Model {
+    static {
+        validatePresenceOf("title", "content");
+        validatePresenceOf("author").message("Author must be provided");
+    }
+}
+}}} 
 
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_
