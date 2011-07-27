@@ -186,7 +186,7 @@ This will ensure that you can get to this filter from any controller:
 {{{
 public class AdminController extends AppController {
 
-    public void setLogLevel(){
+    public void setHeadersLogLevel(){
         //how to disable logging of headers at run time:
         appContext().get("headersLogger", HeadersLogFilter.class).logAtLevel(Level.valueOf(param("log_level")));
     }
