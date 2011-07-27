@@ -165,3 +165,32 @@ Header: Content-Type=application/x-www-form-urlencoded
 Header: Connection=keep-alive
 Header: Accept=text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 }}}
+
+==How to change log level of provided filters on the fly==
+
+You can add a filter to !AppContext before registration:
+{{{
+public class AppControllerConfig extends AbstractControllerConfig {
+
+    public void init(AppContext context) {
+
+        HeadersLogFilter headersLogger = new HeadersLogFilter();
+        context.set("headersLogger", headersLogger);
+        
+        addGlobalFilters(new TimingFilter(), new RequestPropertiesLogFilter(), new RequestParamsLogFilter(),
+                headersLogger);
+    }
+}
+}}}
+This will ensure that you can get to this filter from any controller: 
+{{{
+public class AdminController extends AppController {
+
+    public void setLogLevel(){
+        //how to disable logging of headers at run time:
+        appContext().get("headersLogger", HeadersLogFilter.class).logAtLevel(Level.valueOf(param("log_level")));
+    }
+}
+}}}
+
+Moving log level of these filters above or below current log system log level is easy and very useful. In production you might want to have these at DEBUG level, but you might want to temporarily enable logging to trace some problem, then turn it off again, all without having to redeploy or restart a server.
