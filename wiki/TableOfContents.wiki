@@ -17,7 +17,7 @@
 
 4. [DependencyInjection Dependency injection] - in tests as well as at runtime
 
-5. [Configuration]
+5. [DatabaseConfiguration]
 
 6. [ControllerFilters]
 
