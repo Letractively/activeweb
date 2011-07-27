@@ -1,0 +1,32 @@
+#summary description of DBSpec - super class for tests requiring database connection
+
+= Introduction =
+
+DBSpec is a super class for tests which require a database connection. It is integrated with !ActiveWeb configuration and will automatically open and close a database connection before and after a test respectively. 
+
+
+=Configuration=
+Database configuration is described on DatabaseConfiguration page. DBSpec class will look for connections configured with a method `testing()`. Example taken from DatabaseConfiguration page:
+
+{{{
+ 1. public class DbConfig extends AbstractDBConfig {
+ 2.  public void init(AppContext context) {
+ 3.      environment("development").jndi("jdbc/kitchensink_development");
+ 4.      environment("development").testing().jdbc("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/kitchensink_development", "root", "****");
+ 5.      environment("hudson").testing().jdbc("com.mysql.jdbc.Driver", "jdbc:mysql://172.30.64.31/kitchensink_hudson", "root", "****");
+ 6.      environment("production").jndi("jdbc/kitchensink_production");
+ 7.  }
+ 8.}
+}}}
+
+Specifically, line 4 configures a test connection to 
+=Transaction management=
+
+DBSpec will  start a transaction before the test and roll it back after the test, ensuring integrity of data in a test database, and also that different tests would not affect one another by modifying data in the database. 
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
