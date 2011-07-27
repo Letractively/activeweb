@@ -139,4 +139,11 @@ Method: GET
 }}}
 
 ==!RequestParamsLogFilter==
-This filter will log parameters of the 
+This filter will log parameters of the request, here is an example:
+{{{
+176575 [2090322800@qtp-1699024671-2] INFO activeweb.controller_filters.RequestParamsLogFilter - 
+Param: content=content to be determined...
+Param: id=3
+Param: author=Igor Polevoy
+Param: title=What good for Ruby is good for Java: JSpec
+}}}
