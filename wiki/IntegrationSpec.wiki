@@ -1,0 +1,45 @@
+#summary use IntegrationSpec to test user scenarios across multiple controllers
+
+= Test multiple controllers with IntegrationSpec =
+
+While ControllerSpec and DBControllerSpec allow to test a single controller, the class IntegrationSpec allows to write entire scenarios for testing multiple controllers.
+
+Example:
+{{{
+1. public class SimpleSpec extends IntegrationSpec {
+2.     @Test public void shouldNavigateToTwoControllers(){
+3.         controller("home").get("index");        
+4.         a(statusCode()).shouldBeEqual(200);        
+5.         controller("greeter").param("name", "Bob").integrateViews().get("index");        
+6.         a(responseContent().contains("Our special greeting is extended to Bob")).shouldBeTrue();        
+7.     }
+8. }
+}}}
+
+
+Lets decompose code snippet:
+
+  * Line 3: a controller HomeController is executed with HTTP GET  request which is dispatched to its action index()
+  * Line 4: we verify that the response code of execution was 200
+  * Line 5: controller GreeterController's index() action is executed with HTTP GET and parameter name=Bob. Additionally, we call method integrateViews() which will require the framework to execute the corresponding view after controller, which will provide us with that view's output - usually HTML, but can be XML, Json, whatever  that view is producing.
+  * Line 6; we examine the content of the produced view output. 
+
+Note that we can run this code even in the absence of both controllers, but of course it will fail. Now, we can actually write controller classes to satisfy the tests, lets write a GreetingController (as being the most "complicated" of the two):
+
+{{{
+public void GreetingController extends AppController{
+  public void index(){
+     view("name", param("name"));
+  }
+}
+}}}
+
+The corresponding view might look like:
+{{{
+<span>Our special greeting is extended to ${name}</span>
+}}}
+and will be located in file:
+{{{
+/views/greeter/index.ftl
+}}}
+
