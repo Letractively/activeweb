@@ -29,7 +29,7 @@
   * ControllerSpec
   * [DBControllerSpec]
   * IntegrationSpec
-  * DBIntegrationSpec
+  * [DBIntegrationSpec]
   * AppIntegrationSpec
 
 8. Views
