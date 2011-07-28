@@ -1,5 +1,5 @@
 #summary description of DBSpec - super class for tests requiring database connection
-
+<wiki:toc max_depth="2" />
 = Introduction =
 
 DBSpec is a super class for tests which require a database connection. It is integrated with !ActiveWeb configuration and will automatically open and close a database connection before and after a test respectively. 
