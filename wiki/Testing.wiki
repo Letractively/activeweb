@@ -11,3 +11,5 @@
   * IntegrationSpec - for testing more than one controller
   * DBIntegrationSpec - for testing more than one controller at least one of which requires a DB connection
   * AppIntegrationSpec - for testing more than one controller, with DB connection and with all filters bootstrapped as in a real application.
+
+This collection of super classes allows to write a very thorough set of tests covering application functionality
