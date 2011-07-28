@@ -35,11 +35,10 @@ public void GreetingController extends AppController{
 }}}
 
 The corresponding view might look like:
-{{{
+<code language="html">
 <span>Our special greeting is extended to ${name}</span>
-}}}
+</code>
 and will be located in file:
 {{{
 /views/greeter/index.ftl
 }}}
-
