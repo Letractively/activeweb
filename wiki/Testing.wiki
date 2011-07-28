@@ -5,10 +5,9 @@
 
 !ActiveWeb shines when it comes to testing. Specifically, it promotes TDD/BDD approach to testing of wen applications. At the heart, it uses [http://www.junit.org/ JUnit] as a testing framework, but it provides a number of test classes to be sub-classed for testing various purposes. !ActiveWeb allows to do a full test of any web functionality during a regular build. There are total 6 classes that serve as super-classes for various tests:
 
-  * DBSpec - for testing any code requiring a DB connection
+  * [DBSpec] - for testing any code requiring a DB connection
   * ControllerSpec -for testing a single controller
   * DBCOntrollerSpec - for testing a single controller requiring DB connection
   * IntegrationSpec - for testing more than one controller
   * DBIntegrationSpec - for testing more than one controller at least one of which requires a DB connection
   * AppIntegrationSpec - for testing more than one controller, with DB connection and with all filters bootstrapped as in a real application.
-
