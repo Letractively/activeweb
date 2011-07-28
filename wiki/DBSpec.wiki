@@ -36,6 +36,7 @@ public class PostSpec extends DBSpec {
     public void shouldValidateRequiredAttributes(){
         Post post = new Post();
         a(post).shouldNotBe("valid");
+        a(post.errors().get("author")).shouldBeEqual("Author must be provided");
         post.set("title", "fake title", "author", "fake author", "content", "fake content");
         a(post).shouldBe("valid");
         post.save();
