@@ -1,9 +1,15 @@
-#summary ActiveWeb - FAQ
+#summary ActiveWeb - ActiveWeb FAQ
+
+<wiki:toc max_depth="1" />
 
 = Frequently Asked Questions =
-  # Why !FreeMarker?
-  # Why Guice? - configuration oin code, easier to understand, lightweight - does not bring many dependencies
-  # Why ActiveJDBC - faster, no configuration, little code, has APIs for web, validations, JSON, XML
-  # Why Maven - typical structure, familiar to devs, convention based
-  # Why app.controllers?
-  # Why Carbon 5?
+== Why !FreeMarker? ==
+== Why Guice?==
+ - configuration oin code, easier to understand, lightweight - does not bring many dependencies
+== Why ActiveJDBC==
+faster, no configuration, little code, has APIs for web, validations, JSON, XML
+== Why Maven? ==
+ - typical structure, familiar to devs, convention based
+== Why app.controllers? ==
+
+==Why Carbon 5? ==
