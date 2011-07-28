@@ -27,7 +27,7 @@
   * [JSpec]
   * [DBSpec]
   * ControllerSpec
-  * DBControllerSpec
+  * [DBControllerSpec]
   * IntegrationSpec
   * DBIntegrationSpec
   * AppIntegrationSpec
