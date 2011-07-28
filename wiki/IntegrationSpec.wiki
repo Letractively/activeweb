@@ -27,7 +27,7 @@ Lets decompose code snippet:
 Note that we can run this code even in the absence of both controllers, but of course it will fail. Now, we can actually write controller classes to satisfy the tests, lets write a GreetingController (as being the most "complicated" of the two):
 
 {{{
-public void GreetingController extends AppController{
+public void GreeterController extends AppController{
   public void index(){
      view("name", param("name"));
   }
