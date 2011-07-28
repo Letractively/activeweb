@@ -19,12 +19,12 @@ Example:
 
 Lets decompose code snippet:
 
-  * Line 3: a controller HomeController is executed with HTTP GET  request which is dispatched to its action index()
+  * Line 3: a controller !HomeController is executed with HTTP GET  request which is dispatched to its action index()
   * Line 4: we verify that the response code of execution was 200
-  * Line 5: controller GreeterController's index() action is executed with HTTP GET and parameter name=Bob. Additionally, we call method integrateViews() which will require the framework to execute the corresponding view after controller, which will provide us with that view's output - usually HTML, but can be XML, Json, whatever  that view is producing.
+  * Line 5: controller !GreeterController's index() action is executed with HTTP GET and parameter name=Bob. Additionally, we call method `integrateViews()` which will require the framework to execute the corresponding view after controller, which will provide us with that view's output - usually HTML, but can be XML, Json, whatever  that view is producing.
   * Line 6; we examine the content of the produced view output. 
 
-Note that we can run this code even in the absence of both controllers, but of course it will fail. Now, we can actually write controller classes to satisfy the tests, lets write a GreetingController (as being the most "complicated" of the two):
+Note that we can run this code even in the absence of both controllers, but of course it will fail. Now, we can actually write controller classes to satisfy the tests, lets write a !GreetingController (as being the most "complicated" of the two):
 
 {{{
 public void GreeterController extends AppController{
