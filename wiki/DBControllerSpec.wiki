@@ -2,7 +2,7 @@
 
 <wiki:toc max_depth="1" />
 
-= DBControllerSpec - combines ControllerSpec and DBSpec =
+= DBControllerSpec - combines ControllerSpec and [DBSpec] =
 
 This class serves as a super class for controller tests requiring database connections. In effect, this class combines the logic of ControllerSpec and [DBSpec].
 When it comes to naming convention of a controller to be tested, the functionality is identical that of ControllerSpec, but at the same time it will open a connection to DB before test and close after (will also roll back transaction)
