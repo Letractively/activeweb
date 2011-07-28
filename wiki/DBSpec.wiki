@@ -28,7 +28,26 @@ DBSpec will  start a transaction before the test and roll it back after the test
 
 = Example of a DBSpec test =
 
-technically speaking you can use it for any test requiring a connection, but it eas developed for Model tests. Model tests are tests for ActiveJDBC models. In case you use Hibernate or another persistence framework, you will have to setup connections manually.
+Lets say we are developing a blog, and we need to persist a post. A post will have title, content and author. All these attributes are required. A test will look like this then:
+
+{{{
+public class PostSpec extends DBSpec {
+    @Test
+    public void shouldValidateRequiredAttributes(){
+        Post post = new Post();
+        a(post).shouldNotBe("valid");
+        post.set("title", "fake title", "author", "fake author", "content", "fake content");
+        a(post).shouldBe("valid");
+        post.save();
+        a(Post.count()).shouldBeEqual(1);
+    }
+}
+}}}
+
+
+
+technically speaking you can use it for any test requiring a connection, but it also easy to use for Model tests. Model tests are tests for ActiveJDBC models. In case you use Hibernate or another persistence framework, you will have to setup connections in a different way.
+
 
 Here is an example of a model we are testing:
 {{{
@@ -39,8 +58,3 @@ public class Post extends Model {
     }
 }
 }}} 
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
