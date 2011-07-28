@@ -23,7 +23,7 @@
 
 6. [ControllerFilters]
 
-7. Testing
+7. [Testing]
   * [JSpec]
   * [DBSpec]
   * ControllerSpec
