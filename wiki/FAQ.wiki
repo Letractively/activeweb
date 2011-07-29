@@ -11,7 +11,7 @@ Because !FreeMarker is a great web templating engine for Java. It is mature, has
 == Why Guice?==
 Because Google Guice feels right when it comes to dependency injection. While Spring rules the world, we feel that binding components should be cone in code, and not in XML or annotations. Besides, Google Guice has excellent APIs, which allowed us to integrate it into the framework in record time. It also lightweight and does not bring many transitive dependencies into a project.
 
-== Why ActiveJDBC==
+== Why ActiveJDBC?==
 
 Because ActiveJDBC was the firsts project in an effort to make Java development productive, fast and fun. !ActiveWeb is second such significant project. Besides, there are a few web-friendly pieces baked directly into ActiveJDBC, such as internationalization, validations, JSON and XML generation. However, !ActiveWeb does not have a dependency on ActiveJDBC, and allows to use any database access technology available to Java developers. 
 
