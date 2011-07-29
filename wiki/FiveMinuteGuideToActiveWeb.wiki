@@ -39,7 +39,7 @@ public class GreetingController extends AppController{
 }
 }}}
 
-However, as in the previous example, the action is omitted, which causes the framework to fall back on a default action "index".
+However, as in the previous example, if the action is omitted, it causes the framework to fall back on a default action "index".
 
 
 =View mapping convention=
