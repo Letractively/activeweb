@@ -30,7 +30,7 @@ Flash messages are created in controllers (or filters) like so:
 }}}
 
 
-In a code of controller above, a new book is submitted in a POST request. Line 6 is making attempt to save the book information to DB. If this succeeds, the flash message is sent to view on line 7, and request is redirected to BooksController index method. The file `/views/books/index.ftl` would have a flash message displayed with "flash" tag:
+In a code of controller above, a new book is submitted in a POST request. Line 6 is making attempt to save the book information to DB. If this succeeds, the flash message is sent to view on line 7, and request is redirected to !BooksController index method. The file `/views/books/index.ftl` would have a flash message displayed with "flash" tag:
 
 {{{
 <@flash name="message"/>
