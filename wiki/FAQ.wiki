@@ -6,7 +6,7 @@
 <wiki:toc max_depth="2" />
 
 == Why !FreeMarker? ==
-Because FreeMarker is a great web templating engine for Java. It is mature, has easy to understand syntax, makes it trivial to extend with tags, and allows for end to end testing of a web application with integrateViews() method in controller tests, something JSPs cannot do due to their dependency on containers. FreeMarker templates are independent of JSTL and JSP specification, and will work universally well in any container. 
+Because !FreeMarker is a great web templating engine for Java. It is mature, has easy to understand syntax, makes it trivial to extend with tags, and allows for end to end testing of a web application with `integrateViews()` method in controller tests, something JSPs cannot do due to their dependency on containers. !FreeMarker templates are independent of JSTL and JSP specification, and will work universally well in any container. 
 
 == Why Guice?==
 Because Google Guice feels right when it comes to dependency injection. While Spring rules the world, we feel that binding components should be cone in code, and not in XML or annotations. Besides, Google Guice has excellent APIs, which allowed us to integrate it into the framework in record time. It also lightweight and does not bring many transitive dependencies into a project.
@@ -19,7 +19,7 @@ Because ActiveJDBC was the firsts project in an effort to make Java development 
 Because Maven has a typical structure, is popular with developers, has a huge inventory of plugins, vast community and plethora of information on the Internet
 
 == Why app.controllers? ==
-ActiveWeb requires controllers to be in the package `app/controllers`. 
+!ActiveWeb requires controllers to be in the package `app/controllers`. 
 Please read this: [http://code.google.com/p/activeweb/wiki/StructureOfActiveWebProject#Location_of_controllers Location of controllers]
 
 ==Why Carbon 5? ==
