@@ -1,5 +1,4 @@
 #summary ActiveWeb promotes TDD/BDD with convenient APIs
-<wiki:toc max_depth="1" />
 
 = TDD with !ActiveWeb =
 
