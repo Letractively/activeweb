@@ -4,7 +4,7 @@
 
 = Introduction =
 
-Flash is a concept which does not exist in standard Java API, but very useful in web applications. Flash is a snippet of HTML whose life cycle is limited by the next HTTP request. In other words, a flash is created during a request, then it can be used in a subsequent request (of the same session), after which it dies. 
+Flash is a concept which does not exist in standard Java API, but is very useful in web applications. Flash is a snippet of HTML whose life cycle is limited by the next HTTP request. In other words, a flash is created during a request, then it can be used in a subsequent request (of the same session), after which it dies. 
 
 Flash message is useful in cases when a POST/Redirect to GET pattern is used.
 
