@@ -7,9 +7,9 @@
 
   * [DBSpec] - for testing any code requiring a DB connection
   * ControllerSpec - for testing a single controller
-  * DBCOntrollerSpec - for testing a single controller requiring DB connection
+  * [DBControllerSpec] - for testing a single controller requiring DB connection
   * IntegrationSpec - for testing more than one controller
-  * DBIntegrationSpec - for testing more than one controller at least one of which requires a DB connection
+  * [DBIntegrationSpec] - for testing more than one controller at least one of which requires a DB connection
   * AppIntegrationSpec - for testing more than one controller, with DB connection and with all filters bootstrapped as in a real application.
 
 This collection of super classes allows to write very thorough set of tests covering application functionality
