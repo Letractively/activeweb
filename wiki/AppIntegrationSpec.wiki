@@ -1,0 +1,7 @@
+#summary use AppIntegrationSpec to include filters into test lifecycle
+
+= AppIntegrationSpec  =
+
+!AppIntegrationSpec is a class that will bootstrap entire application, complete with ControllerFilters. The only difference of running your application under !AppIntegrationSpec and running it live, is that the [DBConnectionFilter] is disabled, and instead database connection is provided exactly the same way as in [DBSpec], [DBControllerSpec] or [DBIntegrationSpec].
+
+In other words, think of !AppIntegrationSpec as the same with [DBIntegrationSpec], but all filters will trigger as in a real application.
