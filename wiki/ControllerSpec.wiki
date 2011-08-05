@@ -6,7 +6,7 @@
 Super class for controller tests. This class is used by unit tests that test a single controller. Controllers are tested by simulating a web request to a controller (no physical network is involved, and no container initialized).
 
 =Naming convention=
-Subclasses must follow a simple naming convention: subclass name must be made of two words: controller short class name and word "Spec". Example, of there is a controller:
+Subclasses must follow a simple naming convention: subclass name must be made of two words: controller short class name and word "Spec". Example, if there is a controller:
 {{{
  public class GreeterController extends AppController{
    ...
