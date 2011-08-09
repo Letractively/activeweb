@@ -1,7 +1,0 @@
-#summary One-sentence summary of this page.
-
-= Introduction =
-
-= DBIntegrationSpec - combines IntegrationSpec and DBSpec =
-
-This class serves as a super class for controller tests requiring database connections. In effect, this class combines the logic of IntegrationSpec and DBSpec. It will allow to write scenarios to test multiple controllers, but at the same time it will open a connection to DB before test and close after (will also roll back transaction), as [DBSpec] would.
