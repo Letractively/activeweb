@@ -96,9 +96,54 @@ then the test will look like this:
  }
 }}}
 
+==Simulating different HTTP requests==
+{{{
+1. public class HelloControllerSpec extends ControllerSpec
+2.   @Test
+3.   public void shouldSendGetToIndex(){
+4.      request().get("index");
+5.   }
+6. }
+}}}
+
+In a snippet above on line 4, the method `request()` allows to simulate a call to a controller !HomeController. This line reads like this:
+
+Send GET request to `HomeController`, action `index`. There are other methods for sending different HTTP methods:
+
+  * post(action)
+  * put(action)
+  * delete(action)
+
+==Simulating parameters with HTTP requests==
+{{{
+1. public class HelloControllerSpec extends ControllerSpec
+2.   @Test
+3.   public void shouldSendParamsToIndex(){
+4.      request().param("first_name", "John").param("last_name", "Deere").get("index");
+5.      a(assigns().get("message")).shouldBeEqual("Hello, John Deere, welcome back!");
+6.   }
+7. }
+}}}
+
+This test is a little more complex, we are sending two parameters with the request, and also checking the value controller assigned to a view.  
+
+The above example can be simplified to use a` params()` form that takes an even number of names an values for parameters:
+
+{{{
+1. public class HelloControllerSpec extends ControllerSpec
+2.   @Test
+3.   public void shouldSendParamsToIndex(){
+4.      request().params("first_name", "John", "last_name", "Deere").get("index");
+5.      a(assigns().get("message")).shouldBeEqual("Hello, John Deere, welcome back!");
+6.   }
+7. }
+}}}
+
+This makes it a bit easier to read. 
+
 
 ==Mocking and testing==
-Mocking and testing of services is related to the concept of Dependency Injection and is described on [DependencyInjection#Mocking_and_testing]
+Mocking and testing of services is related to the concept of Dependency Injection and is described in [DependencyInjection#Mocking_and_testing] section.
 
 
 ==Great for TDD==
