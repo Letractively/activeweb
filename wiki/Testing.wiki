@@ -97,6 +97,10 @@ then the test will look like this:
 }}}
 
 
+==Mocking and testing==
+Mocking and testing of services is related to the concept of Dependency Injection and is described on [DependencyInjection#Mocking_and_testing]
+
+
 ==Great for TDD==
 
 !ActiveWeb controller specs allow for true TDD, since they do not have a compiler dependency on controllers. You can describe full behavior of your controller before a controller class even exists. Simplest example:
