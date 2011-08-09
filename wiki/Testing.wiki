@@ -166,7 +166,7 @@ Here is a modification on the previous example, but with the `integrateViews()`
 3.   public void shouldSendParamsToIndexAndGenerateHTML(){
 4.     request().params("first_name", "John", "last_name", "Deere").integrateViews().get("index");
 5.     a(assigns().get("message")).shouldBeEqual("Hello, John Deere, welcome back!");
-6.     a(responseContent().contains("<span class='greeting'>Hello, John Deere, welcome back!</span>"))
+6.     a(responseContent().contains("<span class='greeting'>Hello, John Deere, welcome back!</span>")).shouldBeTrue();
 7.   }
 8. }
 }}}
@@ -190,7 +190,7 @@ Sometimes you need to test a case when binary data is POSTed to a web applicatio
    public void shouldSendBytes(){
      byte[] mybytes = ...
      request().content(mybytes).post("index");
-     a(responseContent().contains("<message>success</message>"))
+     a(responseContent().contains("<message>success</message>")).shouldBeTrue();
    }
  }
 }}}
@@ -205,7 +205,7 @@ Simulating file upload can be done with the formItem() method:
    public void shouldUploadImageFile(){
      byte[] imagebytes = ...
      request().formItem("file.png", "image", true,  "applicaiton/png", imagebytes).contentType("'multipart/form-data'").post("upload");
-     a(responseContent().contains("<message>success</message>"))
+     a(responseContent().contains("<message>success</message>")).shouldBeTrue();
    }
  }
 }}}
