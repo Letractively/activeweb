@@ -152,7 +152,7 @@ Here is a modification on the previous example, but with the `integrateViews()`
 1. public class HelloControllerSpec extends ControllerSpec
 2.   @Test
 3.   public void shouldSendParamsToIndex(){
-4.      request().params("first_name", "John", "last_name", "Deere").integrateViews().get("index");
+4.     request().params("first_name", "John", "last_name", "Deere").integrateViews().get("index");
 5.     a(assigns().get("message")).shouldBeEqual("Hello, John Deere, welcome back!");
 6.     a(responseContent().contains("<span class='greeting'>Hello, John Deere, welcome back!</span>"))
 7.   }
