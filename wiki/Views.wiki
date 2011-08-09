@@ -13,8 +13,8 @@ Views in !ActiveWeb are also called templates. They are located in the following
 
 !ActiveWeb does not use JSPs. The main reason for not using JSPs is inability to test generated HTML with JSPs in a unit test. While the first implementation of !ActiveWeb used JSPs as the rendering engine, as soon as we started implementing the [Testing] framework, we quickly realized that this is simply impossible with JSPs. Generating HTML from a JUnit test is simply impossible and would be time consuming. Besides, the number of problems with different versions of JSP and JSTL specifications would be a nightmare to maintain. Thus we made a hard choice early on in 2010 to not use JSPs all together. In the long run this has proven to be a good decision, it is possible to write very thorough tests with ActiveWeb that is impossible with any Java technology relying on JSPs. 
 
-=!ActiveWeb uses FreeMarker=
-!ActiveWeb uses FreeMarker as a templating engine. please see [FAQ#Why_FreeMarker_?] for more information. 
+=!ActiveWeb uses !FreeMarker=
+!ActiveWeb uses !FreeMarker as a templating engine. please see [FAQ#Why_FreeMarker_?] for more information. 
 
 !ActiveWeb has a pluggable architecture that allows to integrate any other engine, such as Velocity or any other, as long as they can implement [http://code.google.com/p/activeweb/source/browse/trunk/activeweb/src/main/java/activeweb/TemplateManager.java TempalteManager] interface. 
 
