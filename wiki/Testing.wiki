@@ -10,7 +10,7 @@
 
 
 ----
-*This page is not an exhaustive list of API, just a directional guide and a how-to.*
+*This page is not an exhaustive list of test APIs, just a directional guide and a how-to.*
 ----
 
 =JSpec =
