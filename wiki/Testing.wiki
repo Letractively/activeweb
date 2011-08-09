@@ -163,7 +163,7 @@ Here is a modification on the previous example, but with the `integrateViews()`
 {{{
 1. public class HelloControllerSpec extends ControllerSpec
 2.   @Test
-3.   public void shouldSendParamsToIndex(){
+3.   public void shouldSendParamsToIndexAndGenerateHTML(){
 4.     request().params("first_name", "John", "last_name", "Deere").integrateViews().get("index");
 5.     a(assigns().get("message")).shouldBeEqual("Hello, John Deere, welcome back!");
 6.     a(responseContent().contains("<span class='greeting'>Hello, John Deere, welcome back!</span>"))
@@ -187,7 +187,7 @@ Sometimes you need to test a case when binary data is POSTed to a web applicatio
 {{{
  public class HelloControllerSpec extends ControllerSpec
    @Test
-   public void shouldSendParamsToIndex(){
+   public void shouldSendBytes(){
      byte[] mybytes = ...
      request().content(mybytes).post("index");
      a(responseContent().contains("<message>success</message>"))
@@ -202,7 +202,7 @@ Simulating file upload can be done with the formItem() method:
 {{{
  public class HelloControllerSpec extends ControllerSpec
    @Test
-   public void shouldSendParamsToIndex(){
+   public void shouldUploadImageFile(){
      byte[] imagebytes = ...
      request().formItem("file.png", "image", true,  "applicaiton/png", imagebytes).contentType("'multipart/form-data'").post("upload");
      a(responseContent().contains("<message>success</message>"))
@@ -222,7 +222,7 @@ There is a `session()` method available in controller specs. This method allows 
 {{{
  public class LoginControllerSpec extends ControllerSpec
    @Test
-   public void shouldSendParamsToIndex(){
+   public void shouldLoginByIdAndPassword(){
      request().params("id", "mmonroe", "password", "kennedy").post("index");
      a(session().get("user")).shouldNotBeNull();
    }
@@ -233,7 +233,20 @@ Conversely, if you want to test another controller, you could "login" inside a @
 
 
 ==Working with cookies==
-TODO: complete
+Cookies can be sent with a response using a `cookie()` method:
+
+{{{
+1.  public class HelloControllerSpec extends ControllerSpec
+2.   @Test
+3.   public void shouldCookie(){
+4.   request().cookie(new Cookie("app_id", "12345")).get("index");
+5.   a(cookie("last_access")).shouldNotBeNull();
+6.   }
+7. }
+}}}
+
+In this spec, we are sending one cookie with the request on line 4., but also are checking that "HelloController" sent another cookie to the client. 
+
 
 ==Great for TDD==
 
