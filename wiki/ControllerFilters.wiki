@@ -100,7 +100,7 @@ public class AppControllerConfig extends AbstractControllerConfig {
     }
 }
 }}}
-In the example above, this filter is attached only to controllers PostsController and RpostsController, presumably other controllers do not require a DB connection. If you use [http://code.google.com/p/activejdbc/ ActiveJDBC] for persistence layer, you do not need to do anything else. If you just want to get access to the underlying DB connection, you can do this inside a controller or inner filter:
+In the example above, this filter is attached only to controllers !PostsController and !RpostsController, presumably other controllers do not require a DB connection. If you use [http://code.google.com/p/activejdbc/ ActiveJDBC] for persistence layer, you do not need to do anything else. If you just want to get access to the underlying DB connection, you can do this inside a controller or inner filter:
 {{{
 java.sql.Connection connection = Base.connection();
 }}}
