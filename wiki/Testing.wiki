@@ -1,14 +1,23 @@
 #summary ActiveWeb promotes TDD/BDD with convenient APIs
 
-= TDD with !ActiveWeb =
+<wiki:toc max_depth="2" />
+
+= TDD/BDD with !ActiveWeb =
 
 !ActiveWeb shines when it comes to testing. Specifically, it promotes TDD/BDD approach to testing of wen applications. At the heart, it uses [http://www.junit.org/ JUnit] as a testing framework, but it provides a number of test classes to be sub-classed for  various purposes. !ActiveWeb allows to do a full test of any web functionality during a regular build. !ActiveWeb provides a number of classes for testing.
 
 
 =DBSpec for database tests=
 
-DBSpec is a super class for tests which require a database connection. It is integrated with !ActiveWeb configuration and will automatically open and close a database connection before and after a test respectively. 
-It is customary for !ActiveWeb projects to use a database for testing that is different than the one that is used for running the project live even on a developers workstation. This makers it easy to preserve data in place in the "development" database, and still use the full power of database CRUD access to your test database. For example, you could have some user data in a development databas which will allow you to log in, and perform other operations, and yet you can run test logic against your test database, destroy and re-create any data in it, without having to destroy your development database.
+`activeweb.DBSpec`  is a super class for tests which require a database connection. It is integrated with !ActiveWeb configuration and will automatically open and close a database connection before and after a test respectively. 
+It is customary for !ActiveWeb projects to use a database for testing that is different than the one that is used for running the project live even on a developers workstation. This makers it easy to preserve data in place in the "development" database, and still use the full power of database CRUD access to your test database. 
+
+For example, you could have some user data in a development database which will allow you to log in, and perform other operations, and yet you can run test logic against your test database, destroy and re-create any data in it, without having to destroy your development database.
+
+While DBSpec is usually used to test models, it can be used to test any code that require a database connection. If you need to get a hold of that connection, you can use class Base from ActiveJDBC:
+{{{
+java.sql.Connection connection = Base.connection();
+}}}
 
 ===Configuration===
 Database configuration is described on DatabaseConfiguration page. DBSpec class will look for connections configured with a method `testing()`. Example taken from DatabaseConfiguration page:
@@ -65,8 +74,52 @@ public class Post extends Model {
 }}} 
 
 
+= !ControllerSpec - test your controllers=
+
+`activeweb.ControllerSpec` is a super class for controller tests. This class is used by unit tests that test a single controller. Controllers are tested by simulating a web request to a controller (no physical network is involved, and no container initialized).
+
+==Naming convention==
+Subclasses must follow a simple naming convention: subclass name must be made of two words: controller short class name and word "Spec". Example, if there is a controller:
+{{{
+ public class GreeterController extends AppController{
+   ...
+ }
+}}}
+
+then the test will look like this:
+ {{{
+
+ public class GreeterControllerSpec extends ControllerSpec{
+ ...
+ }
+}}}
 
 
+==Great for TDD==
+
+ActiveWeb controller specs allow for true TDD, since they do not have a compiler dependency on controllers. You can describe full behavior of your controller before a controller class even exists. Simplest example:
+{{{
+public GreeterControllerSpec extends ControllerSpec{
+  @Test
+  public void shouldRespondWithGreetingMessage(){
+      request().get("index");
+      a(responseCode()).shouldBeEqual(200);
+      a(assigns().get("message")).shouldBeEqual("Hello, earthlings!");
+  }
+}
+}}}
+
+In a code snippet above, a request with HTTP GET method is simulated to the GreeterController, index() action.
+
+Controller is expected to assign an object called "message" with value "Hello, earthlings!" to a view. 
+
+It is easy to describe a controller behavior in a !ControllerSpec, making it trivial and pleasurable to practice real 
+
+
+
+=!DBControllerSpec - test controllers with DB connection=
+
+`activeweb.DBCOntrollerSpec` class serves as a super class for controller tests requiring database connections. In effect, this class combines the logic of ControllerSpec and DBSpec. When it comes to naming convention of a controller to be tested, the functionality is identical that of ControllerSpec, but at the same time it will open a connection to DB before test and close after (will also roll back transaction) 
 
 
   * ControllerSpec - for testing a single controller
