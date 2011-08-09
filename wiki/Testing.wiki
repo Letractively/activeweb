@@ -23,7 +23,7 @@ While !ActiveWeb tests are written with the popular JUnit testing framework, tra
 
 =DBSpec for database tests=
 
-`activeweb.DBSpec`  is a super class for tests which require a database connection. It is integrated with !ActiveWeb configuration and will automatically open and close a database connection before and after a test respectively. 
+`activeweb.DBSpec`  is a super class for tests that require a database connection. It is integrated with !ActiveWeb configuration and will automatically open and close a database connection before and after a test respectively. 
 It is customary for !ActiveWeb projects to use a database for testing that is different than the one that is used for running the project live even on a developers workstation. This makers it easy to preserve data in place in the "development" database, and still use the full power of database CRUD access to your test database. 
 
 For example, you could have some user data in a development database which will allow you to log in, and perform other operations, and yet you can run test logic against your test database, destroy and re-create any data in it, without having to destroy your development database.
