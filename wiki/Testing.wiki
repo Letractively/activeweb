@@ -10,7 +10,6 @@
 
 =JSpec =
 
-
 While !ActiveWeb tests are written with the popular JUnit testing framework, traditionally expectations are written with [http://code.google.com/p/activejdbc/wiki/JSpec JSpec].
 
 * [http://code.google.com/p/activejdbc/wiki/JSpec Please, follow this link to learn more about JSpec]. *
@@ -215,6 +214,25 @@ Simulating file upload can be done with the formItem() method:
 Most methods chained after method `request()` are chained because they all return a special instance of `RequestBuilder`. This allows to call the same method more than once, including formItem() to simulate uploading of multiple files. 
 ----
 
+
+==Working with sessions==
+
+There is a `session()` method available in controller specs. This method allows to put objects into session before a test and then also allows to verify values if it is expected that a controller should place something into a session during execution.
+
+{{{
+ public class LoginControllerSpec extends ControllerSpec
+   @Test
+   public void shouldSendParamsToIndex(){
+     request().params("id", "mmonroe", "password", "kennedy").post("index");
+     a(session().get("user")).shouldNotBeNull();
+   }
+ }
+}}}
+
+Conversely, if you want to test another controller, you could "login" inside a @Before metod by placing a User object into a session.
+
+
+
 ==Great for TDD==
 
 !ActiveWeb controller specs allow for true TDD, since they do not have a compiler dependency on controllers. You can describe full behavior of your controller before a controller class even exists. Simplest example:
@@ -233,16 +251,13 @@ In a code snippet above, a request with HTTP GET method is simulated to the Gree
 
 Controller is expected to assign an object called "message" with value "Hello, earthlings!" to a view. 
 
-It is easy to describe a controller behavior in a !ControllerSpec, making it trivial and pleasurable to practice real 
+It is easy to describe a controller behavior in a !ControllerSpec, making it trivial and pleasurable to practice real TDD.
 
 
 
 =DBControllerSpec - test controllers with DB connection=
 
 `activeweb.DBCOntrollerSpec` class serves as a super class for controller tests requiring database connections. In effect, this class combines the logic of !ControllerSpec and DBSpec. When it comes to naming convention of a controller to be tested, the functionality is identical that of !ControllerSpec, but at the same time it will open a connection to DB before test and close after (will also roll back transaction) 
-
-
-
 
 = !IntegrationSpec - test multiple controllers together =
 
