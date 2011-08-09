@@ -204,7 +204,7 @@ Simulating file upload can be done with the formItem() method:
  public class HelloControllerSpec extends ControllerSpec
    @Test
    public void shouldSendParamsToIndex(){
-     byte[] imagebytes = new byte[10];
+     byte[] imagebytes = ...
      request().formItem("file.png", "image", true,  "applicaiton/png", imagebytes).contentType("'multipart/form-data'").post("upload");
      a(responseContent().contains("<message>success</message>"))
    }
