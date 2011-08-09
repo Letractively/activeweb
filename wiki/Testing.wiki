@@ -6,7 +6,7 @@
 
 !ActiveWeb shines when it comes to testing. Specifically, it promotes TDD/BDD approach to testing of wen applications. At the heart, it uses [http://www.junit.org/ JUnit] as a testing framework, but it provides a number of test classes to be sub-classed for  various purposes. !ActiveWeb allows to do a full test of any web functionality during a regular build. !ActiveWeb provides a number of classes for testing.
 
-!ActiveWeb classes that make it easy to test all have a suffix "Spec". This is a nod to RSpec, but also a good practice - think of these not as tests that assert as is usually done in Java projects, but as specs, or specifications of behavior. The more you think of them as specifications/blueprints, the more you will think of writing them before implementation. 
+!ActiveWeb classes that make it easy to test all have a suffix "Spec". This is a nod to RSpec, but also a good practice - think of these not as tests that assert values, as is usually done in Java projects, but as specs, or specifications of behavior. The more you think of them as specifications/blueprints, the more you will think of writing them before implementation. 
 
 =JSpec =
 
