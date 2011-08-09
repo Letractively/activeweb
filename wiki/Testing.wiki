@@ -13,10 +13,8 @@
 
 While !ActiveWeb tests are written with the popular JUnit testing framework, traditionally expectations are written with [http://code.google.com/p/activejdbc/wiki/JSpec JSpec].
 
-
-----
 * [http://code.google.com/p/activejdbc/wiki/JSpec Please, follow this link to learn more about JSpec]. *
-----
+
 
 
 =DBSpec for database tests=
