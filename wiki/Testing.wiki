@@ -231,7 +231,7 @@ In other words, think of AppIntegrationSpec as the same with DBIntegrationSpec, 
 
 
 ----
-None of the !IntegrationSpecs require  the same naming convention as !ControllerSpec or DBCOntrollerSpec.
+*None of the !IntegrationSpecs require  the same naming convention as !ControllerSpec or DBCOntrollerSpec.*
 ----
 
 =Conclusion=
