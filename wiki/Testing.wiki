@@ -232,7 +232,7 @@ There is a `session()` method available in controller specs. This method allows 
 Conversely, if you want to test another controller, you could "login" inside a @Before metod by placing a User object into a session.
 
 
-==Working with sessions==
+==Working with cookies==
 TODO: complete
 
 ==Great for TDD==
