@@ -80,6 +80,11 @@ public class Post extends Model {
 
 `activeweb.ControllerSpec` is a super class for controller tests. This class is used by unit tests that test a single controller. Controllers are tested by simulating a web request to a controller (no physical network is involved, and no container initialized).
 
+----
+*All APIs available to controllers in !ControllerSpec are also available to all other controller and integration specs* 
+----
+
+
 ==Naming convention==
 Subclasses must follow a simple naming convention: subclass name must be made of two words: controller short class name and word "Spec". Example, if there is a controller:
 {{{
