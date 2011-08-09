@@ -230,5 +230,9 @@ and will be located in file:
 In other words, think of AppIntegrationSpec as the same with DBIntegrationSpec, but all filters will trigger as in a real application. 
 
 
+----
+None of the !IntegrationSpecs require  the same naming convention as !ControllerSpec or DBCOntrollerSpec.
+----
+
 =Conclusion=
 This collection of super classes allows to write very thorough set of tests covering application functionality
