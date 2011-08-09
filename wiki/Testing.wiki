@@ -6,6 +6,8 @@
 
 !ActiveWeb shines when it comes to testing. Specifically, it promotes TDD/BDD approach to testing of wen applications. At the heart, it uses [http://www.junit.org/ JUnit] as a testing framework, but it provides a number of test classes to be sub-classed for  various purposes. !ActiveWeb allows to do a full test of any web functionality during a regular build. !ActiveWeb provides a number of classes for testing.
 
+!ActiveWeb classes that make it easy to test all have a suffix "Spec". This is a nod to RSpec, but also a good practice - think of these not as tests that assert as is usually done in Java projects, but as specs, or specifications of behavior. The more you think of them as specifications/blueprints, the more you will think of writing them before implementation. 
+
 
 =DBSpec for database tests=
 
@@ -119,7 +121,54 @@ It is easy to describe a controller behavior in a !ControllerSpec, making it tri
 
 =DBControllerSpec - test controllers with DB connection=
 
-`activeweb.DBCOntrollerSpec` class serves as a super class for controller tests requiring database connections. In effect, this class combines the logic of ControllerSpec and DBSpec. When it comes to naming convention of a controller to be tested, the functionality is identical that of ControllerSpec, but at the same time it will open a connection to DB before test and close after (will also roll back transaction) 
+`activeweb.DBCOntrollerSpec` class serves as a super class for controller tests requiring database connections. In effect, this class combines the logic of !ControllerSpec and DBSpec. When it comes to naming convention of a controller to be tested, the functionality is identical that of !ControllerSpec, but at the same time it will open a connection to DB before test and close after (will also roll back transaction) 
+
+
+
+
+= !IntegrationSpec - test multiple controllers together =
+
+While ControllerSpec and DBControllerSpec allow to test a single controller, the class IntegrationSpec allows to write entire scenarios for testing multiple controllers.
+
+Example:
+{{{
+1. public class SimpleSpec extends IntegrationSpec {
+2.     @Test public void shouldNavigateToTwoControllers(){
+3.         controller("home").get("index");        
+4.         a(statusCode()).shouldBeEqual(200);        
+5.         controller("greeter").param("name", "Bob").integrateViews().get("index");        
+6.         a(responseContent().contains("Our special greeting is extended to Bob")).shouldBeTrue();        
+7.     }
+8. }
+}}}
+
+
+Lets decompose code snippet:
+
+  * Line 3: a controller !HomeController is executed with HTTP GET  request which is dispatched to its action index()
+  * Line 4: we verify that the response code of execution was 200
+  * Line 5: controller !GreeterController's index() action is executed with HTTP GET and parameter name=Bob. Additionally, we call method `integrateViews()` which will require the framework to execute the corresponding view after controller, which will provide us with that view's output - usually HTML, but can be XML, Json, whatever  that view is producing.
+  * Line 6; we examine the content of the produced view output. 
+
+Note that we can run this code even in the absence of both controllers, but of course it will fail. Now, we can actually write controller classes to satisfy the tests, lets write a !GreetingController (as being the most "complicated" of the two):
+
+{{{
+public void GreeterController extends AppController{
+  public void index(){
+     view("name", param("name"));
+  }
+}
+}}}
+
+The corresponding view might look like:
+<code language="html">
+<span>Our special greeting is extended to ${name}</span>
+</code>
+and will be located in file:
+{{{
+/views/greeter/index.ftl
+}}}
+
 
 
   * ControllerSpec - for testing a single controller
