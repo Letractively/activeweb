@@ -182,6 +182,39 @@ We simply test on line 6 that there exists a span with specific content merged b
 Mocking and testing of services is related to the concept of Dependency Injection and is described in [DependencyInjection#Mocking_and_testing] section.
 
 
+==Posting binary content==
+
+Sometimes you need to test a case when binary data is POSTed to a web application. This can be easily tested with the content() method:
+{{{
+ public class HelloControllerSpec extends ControllerSpec
+   @Test
+   public void shouldSendParamsToIndex(){
+     byte[] mybytes = ...
+     request().content(mybytes).post("index");
+     a(responseContent().contains("<message>success</message>"))
+   }
+ }
+}}}
+
+==Uploading files==
+
+Simulating file upload can be done with the formItem() method:
+
+{{{
+ public class HelloControllerSpec extends ControllerSpec
+   @Test
+   public void shouldSendParamsToIndex(){
+     byte[] imagebytes = new byte[10];
+     request().formItem("file.png", "image", true,  "applicaiton/png", imagebytes).contentType("'multipart/form-data'").post("upload");
+     a(responseContent().contains("<message>success</message>"))
+   }
+ }
+}}}
+
+----
+Most methods chained after method `request()` are chained because they all return a special instance of `RequestBuilder`. This allows to call the same method more than once, including formItem() to simulate uploading of multiple files. 
+----
+
 ==Great for TDD==
 
 !ActiveWeb controller specs allow for true TDD, since they do not have a compiler dependency on controllers. You can describe full behavior of your controller before a controller class even exists. Simplest example:
