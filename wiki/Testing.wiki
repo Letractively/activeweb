@@ -99,7 +99,7 @@ then the test will look like this:
 
 ==Great for TDD==
 
-ActiveWeb controller specs allow for true TDD, since they do not have a compiler dependency on controllers. You can describe full behavior of your controller before a controller class even exists. Simplest example:
+!ActiveWeb controller specs allow for true TDD, since they do not have a compiler dependency on controllers. You can describe full behavior of your controller before a controller class even exists. Simplest example:
 {{{
 public GreeterControllerSpec extends ControllerSpec{
   @Test
