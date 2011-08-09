@@ -8,6 +8,16 @@
 
 !ActiveWeb classes that make it easy to test all have a suffix "Spec". This is a nod to RSpec, but also a good practice - think of these not as tests that assert as is usually done in Java projects, but as specs, or specifications of behavior. The more you think of them as specifications/blueprints, the more you will think of writing them before implementation. 
 
+=JSpec =
+
+
+While !ActiveWeb tests are written with the popular JUnit testing framework, traditionally expectations are written with [http://code.google.com/p/activejdbc/wiki/JSpec JSpec].
+
+
+----
+* [http://code.google.com/p/activejdbc/wiki/JSpec Please, follow this link to learn more about JSpec]. *
+----
+
 
 =DBSpec for database tests=
 
