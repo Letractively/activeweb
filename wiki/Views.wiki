@@ -50,8 +50,102 @@ src/main/webapp/WEB-INF/views/shared
 
 =Partials=
 
-TODO: complete
+Partials are snippets of HTML pages, hence the word. Usually they host chunks of code repeating in a few places. In much the same way that a regular programming language allows develpers to refactor and keep repeating patterns of code in one place, partials a used to keep HTML code that is repeated. It is not to say though that you cannot put any arbitrary HTML code, you can.
 
+The main power of partials is in their ability to iterate HTML snippets over data collections, as well as ability to "widgetize" HTML snippets.
+
+Partials are somewhat similar to JSP includes, but they have some special characteristics that JSPs do not.
+
+==Partials naming and location==
+Partials are !FreeMarker templates as any other, but the name of file must start with underscore:
+
+{{{
+src/main/webapp/WEB-INF/views/greeting/_hello.ftl
+}}}
+
+Location of partials is the same as for regular templates, that is they are located in sub-directories of the top view directory.
+
+=Include partials with Render tag==
+Partials are included into a host page with a Render tag. Lets say there is a template called `index.ftl` located in directory `market` and partial `_fruit.ftl` located in the same diretory:
+{{{
+src/main/webapp/WEB-INF/views/market/index.ftl
+src/main/webapp/WEB-INF/views/market/_fruit.ftl
+}}}
+
+then you can render `_fruit.ftl` inside `index.ftl` like this:
+{{{
+<html>
+...
+<@render partial="fruit"/>
+...
+</html>
+}}}
+
+As you can see, when you are referring to a partial, you *specify name without underscore*.
+----
+The Render tag requires at least one attribute present: "partial" which refers to a local or shared partial by name.
+----
+
+==Rendering shared partials==
+In a previous example, you can see that a partial was co-located with the host template. Sometimes you need to render a partial in a number of templates. To accomplish this, you can place a partial into anew view directory and refer to a partial with "absolute" path, such as:
+{{{
+<html>
+...
+<@render partial="/shared/fruit"/>
+...
+</html>
+}}}
+This assumes that you have a partial fruit at this location:
+{{{
+src/main/webapp/WEB-INF/views/shared/_fruit.ftl
+}}}
+Use this technique to incude a common widget in a few pages. 
+
+==Iterating with partials==
+It is quite common to iterate over collections in a web applicaiton. Sometimes  you need to build a <table>, a list <ul> or repeating pattern of HTML code. Usually developers resort to loops inside templates, and although !FreeMarker provides this functionality, using partials provides a cleaner solution, as partials can iterate automatically.
+
+Lets say we have a partial called `_fruit.ftl`:
+{{{
+Fruit name: ${fruit}<hr>
+}}}
+If we have a collection in context (java.util.List, for instance) with these values: ["apple", "prune", "pear"], and named fruits, then we can render this partial as a collection from host page like this:
+
+{{{
+<@render partial="fruit" collection=fruits/>
+}}}
+Rendering will result in this output:
+{{{
+Fruit name: apple<hr>Fruit name: prune<hr>Fruit name: pear<hr>
+}}}
+As you can see, iteration is easier with partials compared to loops. The partial will take care ot iterating automatically.
+
+==Implicit counter in partial==
+Partials interating over a collection have a built-in implicit variable maintaining an index of a collection. The name of this variable is made up of a name of a partial and word "counter". This means that for the above example, the name will be "fruit_counter". You can use this value inside a partial like any other context value. The above example with the counter modification:
+{{{
+Fruit name: ${fruit}, index: ${fruit_conter}<hr>
+}}}
+will yield:
+{{{
+Fruit name: apple, index: 0<hr>Fruit name: prune, index: 1<hr>Fruit name: pear, index: 2<hr>
+}}}
+
+==Partials with collections and spacers==
+Notice in above examples  that the horizontal line <hr> is rendered at the bottom of each iteration of a partial. This is because it is really a part of a partial. It is quite common that you need to space the iterating snippets of HTML with some sort of a spacer made up of arbitrary HTML. Partials provide this capability with the use of a "spacer" partial. Lets say we use this partial as a spacer(located in `src/main/webapp/WEB-INF/views/shared/_divider.ftl`):
+{{{
+<div class='spacer'/>
+
+}}} 
+if we then render our fruits with this spacer such that"
+{{{
+<@render partial="fruit" collection=fruits spacer="divider"/>
+}}}
+we will get the following output:
+{{{
+Fruit name: apple<hr><div class="spacer"/>
+Fruit name: prune<hr><div class="spacer"/>
+Fruit name: pear<hr><div class="spacer"/>
+}}}
+The reason for a new line is because we have it in a "divider" partial.a
 
 To be completed:
 
