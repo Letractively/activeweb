@@ -86,7 +86,7 @@ The Render tag requires at least one attribute present: "partial" which refers t
 ----
 
 ==Rendering shared partials==
-In a previous example, you can see that a partial was co-located with the host template. Sometimes you need to render a partial in a number of templates. To accomplish this, you can place a partial into anew view directory and refer to a partial with "absolute" path, such as:
+In a previous example, you can see that a partial was co-located with the host template. Sometimes you need to render a partial in a number of templates. To accomplish this, you can place a partial into a new view directory and refer to a partial with "absolute" path, such as:
 {{{
 <html>
 ...
