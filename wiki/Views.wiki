@@ -144,9 +144,8 @@ Fruit name: apple<hr><div class="spacer"/>
 Fruit name: prune<hr><div class="spacer"/>
 Fruit name: pear<hr>
 }}}
-
-
-The reason for a new line is because we have it in a "divider" partial.a
+As you can see, the content of the spacer was inserted between the contents of the iterating partial, and the good thing is that it was not appended after the last iteration.
+The reason for a new line is because we have it in a "divider" partial.
 
 To be completed:
 
