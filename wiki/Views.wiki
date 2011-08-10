@@ -17,3 +17,38 @@ Views in !ActiveWeb are also called templates. They are located in the following
 !ActiveWeb uses !FreeMarker as a templating engine. Please see [FAQ#Why_FreeMarker_? Why FreeMarker?] for more information. 
 
 !ActiveWeb has a pluggable architecture that allows to integrate any other engine, such as Velocity, as long as they can implement [http://code.google.com/p/activeweb/source/browse/trunk/activeweb/src/main/java/activeweb/TemplateManager.java TempalteManager] interface. 
+
+=Templates=
+!ActiveWeb templates are in fact FreeMarker templates. Templates are located in sub-directories of this top view directory:
+{{{ 
+src/main/webapp/WEB-INF/views
+}}}
+
+The sub-directories usually are named after controllers. Controller name would loose suffix "Controller", and the remainder would be transformed from !CamelCase to underscore, for example, `HomeController` templates are located in sub-directory 
+{{{
+src/main/webapp/WEB-INF/views/home
+}}}
+and `OuterSpaceController` templates are located in:
+{{{
+src/main/webapp/WEB-INF/views/outer_space
+}}}
+
+Controller package is not considered in search of templates. Usually templates belong to a controller, but there can also be template that are shared. In that case, you can create any arbitrary directory under template top directory and place your shared templates there:
+{{{
+src/main/webapp/WEB-INF/views/shared
+}}}
+
+    * templates
+    * partials
+    * default layouts
+    * custom layouts
+    * layouts
+    * ActiveWeb objects in context
+    * FreeMarker?
+    * Tags
+          o link_to
+          o FlashTag
+          o confirmation
+          o form
+          o content_for, yield
+          o Custom tag development 
