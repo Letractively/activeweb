@@ -38,17 +38,20 @@ Controller package is not considered in search of templates. Usually templates b
 src/main/webapp/WEB-INF/views/shared
 }}}
 
-    * templates
-    * partials
-    * default layouts
-    * custom layouts
-    * layouts
-    * ActiveWeb objects in context
-    * FreeMarker?
-    * Tags
-          o link_to
-          o FlashTag
-          o confirmation
-          o form
-          o content_for, yield
-          o Custom tag development 
+
+To be completed:
+
+  * templates
+  * partials
+  * default layouts
+  * custom layouts
+  * layouts
+  * ActiveWeb objects in context
+  * FreeMarker?
+  * Tags
+  * link_to
+  * FlashTag
+  * confirmation
+  * form
+  * content_for, yield
+  * Custom tag development 
