@@ -47,7 +47,6 @@ src/main/webapp/WEB-INF/views/shared
 }}}
 
 
-
 =Partials=
 
 Partials are snippets of HTML pages, hence the word. Usually they host chunks of code repeating in a few places. In much the same way that a regular programming language allows develpers to refactor and keep repeating patterns of code in one place, partials a used to keep HTML code that is repeated. It is not to say though that you cannot put any arbitrary HTML code, you can.
@@ -102,7 +101,7 @@ src/main/webapp/WEB-INF/views/shared/_fruit.ftl
 Use this technique to incude a common widget in a few pages. 
 
 ==Iterating with partials==
-It is quite common to iterate over collections in a web applicaiton. Sometimes  you need to build a <table>, a list <ul> or repeating pattern of HTML code. Usually developers resort to loops inside templates, and although !FreeMarker provides this functionality, using partials provides a cleaner solution, as partials can iterate automatically.
+It is quite common to iterate over collections in a web application. Sometimes  you need to build a `<table>`, a list `<ul>` or repeating pattern of HTML code. Usually developers resort to loops inside templates, and although !FreeMarker provides this functionality, using partials provides a cleaner solution, as partials can iterate automatically.
 
 Lets say we have a partial called `_fruit.ftl`:
 {{{
