@@ -18,7 +18,7 @@ Views in !ActiveWeb are also called templates. They are located in the following
 
 !ActiveWeb has a pluggable architecture that allows to integrate any other engine, such as Velocity, as long as they can implement [http://code.google.com/p/activeweb/source/browse/trunk/activeweb/src/main/java/activeweb/TemplateManager.java TempalteManager] interface. 
 
-=FreeMarker configuration=
+=!FreeMarker configuration=
 
 
 TODO: complete this
