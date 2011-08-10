@@ -65,7 +65,7 @@ src/main/webapp/WEB-INF/views/greeting/_hello.ftl
 
 Location of partials is the same as for regular templates, that is they are located in sub-directories of the top view directory.
 
-=Include partials with Render tag==
+==Include partials with Render tag==
 Partials are included into a host page with a Render tag. Lets say there is a template called `index.ftl` located in directory `market` and partial `_fruit.ftl` located in the same diretory:
 {{{
 src/main/webapp/WEB-INF/views/market/index.ftl
