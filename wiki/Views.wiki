@@ -142,8 +142,10 @@ we will get the following output:
 {{{
 Fruit name: apple<hr><div class="spacer"/>
 Fruit name: prune<hr><div class="spacer"/>
-Fruit name: pear<hr><div class="spacer"/>
+Fruit name: pear<hr>
 }}}
+
+
 The reason for a new line is because we have it in a "divider" partial.a
 
 To be completed:
