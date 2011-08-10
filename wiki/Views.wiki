@@ -129,7 +129,7 @@ Fruit name: apple, index: 0<hr>Fruit name: prune, index: 1<hr>Fruit name: pear, 
 }}}
 
 ==Partials with collections and spacers==
-Notice in above examples  that the horizontal line <hr> is rendered at the bottom of each iteration of a partial. This is because it is really a part of a partial. It is quite common that you need to space the iterating snippets of HTML with some sort of a spacer made up of arbitrary HTML. Partials provide this capability with the use of a "spacer" partial. Lets say we use this partial as a spacer(located in `src/main/webapp/WEB-INF/views/shared/_divider.ftl`):
+Notice in above examples  that the horizontal line `<hr>` is rendered at the bottom of each iteration of a partial. This is because it is really a part of a partial. It is quite common that you need to space the iterating snippets of HTML with some sort of a spacer made up of arbitrary HTML. Partials provide this capability with the use of a "spacer" partial. Lets say we use this partial as a spacer(located in `src/main/webapp/WEB-INF/views/shared/_divider.ftl`):
 {{{
 <div class='spacer'/>
 
