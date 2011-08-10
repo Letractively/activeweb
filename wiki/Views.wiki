@@ -18,6 +18,14 @@ Views in !ActiveWeb are also called templates. They are located in the following
 
 !ActiveWeb has a pluggable architecture that allows to integrate any other engine, such as Velocity, as long as they can implement [http://code.google.com/p/activeweb/source/browse/trunk/activeweb/src/main/java/activeweb/TemplateManager.java TempalteManager] interface. 
 
+=FreeMarker configuration=
+
+
+TODO: complete this
+
+
+
+
 =Templates=
 !ActiveWeb templates are in fact !FreeMarker templates. However, there are a number of !ActiveWeb conventions for template naming and placement. Templates are located in sub-directories of this top view directory:
 {{{ 
@@ -39,10 +47,14 @@ src/main/webapp/WEB-INF/views/shared
 }}}
 
 
+
+=Partials=
+
+TODO: complete
+
+
 To be completed:
 
-  * templates
-  * partials
   * default layouts
   * custom layouts
   * layouts
