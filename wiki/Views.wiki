@@ -191,6 +191,7 @@ LinkTo tag and unobtrusive !JavaScript
 !ActiveWeb provides a<@link_to/>. This tag generates an HTML anchor tag and is capable of regular HTML links, as well as Ajax capability.
  
 ==Attributes for configuration==
+
  *  *controller*: path to controller, such as: `/admin/permissions` where "admin" is a sub-package and "permissions" is a name of a controller. In this example, the controller class name would be: `app.controllers.admin.PermissionsController`. If a controller path is specified, the preceding slash is mandatory. Optionally this could be a name of a controller from a default package: "permissions", and in this case, the controller class name is expected to be `app.controllers.PermissionsController`. If a name of controller is specified, the preceding slash can be omitted. This attribute is optional. If this attribute is omitted, the tag will use the controller which was used to generate the current page. This makes it convenient to write links on pages for the same controller.
  *  *action*: name of an action. Optional. If this attribute is omitted, the action will default to "index".
  *  *id*: id, as in a route: /controller/action/id. Optional.
