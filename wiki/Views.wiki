@@ -341,7 +341,7 @@ content for and yeld are not limited to sending plain text, you can send arbitra
 
 This feature is useful to inject a JavaScript library into a layout from a page in cases you only need this library on this one page. This way loading a library will be avoided for all other pages, where it is not used. 
 
-===Multiple chunks of `content for`  for `yield`===
+===Multiple chunks of `content for`  for single `yield`===
 
 Sometimes you need to send multiple chunks of text from a page to layout. You can declare more than one `content for` with the same yield target:
 
