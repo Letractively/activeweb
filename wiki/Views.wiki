@@ -281,8 +281,7 @@ function onError(status, responseText){
 
 
 
-==form tag==
-
+=form tag=
 
 `<@form/>` tag generates an HTML form tag and has functionality specific for !ActiveWeb.
 Like any other !ActiveWeb tag, it has ability to pass through any non - !ActiveWeb attributes. This means that if you
@@ -291,24 +290,23 @@ specify any attribute that is not mentioned here, it will be passed through as a
 
 Attributes:
 
-  * *controller* - name of a controller to post this form to. Optional. If this attribute is not provided,
+  * `controller` - name of a controller to post this form to. Optional. If this attribute is not provided,
 the tag will find a current controller in context which was used to generate a data for the current view and uses it.  It makes it
-convenient to write many views for the same controller.</li>
-  * *action* - name of an action to post this form to.This is different from  regular
+convenient to write many views for the same controller.
+  * `action` - name of an action to post this form to.This is different from  regular
 HTML form@action attribute, as controller, action and id attributes will be used to form an appropriate HTML form action
-value.  Optional. </li>
-  * *id* - value of URI "id". Used as URI "id" in forming an HTML Form
-action attribute, such as: <code><form action="controller/action/id"</code>. Do not confuse with HTML element ID.
-Optional.</li>
-  * *html_id* - value of HTML Form element ID, as in <code><form id="123..."</code>. Optoinal.</li>
-  * *method* - this is an HTTP method. Allowed values: GET (default), POST, PUT, DELETE.
+value.  Optional. 
+  * `id` - value of URI "id". Used as URI "id" in forming an HTML Form
+action attribute, such as: `<form action="controller/action/id"`. Do not confuse with HTML element ID.
+Optional.
+  * `html_id` - value of HTML Form element ID, as in `<form id="123..."`. Optoinal.
+  * `method` - this is an HTTP method. Allowed values: GET (default), POST, PUT, DELETE.
 In case, the values are "put" or "delete", additional hidden input names "_method" will be generated, and
 the actual HTML method will be set to "post". This workaround is necessary because browsers still do not support
-PUT and DELETE. Optional. </li>
+PUT and DELETE. Optional. 
 
 This tag also is REST-aware, and will generate appropriate formats for HTML Form tag action value depending if the
 controller is RESTful or not, see {@link activeweb.annotations.RESTful} for more information.
-
 
 Examples (given that the current context is "simple_context"):
 ==Simple form==
@@ -359,7 +357,8 @@ will generate:
       <input type='hidden' name='_method' value='put' />
       <input type="hidden" name="blah">
  </form>
-}}}
+ }}}
+ 
  
 
 
