@@ -181,6 +181,101 @@ more content...
 }}}
 
 
+
+LinkTo tag and unobtrusive JavaScript
+
+
+
+=link_to tag and unobtrusibe !JavaScript=
+
+!ActiveWeb provides a<@link_to/>. This tag generates an HTML anchor tag and is capable of regular HTML links, as well as Ajax capability.
+ 
+==Attributes for configuration==
+ *  *controller*: path to controller, such as: `/admin/permissions` where "admin" is a sub-package and "permissions" is a name of a controller. In this example, the controller class name would be: `app.controllers.admin.PermissionsController`. If a controller path is specified, the preceding slash is mandatory. Optionally this could be a name of a controller from a default package: "permissions", and in this case, the controller class name is expected to be `app.controllers.PermissionsController`. If a name of controller is specified, the preceding slash can be omitted. This attribute is optional. If this attribute is omitted, the tag will use the controller which was used to generate the current page. This makes it convenient to write links on pages for the same controller.
+ *  *action*: name of an action. Optional. If this attribute is omitted, the action will default to "index".
+ *  *id*: id, as in a route: /controller/action/id. Optional.
+ *  *html_id*: value of this attribute will be used to set the HTML ID of the Anchor element. Optional.
+ *  *query_string*: query string as is usually used in GET HTTP calls - the part of a URL after the question mark. Optional. Either query_string or query_params allowed, but not both.
+ *  *query_params*: java.util.Map with key/value pairs to be converted to query string. Optional. Either query_string or query_params allowed, but not both.
+ *  *destination*: id of an element on page whose content will be set with a result of an Ajax call. Optional.
+ *  *form*: id of a form element on the page, whose content will be serialized into the Ajax call. This content will be submitted to the server controller/action as input. Optional.
+ *  *method*: HTTP method to use. Acceptable values: GET (default), POST, PUT, DELETE. Optional.
+ *  *before*: Name of a JavaScript function to call before making Ajax call. Optional. This function does not receive any arguments.
+ *  *before_arg*: Value for the JS function argument provided in "before" attribute. This could be an ID of an element, string, or any other arbitrary parameter. Any object will be converted to string. Optional.
+ *  *after*: Name of a JavaScript function to call after making Ajax call. This function receives the value of a "after_arg" attribute as a first argument and result of the Ajax call as a second argument. Optional.
+ *  *after_arg*: Value for the JS function argument provided in "after" attribute. This could be an ID of an element, string, or any other arbitrary parameter. Any object will be converted to string. Optional.
+ *  *confirm*:  Presents a JavaScript confirmation dialog before making an Ajax call. The dialog will present the text with content from the attribute value.  If No or Cancel was selected on the dialog, the Ajax call is not made. Optional.
+ *  *error*: Name of a JS function which will be called in case there was an Ajax error of some sort. The first parameter is HTTP status code, the second is response text sent from server.
+ 
+ 
+==Example 1: Non-Ajax link==
+{{{
+ <@link_to controller="books" action="fetch">Get Books</@>
+}}}
+ 
+This will generate a simple non-Ajax link, such as: "..books/fetch"
+ 
+*Example 2: Ajax link, sets data to destination element*
+{{{
+<@link_to controller="books" action="fetch" destination="result" >Get Books</@>
+}}}
+
+This will generate a simple Ajax link. The method by default is GET. After Ajax call, the result will be inserted into an element with ID: "result", similar to: `<div id="result"></div>`
+
+
+==Example 3: Confirmation and before/after callbacks==
+{{{
+<@link_to controller="books"  id="123"
+         method="delete" before="beforeDelete" after="afterDelete"
+         confirm="Are you really sure you want to delete this book?">Delete Book</@>
+
+
+   function beforeDelete(beforeArg){
+      ...
+   }
+
+   function afterDelete(afterArg, data){
+      ...
+   }
+}}}
+
+Here, the JS confirmation dialog will present the message before posting an Ajax call, then function "beforeDelete" will be called. After that, it will make an Ajax call, and will execute function "afterDelete", passing it the result of Ajax invocation as an argument. In the JS code above, the "beforeArg" and "afterArg" arguments have values null since the "before_arg" and "after_arg" attributes were not used.
+
+==Example 4: Before/after callback arguments==
+{{{
+<@link_to controller="books" action="fetch" before="doBeforeWithArg" before_arg="books_result"                               
+    after="doAfterWithArg" after_arg="books_result">Get Books</@>
+}}}
+
+This code expects to find JS functions similar to these:
+{{{
+function doBeforeWithArg(elm){
+  $("#" + elm).html("wait...");
+}
+ 
+function doAfterWithArg(elm, data){
+  $("#" + elm).html(data);
+}
+}}}
+
+This is presuming that there is an element like this on the page:
+{{{
+<div id="books_result"></div>
+}}}
+In this example, the "books_result" string is passed as argument to "doBeforeWithArg" as only one argument and the same is passed as a first argument to function "doAfterWithArg". The second argument to the "doAfterWithArg" is a result of Ajax invocation (presumably HTML representing books generated from some partial).
+
+*Example 5 - Error handling*
+{{{
+<@link_to controller="books" action="doesnotexist" error="onError" destination="callbacks_result">Will cause error</@>
+
+...
+function onError(status, responseText){
+  alert("Got error, status: " + status + ", Response: " + responseText);
+ }
+ }}}
+ 
+ In this example, the link is making an Ajax call to a controlled action which does not exists. This causes onError() function to be triggered.
+
 To be completed:
 
   * default layouts
@@ -189,7 +284,6 @@ To be completed:
   * ActiveWeb objects in context
   * FreeMarker?
   * Tags
-  * link_to
   * FlashTag
   * confirmation
   * form
