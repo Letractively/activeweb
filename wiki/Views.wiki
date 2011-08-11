@@ -296,12 +296,8 @@ Attributes:
   * `html_id` - value of HTML Form element ID, as in `<form id="123..."`. Optoinal.
   * `method` - this is an HTTP method. Allowed values: GET (default), POST, PUT, DELETE.
 
-In case the values are "put" or "delete", additional hidden input names "_method" will be generated, and
-the actual HTML method will be set to "post". This workaround is necessary because browsers still do not support
-PUT and DELETE. Optional. 
+In case the values are "put" or "delete", additional hidden input names `_method` will be generated, and the actual HTML method will be set to "post". This workaround is necessary because browsers still do not support PUT and DELETE. Optional. 
 
-This tag also is REST-aware, and will generate appropriate formats for HTML Form tag action value depending if the
-controller is RESTful or not, see {@link activeweb.annotations.RESTful} for more information.
 
 Examples (given that the current context is "simple_context"):
 ==Simple form==
@@ -340,6 +336,9 @@ will generate this HMTL:
 }}}
 
 ==PUT form for RESTful controller==
+
+This tag also is REST-aware, and will generate appropriate formats for HTML Form tag action value depending if the controller is RESTful or not.
+
 code:
 {{{
 <@form controller="photos"  id="x123" method="put" html_id="formA">
@@ -354,7 +353,6 @@ will generate:
  </form>
  }}}
  
-
 
 =!ActiveWeb layouts=
 Layouts are a way to decorate a page with additional HMTL. !ActiveWeb layouts serve exactly the same purpose as Java technologies such as Apache Tiles and Sitemesh.
