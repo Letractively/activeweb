@@ -215,7 +215,7 @@ LinkTo tag and unobtrusive !JavaScript
  
 This will generate a simple non-Ajax link, such as: "..books/fetch"
  
-*Example 2: Ajax link, sets data to destination element*
+==Example 2: Ajax link, sets data to destination element==
 {{{
 <@link_to controller="books" action="fetch" destination="result" >Get Books</@>
 }}}
