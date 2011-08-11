@@ -366,7 +366,7 @@ For instance, for a `java,util.Map` object it will print this:
 
 
 =!ActiveWeb layouts=
-Layouts are a way to decorate a page with additional HMTL. !ActiveWeb layouts serve exactly the same purpose as Java technologies such as Apache Tiles and Sitemesh.
+Layouts are a way to decorate a page with additional HTML. !ActiveWeb layouts serve exactly the same purpose as Java technologies such as Apache Tiles and Sitemesh.
 Using a layout you decorate every page with the same header,footer, and other common elements for your application.
 Layouts are !FreeMarker templates like any other.
 
@@ -463,8 +463,20 @@ will generate the following output in its place:
 
 ==Rendering without layout==
 
+By default !ActiveWeb will use a `/views/layouts/default_layout.ftl`. However, in some cases you do not need a layout. You can turn a layout rendering programmaticaly from controller:
+{{{
+public class HomeController extends AppController {
+    public void index(){
+      render().noLayout();
+    }
+}}}
+In this case, the template will be rendered, but no layout will be used.
+
 ==Override default layout==
 
+If you wonder how default layout is set, the answer is simple: the class !AppController has a method `String getLayout()` which returns a string with value `/layouts/default_layout`. The easiest way to change a layout for a controller is to override  this method to return a different value. 
+
+If you have 2 - 3 super classes for controllers that override this method, you can have different areas of the site decorated by different layouts, based on which child controller is rendering.
 
 To be completed:
 {{{
