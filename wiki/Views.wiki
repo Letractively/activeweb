@@ -98,7 +98,7 @@ This assumes that you have a partial fruit at this location:
 {{{
 src/main/webapp/WEB-INF/views/shared/_fruit.ftl
 }}}
-Use this technique to incude a common widget in a few pages. 
+Use this technique to incude a common widget across multiple templates. 
 
 ==Iterating with partials==
 It is quite common to iterate over collections in a web application. Sometimes  you need to build a `<table>`, a list `<ul>` or repeating pattern of HTML code. Usually developers resort to loops inside templates, and although !FreeMarker provides this functionality, using partials provides a cleaner solution, as partials can iterate automatically.
