@@ -147,6 +147,40 @@ Fruit name: pear<hr>
 As you can see, the content of the spacer was inserted between the contents of the iterating partial, and the good thing is that it was not appended after the last iteration.
 The reason for a new line is because we have it in a "divider" partial.
 
+
+==Passing arguments to partials==
+You can pass an argument value to a partial in much the same way as you can to a method. 
+
+Lets say we have a host template:
+{{{
+<@render partial="fruit_name" a_fruit=fruit_name/>
+}}}
+and a partial (_fruit_name.ftl) with content:
+{{{
+Fruit name is: ${a_fruit}
+}}} 
+Then the output of a partial will be:
+{{{
+Fruit name is: ${a_fruit}
+}}}
+considering that there is a varialbe `fruit_name` in context. This variable could be passed in by controller, or created inside the template. The types of values passed in like this are not limited to strings.
+
+
+==Boundary indicators for collection partials==
+If you have a partial that iterates over a collection and you need to render special content conditionally if this is a first or last time in the iteration, you can use special variables set by the framework called `first` and `last`:
+
+{{{
+<#if first>
+I'm the first in line!
+</#>
+<#if last>
+I'm the last in line!
+</#>
+
+more content...
+}}}
+
+
 To be completed:
 
   * default layouts
