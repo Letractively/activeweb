@@ -290,18 +290,13 @@ specify any attribute that is not mentioned here, it will be passed through as a
 
 Attributes:
 
-  * `controller` - name of a controller to post this form to. Optional. If this attribute is not provided,
-the tag will find a current controller in context which was used to generate a data for the current view and uses it.  It makes it
-convenient to write many views for the same controller.
-  * `action` - name of an action to post this form to.This is different from  regular
-HTML form@action attribute, as controller, action and id attributes will be used to form an appropriate HTML form action
-value.  Optional. 
-  * `id` - value of URI "id". Used as URI "id" in forming an HTML Form
-action attribute, such as: `<form action="controller/action/id"`. Do not confuse with HTML element ID.
-Optional.
+  * `controller` - name of a controller to post this form to. Optional. If this attribute is not provided, the tag will find a current controller in context which was used to generate a data for the current view and uses it.  It makes it convenient to write many views for the same controller.
+  * `action` - name of an action to post this form to.This is different from  regular HTML form@action attribute, as controller, action and id attributes will be used to form an appropriate HTML form action value.  Optional. 
+  * `id` - value of URI "id". Used as URI "id" in forming an HTML Form action attribute, such as: `<form action="controller/action/id"`. Do not confuse with HTML element ID. Optional.
   * `html_id` - value of HTML Form element ID, as in `<form id="123..."`. Optoinal.
   * `method` - this is an HTTP method. Allowed values: GET (default), POST, PUT, DELETE.
-In case, the values are "put" or "delete", additional hidden input names "_method" will be generated, and
+
+In case the values are "put" or "delete", additional hidden input names "_method" will be generated, and
 the actual HTML method will be set to "post". This workaround is necessary because browsers still do not support
 PUT and DELETE. Optional. 
 
