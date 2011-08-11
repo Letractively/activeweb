@@ -329,7 +329,7 @@ will generate:
 <form action="/simple_context/simple/index/123" method="post" id="formA"/>
 }}}
 
-==Put form==
+==PUT form==
 code:
 {{{
  <@form controller="simple" action="index" method="put">
@@ -344,7 +344,7 @@ will generate this HMTL:
 </form>
 }}}
 
-==Put form for RESTful controller==
+==PUT form for RESTful controller==
 code:
 {{{
 <@form controller="photos"  id="x123" method="put" html_id="formA">
@@ -359,13 +359,6 @@ will generate:
  </form>
  }}}
  
- 
-
-
-
-
-
-
 
 
 =!ActiveWeb layouts=
