@@ -98,7 +98,7 @@ This assumes that you have a partial fruit at this location:
 {{{
 src/main/webapp/WEB-INF/views/shared/_fruit.ftl
 }}}
-Use this technique to incude a common widget across multiple templates. 
+Use this technique to include a common widget across multiple templates. 
 
 ==Iterating with partials==
 It is quite common to iterate over collections in a web application. Sometimes  you need to build a `<table>`, a list `<ul>` or repeating pattern of HTML code. Usually developers resort to loops inside templates, and although !FreeMarker provides this functionality, using partials provides a cleaner solution, as partials can iterate automatically.
@@ -121,7 +121,7 @@ As you can see, iteration is easier with partials compared to loops. The partial
 ==Implicit counter in partial==
 Partials interating over a collection have a built-in implicit variable maintaining an index of a collection. The name of this variable is made up of a name of a partial and word "counter". This means that for the above example, the name will be "fruit_counter". You can use this value inside a partial like any other context value. The above example with the counter modification:
 {{{
-Fruit name: ${fruit}, index: ${fruit_conter}<hr>
+Fruit name: ${fruit}, index: ${fruit_counter}<hr>
 }}}
 will yield:
 {{{
@@ -163,7 +163,7 @@ Then the output of a partial will be:
 {{{
 Fruit name is: apple
 }}}
-considering that there is a varialbe `fruit_name` in context. This variable could be passed in by controller, or created inside the template. The types of values passed in like this are not limited to strings.
+considering that there is a variable `fruit_name` in context. This variable could be passed in by controller, or created inside the template. The types of values passed in like this are not limited to strings.
 
 
 ==Boundary indicators for collection partials==
