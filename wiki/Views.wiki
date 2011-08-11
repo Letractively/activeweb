@@ -1,6 +1,6 @@
 #summary all about views for ActiveWeb developer
 
-<wiki:toc max_depth="2" />
+<wiki:toc max_depth="3" />
 
 = Introduction =
 
@@ -199,7 +199,7 @@ LinkTo tag and unobtrusive !JavaScript
   * `query_string`: query string as is usually used in GET HTTP calls - the part of a URL after the question mark. Optional. Either query_string or query_params allowed, but not both.
   * `query_params` : java.util.Map with key/value pairs to be converted to query string. Optional. Either query_string or query_params allowed, but not both.
   * destination : id of an element on page whose content will be set with a result of an Ajax call. Optional.
-  * `form`: id of a form element on the page, whose content will be serialized into the Ajax call. This content will be submitted to the server controller/action as input. Optional.
+  * `form` : id of a form element on the page, whose content will be serialized into the Ajax call. This content will be submitted to the server controller/action as input. Optional.
   * `method` : HTTP method to use. Acceptable values: GET (default), POST, PUT, DELETE. Optional.
   * `before` : Name of a !JavaScript function to call before making Ajax call. Optional. This function does not receive any arguments.
   * `before_arg` : Value for the JS function argument provided in "before" attribute. This could be an ID of an element, string, or any other arbitrary parameter. Any object will be converted to string. Optional.
@@ -276,6 +276,109 @@ function onError(status, responseText){
  }}}
  
  In this example, the link is making an Ajax call to a controlled action which does not exists. This causes onError() function to be triggered.
+
+
+
+=!ActiveWeb layouts=
+Layouts are a way to decorate a page with additional HMTL. !ActiveWeb layouts serve exactly the same purpose as Java technologies such as Apache Tiles and Sitemesh.
+Using a layout you decorate every page with the same header,footer, and other common elements for your applicaiton.
+Layouts are !FreeMarker templates like any other.
+
+==Default layout==
+A default layout is called default_layout.ftl and located in the layouts directory along with other tempalte directories:
+
+{{{
+src/main/webapp/WEB-INF/views/layouts/default_layout.ftl
+}}}
+
+The content of the default_layout from a startup project looks like this (fiew lines omited for clarity):
+
+{{{
+1.  <html>
+2.  <head>
+3.      <title>ActiveWeb - <@yield to="title"/></title>
+4.  </head>
+5.  <body>
+6.  <div class="main">
+7.  <#include "header.ftl" >
+8.      <div class="content">
+9.      ${page_content}
+10.     </div>
+11. <#include "footer.ftl" >
+12. </div>
+13. </body>
+14. </html>
+}}}
+
+
+Line 3 has a `yield` tag, for explanation, please see section below. 
+Line 7 includes a header.ftl, which is another template wiht code for the top portion of your site. It is not stricktly necessary, since you can copy all code
+from header directly into layout, but it is a good practice to keep it in a separate file. 
+Line 11 serves the same purpose for footer, as line 7 for header.
+
+Line 9 is where entire page generated from rendering a controller response is inserted. 
+
+==`content for` and `yield` tags ==
+
+When using layout, you qute often need to pass information from a rendered page up to a layout. Examples are: page title. as in the example of a layout above,
+on line 3, there is a `title` tag, but the information for title of a page is of course in the page itself. The tags `content for` abd `yield` work together 
+to allow to pass information from page up to a layout.
+
+===Simple `content for`  and `yield` case===
+Here is an example of passing a  page title from a page template to layout:
+{{{
+<@content for="title">Books List</@content>
+}}}
+
+When the entire page with layout is rendered, the  line 3 will read like this:
+{{{
+<title>ActiveWeb - Books List</title>
+}}}
+
+Think of `content for` as setting some content for a location in layout, and `yield` as yielding to that content. 
+
+content for and yeld are not limited to sending plain text, you can send arbitrary HTML chunks, including `<script>` tags, CSS, links to various resources, etc.
+
+This feature is useful to inject a JavaScript library into a layout from a page in cases you only need this library on this one page. This way loading a library will be avoided for all other pages, where it is not used. 
+
+===Multiple chunks of `content for`  for `yield`===
+
+Sometimes you need to send multiple chunks of text from a page to layout. You can declare more than one `content for` with the same yield target:
+
+{{{
+<@content for="js">
+<script type="text/javascript">
+    Window.alert("hello1");
+</script>
+</@>
+
+<@content for="js">
+<script type="text/javascript">
+    Window.alert("hello2");
+</script>
+</@>
+... declare more if needed
+}}}
+
+
+The yield tag in layout looking like this:
+{{{
+<@yield to="js"/>
+}}}
+will generate the following output in its place:
+{{{
+<script type="text/javascript">
+    Window.alert("hello1");
+</script>
+<script type="text/javascript">
+    Window.alert("hello2");
+</script>
+}}}
+
+==Rendering without layout==
+
+==Override default layout==
+
 
 To be completed:
 {{{
