@@ -161,7 +161,7 @@ Fruit name is: ${a_fruit}
 }}} 
 Then the output of a partial will be:
 {{{
-Fruit name is: ${a_fruit}
+Fruit name is: apple
 }}}
 considering that there is a varialbe `fruit_name` in context. This variable could be passed in by controller, or created inside the template. The types of values passed in like this are not limited to strings.
 
