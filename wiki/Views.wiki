@@ -281,7 +281,7 @@ function onError(status, responseText){
 
 =!ActiveWeb layouts=
 Layouts are a way to decorate a page with additional HMTL. !ActiveWeb layouts serve exactly the same purpose as Java technologies such as Apache Tiles and Sitemesh.
-Using a layout you decorate every page with the same header,footer, and other common elements for your applicaiton.
+Using a layout you decorate every page with the same header,footer, and other common elements for your application.
 Layouts are !FreeMarker templates like any other.
 
 ==Default layout==
@@ -291,7 +291,7 @@ A default layout is called default_layout.ftl and located in the layouts directo
 src/main/webapp/WEB-INF/views/layouts/default_layout.ftl
 }}}
 
-The content of the default_layout from a startup project looks like this (fiew lines omited for clarity):
+The content of the default_layout from a startup project looks like this (few lines omitted for clarity):
 
 {{{
 1.  <html>
@@ -312,7 +312,7 @@ The content of the default_layout from a startup project looks like this (fiew l
 
 
 Line 3 has a `yield` tag, for explanation, please see section below. 
-Line 7 includes a header.ftl, which is another template wiht code for the top portion of your site. It is not stricktly necessary, since you can copy all code
+Line 7 includes a header.ftl, which is another template with code for the top portion of your site. It is not strictly necessary, since you can copy all code
 from header directly into layout, but it is a good practice to keep it in a separate file. 
 Line 11 serves the same purpose for footer, as line 7 for header.
 
@@ -320,7 +320,7 @@ Line 9 is where entire page generated from rendering a controller response is in
 
 ==`content for` and `yield` tags ==
 
-When using layout, you qute often need to pass information from a rendered page up to a layout. Examples are: page title. as in the example of a layout above,
+When using layout, you quite often need to pass information from a rendered page up to a layout. Examples are: page title. as in the example of a layout above,
 on line 3, there is a `title` tag, but the information for title of a page is of course in the page itself. The tags `content for` abd `yield` work together 
 to allow to pass information from page up to a layout.
 
