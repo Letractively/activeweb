@@ -80,7 +80,7 @@ then you can render `_fruit.ftl` inside `index.ftl` like this:
 </html>
 }}}
 
-As you can see, when you are referring to a partial, you *specify name without underscore*.
+As you can see, when you are referring to a partial, you _specify name without underscore_.
 ----
 The Render tag requires at least one attribute present: "partial" which refers to a local or shared partial by name.
 ----
@@ -192,21 +192,21 @@ LinkTo tag and unobtrusive !JavaScript
  
 ==Attributes for configuration==
 
- *  *controller*: path to controller, such as: `/admin/permissions` where "admin" is a sub-package and "permissions" is a name of a controller. In this example, the controller class name would be: `app.controllers.admin.PermissionsController`. If a controller path is specified, the preceding slash is mandatory. Optionally this could be a name of a controller from a default package: "permissions", and in this case, the controller class name is expected to be `app.controllers.PermissionsController`. If a name of controller is specified, the preceding slash can be omitted. This attribute is optional. If this attribute is omitted, the tag will use the controller which was used to generate the current page. This makes it convenient to write links on pages for the same controller.
- *  *action*: name of an action. Optional. If this attribute is omitted, the action will default to "index".
- *  *id*: id, as in a route: /controller/action/id. Optional.
- *  *html_id*: value of this attribute will be used to set the HTML ID of the Anchor element. Optional.
- *  *query_string*: query string as is usually used in GET HTTP calls - the part of a URL after the question mark. Optional. Either query_string or query_params allowed, but not both.
- *  *query_params*: java.util.Map with key/value pairs to be converted to query string. Optional. Either query_string or query_params allowed, but not both.
- *  *destination*: id of an element on page whose content will be set with a result of an Ajax call. Optional.
- *  *form*: id of a form element on the page, whose content will be serialized into the Ajax call. This content will be submitted to the server controller/action as input. Optional.
- *  *method*: HTTP method to use. Acceptable values: GET (default), POST, PUT, DELETE. Optional.
- *  *before*: Name of a !JavaScript function to call before making Ajax call. Optional. This function does not receive any arguments.
- *  *before_arg*: Value for the JS function argument provided in "before" attribute. This could be an ID of an element, string, or any other arbitrary parameter. Any object will be converted to string. Optional.
- *  *after*: Name of a !JavaScript function to call after making Ajax call. This function receives the value of a "after_arg" attribute as a first argument and result of the Ajax call as a second argument. Optional.
- *  *after_arg*: Value for the JS function argument provided in "after" attribute. This could be an ID of an element, string, or any other arbitrary parameter. Any object will be converted to string. Optional.
- *  *confirm*:  Presents a !JavaScript confirmation dialog before making an Ajax call. The dialog will present the text with content from the attribute value.  If No or Cancel was selected on the dialog, the Ajax call is not made. Optional.
- *  *error*: Name of a JS function which will be called in case there was an Ajax error of some sort. The first parameter is HTTP status code, the second is response text sent from server.
+  * `controller` : path to controller, such as: `/admin/permissions` where "admin" is a sub-package and "permissions" is a name of a controller. In this example, the controller class name would be: `app.controllers.admin.PermissionsController`. If a controller path is specified, the preceding slash is mandatory. Optionally this could be a name of a controller from a default package: "permissions", and in this case, the controller class name is expected to be `app.controllers.PermissionsController`. If a name of controller is specified, the preceding slash can be omitted. This attribute is optional. If this attribute is omitted, the tag will use the controller which was used to generate the current page. This makes it convenient to write links on pages for the same controller.
+  * `action` : name of a controller action, not HTML form action. Optional. If this attribute is omitted, the action will default to "index".
+  * `id`: id, as in a route: /controller/action/id. Optional.
+  * `html_id` : value of this attribute will be used to set the HTML ID of the Anchor element. Optional.
+  * `query_string`: query string as is usually used in GET HTTP calls - the part of a URL after the question mark. Optional. Either query_string or query_params allowed, but not both.
+  * `query_params` : java.util.Map with key/value pairs to be converted to query string. Optional. Either query_string or query_params allowed, but not both.
+  * destination : id of an element on page whose content will be set with a result of an Ajax call. Optional.
+  * `form`: id of a form element on the page, whose content will be serialized into the Ajax call. This content will be submitted to the server controller/action as input. Optional.
+  * `method` : HTTP method to use. Acceptable values: GET (default), POST, PUT, DELETE. Optional.
+  * `before` : Name of a !JavaScript function to call before making Ajax call. Optional. This function does not receive any arguments.
+  * `before_arg` : Value for the JS function argument provided in "before" attribute. This could be an ID of an element, string, or any other arbitrary parameter. Any object will be converted to string. Optional.
+  * `after` : Name of a !JavaScript function to call after making Ajax call. This function receives the value of a "after_arg" attribute as a first argument and result of the Ajax call as a second argument. Optional.
+  * `after_arg` : Value for the JS function argument provided in "after" attribute. This could be an ID of an element, string, or any other arbitrary parameter. Any object will be converted to string. Optional.
+  * `confirm` :  Presents a !JavaScript confirmation dialog before making an Ajax call. The dialog will present the text with content from the attribute value.  If No or Cancel was selected on the dialog, the Ajax call is not made. Optional.
+  * `error` : Name of a JS function which will be called in case there was an Ajax error of some sort. The first parameter is HTTP status code, the second is response text sent from server.
  
  
 ==Example 1: Non-Ajax link==
@@ -265,7 +265,7 @@ This is presuming that there is an element like this on the page:
 }}}
 In this example, the "books_result" string is passed as argument to "doBeforeWithArg" as only one argument and the same is passed as a first argument to function "doAfterWithArg". The second argument to the "doAfterWithArg" is a result of Ajax invocation (presumably HTML representing books generated from some partial).
 
-*Example 5 - Error handling*
+==Example 5 - Error handling==
 {{{
 <@link_to controller="books" action="doesnotexist" error="onError" destination="callbacks_result">Will cause error</@>
 
@@ -278,7 +278,7 @@ function onError(status, responseText){
  In this example, the link is making an Ajax call to a controlled action which does not exists. This causes onError() function to be triggered.
 
 To be completed:
-
+{{{
   * default layouts
   * custom layouts
   * layouts
@@ -290,3 +290,4 @@ To be completed:
   * form
   * content_for, yield
   * Custom tag development 
+}}}
