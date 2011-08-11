@@ -353,6 +353,17 @@ will generate:
  </form>
  }}}
  
+=debug tag=
+Debug tag is for printing an arbitrary object from page context. !FreeMarker special handling of types sometimes makes it hard to see the value(s) of an object when debugging, but this tag makes it easy:
+{{{
+<@debug print=objectname/>;
+}}}
+
+For instance, for a `java,util.Map` object it will print this:
+{{{
+     {key1=value1, key2=value2}
+}}}
+
 
 =!ActiveWeb layouts=
 Layouts are a way to decorate a page with additional HMTL. !ActiveWeb layouts serve exactly the same purpose as Java technologies such as Apache Tiles and Sitemesh.
