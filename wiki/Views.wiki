@@ -182,7 +182,7 @@ more content...
 
 
 
-LinkTo tag and unobtrusive JavaScript
+LinkTo tag and unobtrusive !JavaScript
 
 
 
@@ -200,11 +200,11 @@ LinkTo tag and unobtrusive JavaScript
  *  *destination*: id of an element on page whose content will be set with a result of an Ajax call. Optional.
  *  *form*: id of a form element on the page, whose content will be serialized into the Ajax call. This content will be submitted to the server controller/action as input. Optional.
  *  *method*: HTTP method to use. Acceptable values: GET (default), POST, PUT, DELETE. Optional.
- *  *before*: Name of a JavaScript function to call before making Ajax call. Optional. This function does not receive any arguments.
+ *  *before*: Name of a !JavaScript function to call before making Ajax call. Optional. This function does not receive any arguments.
  *  *before_arg*: Value for the JS function argument provided in "before" attribute. This could be an ID of an element, string, or any other arbitrary parameter. Any object will be converted to string. Optional.
- *  *after*: Name of a JavaScript function to call after making Ajax call. This function receives the value of a "after_arg" attribute as a first argument and result of the Ajax call as a second argument. Optional.
+ *  *after*: Name of a !JavaScript function to call after making Ajax call. This function receives the value of a "after_arg" attribute as a first argument and result of the Ajax call as a second argument. Optional.
  *  *after_arg*: Value for the JS function argument provided in "after" attribute. This could be an ID of an element, string, or any other arbitrary parameter. Any object will be converted to string. Optional.
- *  *confirm*:  Presents a JavaScript confirmation dialog before making an Ajax call. The dialog will present the text with content from the attribute value.  If No or Cancel was selected on the dialog, the Ajax call is not made. Optional.
+ *  *confirm*:  Presents a !JavaScript confirmation dialog before making an Ajax call. The dialog will present the text with content from the attribute value.  If No or Cancel was selected on the dialog, the Ajax call is not made. Optional.
  *  *error*: Name of a JS function which will be called in case there was an Ajax error of some sort. The first parameter is HTTP status code, the second is response text sent from server.
  
  
