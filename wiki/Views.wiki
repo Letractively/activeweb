@@ -20,8 +20,26 @@ Views in !ActiveWeb are also called templates. They are located in the following
 
 =!FreeMarker configuration=
 
+FreeMarker configuration is done programmatically. !ActiveWeb applications need to have a class:
 
-TODO: complete this
+{{{
+package app.config;
+
+import activeweb.freemarker.AbstractFreeMarkerConfig;
+import freemarker.template.TemplateExceptionHandler;
+
+public class FreeMarkerConfig extends AbstractFreeMarkerConfig {
+    @Override
+    public void init() {
+        //this is to override a strange FreeMarker default processing of numbers 
+        getConfiguration().setNumberFormat("0.##");
+    }
+}
+}}}
+`
+This class extends `AbstractFreeMarkerConfig`, which provides an instance `freemarker.template.Configuration` class, allowing to perform configuration on !FreeMarker.
+The line of code presented above are recommended default configuration. 
+
 
 
 
@@ -45,6 +63,120 @@ Controller package is not considered in search of templates. Usually templates b
 {{{
 src/main/webapp/WEB-INF/views/shared
 }}}
+
+
+=Layouts=
+Layouts are a way to decorate a page with additional HTML. !ActiveWeb layouts serve exactly the same purpose as Java technologies such as Apache Tiles and Sitemesh.
+Using a layout you decorate every page with the same header,footer, and other common elements for your application.
+Layouts are !FreeMarker templates like any other.
+
+==Default layout==
+A default layout is called default_layout.ftl and located in the layouts directory along with other tempalte directories:
+
+{{{
+src/main/webapp/WEB-INF/views/layouts/default_layout.ftl
+}}}
+
+The content of the default_layout from a startup project looks like this (few lines omitted for clarity):
+
+{{{
+1.  <html>
+2.  <head>
+3.      <title>ActiveWeb - <@yield to="title"/></title>
+4.  </head>
+5.  <body>
+6.  <div class="main">
+7.  <#include "header.ftl" >
+8.      <div class="content">
+9.      ${page_content}
+10.     </div>
+11. <#include "footer.ftl" >
+12. </div>
+13. </body>
+14. </html>
+}}}
+
+
+Line 3 has a `yield` tag, for explanation, please see section below. 
+Line 7 includes a header.ftl, which is another template with code for the top portion of your site. It is not strictly necessary, since you can copy all code
+from header directly into layout, but it is a good practice to keep it in a separate file. 
+Line 11 serves the same purpose for footer, as line 7 for header.
+
+Line 9 is where entire page generated from rendering a controller response is inserted. 
+
+==`content for` and `yield` tags ==
+
+When using layout, you quite often need to pass information from a rendered page up to a layout. Examples are: page title. as in the example of a layout above,
+on line 3, there is a `title` tag, but the information for title of a page is of course in the page itself. The tags `content for` abd `yield` work together 
+to allow to pass information from page up to a layout.
+
+===Simple `content for`  and `yield` case===
+Here is an example of passing a  page title from a page template to layout:
+{{{
+<@content for="title">Books List</@content>
+}}}
+
+When the entire page with layout is rendered, the  line 3 will read like this:
+{{{
+<title>ActiveWeb - Books List</title>
+}}}
+
+Think of `content for` as setting some content for a location in layout, and `yield` as yielding to that content. 
+
+content for and yeld are not limited to sending plain text, you can send arbitrary HTML chunks, including `<script>` tags, CSS, links to various resources, etc.
+
+This feature is useful to inject a JavaScript library into a layout from a page in cases you only need this library on this one page. This way loading a library will be avoided for all other pages, where it is not used. 
+
+===Multiple chunks of `content for`  for single `yield`===
+
+Sometimes you need to send multiple chunks of text from a page to layout. You can declare more than one `content for` with the same yield target:
+
+{{{
+<@content for="js">
+<script type="text/javascript">
+    Window.alert("hello1");
+</script>
+</@>
+
+<@content for="js">
+<script type="text/javascript">
+    Window.alert("hello2");
+</script>
+</@>
+... declare more if needed
+}}}
+
+
+The yield tag in layout looking like this:
+{{{
+<@yield to="js"/>
+}}}
+will generate the following output in its place:
+{{{
+<script type="text/javascript">
+    Window.alert("hello1");
+</script>
+<script type="text/javascript">
+    Window.alert("hello2");
+</script>
+}}}
+
+==Rendering without layout==
+
+By default !ActiveWeb will use a `/views/layouts/default_layout.ftl`. However, in some cases you do not need a layout. You can turn a layout rendering programmaticaly from controller:
+{{{
+public class HomeController extends AppController {
+    public void index(){
+      render().noLayout();
+    }
+}}}
+In this case, the template will be rendered, but no layout will be used.
+
+==Override default layout==
+
+If you wonder how default layout is set, the answer is simple: the class !AppController has a method `String getLayout()` which returns a string with value `/layouts/default_layout`. The easiest way to change a layout for a controller is to override  this method to return a different value. 
+
+If you have 2 - 3 super classes for controllers that override this method, you can have different areas of the site decorated by different layouts, based on which child controller is rendering.
 
 
 =Partials=
@@ -365,118 +497,6 @@ For instance, for a `java,util.Map` object it will print this:
 }}}
 
 
-=!ActiveWeb layouts=
-Layouts are a way to decorate a page with additional HTML. !ActiveWeb layouts serve exactly the same purpose as Java technologies such as Apache Tiles and Sitemesh.
-Using a layout you decorate every page with the same header,footer, and other common elements for your application.
-Layouts are !FreeMarker templates like any other.
-
-==Default layout==
-A default layout is called default_layout.ftl and located in the layouts directory along with other tempalte directories:
-
-{{{
-src/main/webapp/WEB-INF/views/layouts/default_layout.ftl
-}}}
-
-The content of the default_layout from a startup project looks like this (few lines omitted for clarity):
-
-{{{
-1.  <html>
-2.  <head>
-3.      <title>ActiveWeb - <@yield to="title"/></title>
-4.  </head>
-5.  <body>
-6.  <div class="main">
-7.  <#include "header.ftl" >
-8.      <div class="content">
-9.      ${page_content}
-10.     </div>
-11. <#include "footer.ftl" >
-12. </div>
-13. </body>
-14. </html>
-}}}
-
-
-Line 3 has a `yield` tag, for explanation, please see section below. 
-Line 7 includes a header.ftl, which is another template with code for the top portion of your site. It is not strictly necessary, since you can copy all code
-from header directly into layout, but it is a good practice to keep it in a separate file. 
-Line 11 serves the same purpose for footer, as line 7 for header.
-
-Line 9 is where entire page generated from rendering a controller response is inserted. 
-
-==`content for` and `yield` tags ==
-
-When using layout, you quite often need to pass information from a rendered page up to a layout. Examples are: page title. as in the example of a layout above,
-on line 3, there is a `title` tag, but the information for title of a page is of course in the page itself. The tags `content for` abd `yield` work together 
-to allow to pass information from page up to a layout.
-
-===Simple `content for`  and `yield` case===
-Here is an example of passing a  page title from a page template to layout:
-{{{
-<@content for="title">Books List</@content>
-}}}
-
-When the entire page with layout is rendered, the  line 3 will read like this:
-{{{
-<title>ActiveWeb - Books List</title>
-}}}
-
-Think of `content for` as setting some content for a location in layout, and `yield` as yielding to that content. 
-
-content for and yeld are not limited to sending plain text, you can send arbitrary HTML chunks, including `<script>` tags, CSS, links to various resources, etc.
-
-This feature is useful to inject a JavaScript library into a layout from a page in cases you only need this library on this one page. This way loading a library will be avoided for all other pages, where it is not used. 
-
-===Multiple chunks of `content for`  for single `yield`===
-
-Sometimes you need to send multiple chunks of text from a page to layout. You can declare more than one `content for` with the same yield target:
-
-{{{
-<@content for="js">
-<script type="text/javascript">
-    Window.alert("hello1");
-</script>
-</@>
-
-<@content for="js">
-<script type="text/javascript">
-    Window.alert("hello2");
-</script>
-</@>
-... declare more if needed
-}}}
-
-
-The yield tag in layout looking like this:
-{{{
-<@yield to="js"/>
-}}}
-will generate the following output in its place:
-{{{
-<script type="text/javascript">
-    Window.alert("hello1");
-</script>
-<script type="text/javascript">
-    Window.alert("hello2");
-</script>
-}}}
-
-==Rendering without layout==
-
-By default !ActiveWeb will use a `/views/layouts/default_layout.ftl`. However, in some cases you do not need a layout. You can turn a layout rendering programmaticaly from controller:
-{{{
-public class HomeController extends AppController {
-    public void index(){
-      render().noLayout();
-    }
-}}}
-In this case, the template will be rendered, but no layout will be used.
-
-==Override default layout==
-
-If you wonder how default layout is set, the answer is simple: the class !AppController has a method `String getLayout()` which returns a string with value `/layouts/default_layout`. The easiest way to change a layout for a controller is to override  this method to return a different value. 
-
-If you have 2 - 3 super classes for controllers that override this method, you can have different areas of the site decorated by different layouts, based on which child controller is rendering.
 
 To be completed:
 {{{
