@@ -498,11 +498,11 @@ For instance, for a `java,util.Map` object it will print this:
      {key1=value1, key2=value2}
 }}}
 
-
-
+<wiki:comment>
 To be completed:
-{{{
+
   * ActiveWeb objects in context
   * confirmation
-  * Custom tag development 
-}}}
+  * Custom tag development
+</wiki:comment>
+
