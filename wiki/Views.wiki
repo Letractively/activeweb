@@ -502,15 +502,7 @@ For instance, for a `java,util.Map` object it will print this:
 
 To be completed:
 {{{
-  * default layouts
-  * custom layouts
-  * layouts
   * ActiveWeb objects in context
-  * FreeMarker?
-  * Tags
-  * FlashTag
   * confirmation
-  * form
-  * content_for, yield
   * Custom tag development 
 }}}
