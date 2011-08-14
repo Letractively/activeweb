@@ -409,7 +409,9 @@ function onError(status, responseText){
  
  In this example, the link is making an Ajax call to a controlled action which does not exists. This causes onError() function to be triggered.
 
+=Flash tag=
 
+[FlashTag]
 
 
 
