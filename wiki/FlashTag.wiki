@@ -44,7 +44,7 @@ In general, POST/Redirect to GET is a good programming pattern to use in case yo
 
 =Rendering dynamic snippets of HTML=
 
-In the example above, a flash message is a simple string. However, it is possible to have it render entire chunks of HTML based on presence or absence of flash object:
+In the example above, a flash message is a simple string. However, it is possible to have it render entire chunks of HTML based on presence or absence of a flash object:
 
 {{{
 <#if (flasher.message) ??>
