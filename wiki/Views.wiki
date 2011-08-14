@@ -411,7 +411,7 @@ function onError(status, responseText){
 
 =Flash tag=
 
-[FlashTag]
+Please, see: [FlashTag]
 
 
 
