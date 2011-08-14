@@ -18,7 +18,7 @@ For standard routing, there is no need to do anything, it works by default
 
 
 ==RESTful routing==
-In case of restful routing, the actions are pre-configured. RESTful routing is configured by placing a @RESTfull annotation on a controller.
+In case of restful routing, the actions are pre-configured. RESTful routing is configured by placing a @RESTfull annotation on a controller. For more informaiton, see: [ControllerExplained#RESTful_controllers]
 
 ||*HTTP method*  ||  *path*                  || *controller*                       ||   *action*       ||   *used for* ||
 ||GET          ||   /books               || app.controllers.!BooksController  ||   index        ||   display a list of all books||
