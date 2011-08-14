@@ -1,58 +1,14 @@
-#summary table of contents for ActiveWeb functionality
-
-
-<font color="red">This documentation is work in progress, please come back frequently to see new updates</font>
-
-[FAQ]
-
-1. FiveMinuteGuideToActiveWeb
-
-2.  GettingStarted - Hello world application
-
-2.1 MvcPattern
-
-2.2 [StructureOfActiveWebProject Structure of ActiveWeb project]
-
-3. [ControllerExplained Controllers explained]
-
-4. [DependencyInjection Dependency injection] - in tests as well as at runtime
-
-5. [DatabaseConfiguration]
-
-5.1 [DatabaseMigrations]
-
-6. [ControllerFilters]
-
-7. [Testing]
-  * [JSpec]
-  * [DBSpec]
-  * ControllerSpec
-  * [DBControllerSpec]
-  * IntegrationSpec
-  * [DBIntegrationSpec]
-  * AppIntegrationSpec
-
-8. Views
-  * templates
-  * partials
-  * default layouts
-  * custom layouts 
-  * layouts
-  * partials
-  * FreeMarker  
-  *  Tags
-    *  link_to
-    *  [Flash]	 
-    *  confirmation
-    *  form
-    *  content_for, yield
-    * Custom tag development
-11. Captcha
-
-12. ActiveWeb Development cycle (True BDD)
-  # Migration
-  # Model
-  # Model Spec
-  # Controller Spec
-  # Controller
-  # View
+[http://code.google.com/p/activeweb Home]
+  * FiveMinuteGuideToActiveWeb
+  * GettingStarted - Hello world application
+  * MvcPattern
+  * [StructureOfActiveWebProject Structure of ActiveWeb project]
+  * [ControllerExplained Controllers explained]
+  * [DependencyInjection Dependency injection]
+  * [DatabaseConfiguration]
+  * [DatabaseMigrations]
+  * [ControllerFilters]
+  * [Testing]
+  * [Views]
+  * [Routing]
+  * Captcha
