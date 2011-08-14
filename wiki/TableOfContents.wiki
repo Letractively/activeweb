@@ -1,6 +1,6 @@
 [http://code.google.com/p/activeweb Home]
   * FiveMinuteGuideToActiveWeb
-  * GettingStarted - Hello world application
+  * GettingStarted
   * MvcPattern
   * [StructureOfActiveWebProject Structure of ActiveWeb project]
   * [ControllerExplained Controllers explained]
