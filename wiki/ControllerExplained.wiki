@@ -54,7 +54,7 @@ public class BooksController extends AppController{
 }
 }}}
 
-!ActiveWeb promotes REST-style web programming and will not allow to access an action that is configured for one HTTP method with another. For instance, I you try to access the `GreetingController#index` with HTTP method POST, you would get an exception:
+!ActiveWeb promotes REST-style web programming and will not allow to access an action that is configured for one HTTP method with another. For instance, if you try to access the `GreetingController#index` with HTTP method POST, you would get an exception:
 {{{
 activeweb.ControllerException: Cannot access action 
 app.controllers.GreetingController.index with HTTP method: 'POST' because it is 
