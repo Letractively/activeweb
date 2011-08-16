@@ -91,7 +91,7 @@ In the code snippet above, the `CatchAllFilter` will be given a chance to log an
 !ActiveWeb provides a number of filters for easy configuration of projects. 
 
 ==DBConnectionFilter==
-DBConnectionFilter is used to open a connection before execution of a controller and closes it after execution. 
+DBConnectionFilter opens a connection before execution of a controller and closes it after execution. 
 Here is an example of usage of this filter from Kitchensink project:
 {{{
 public class AppControllerConfig extends AbstractControllerConfig {
