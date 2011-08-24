@@ -100,6 +100,8 @@ public class Post extends Model {
 ==Naming convention==
 Subclasses must follow a simple naming convention: subclass name must be made of two words: controller short class name and word "Spec". Example, if there is a controller:
 {{{
+package app.controllers;
+
  public class GreeterController extends AppController{
    ...
  }
@@ -107,11 +109,14 @@ Subclasses must follow a simple naming convention: subclass name must be made of
 
 then the test will look like this:
  {{{
+package app.controllers;
 
  public class GreeterControllerSpec extends ControllerSpec{
  ...
  }
 }}}
+
+Note that the package is the same for test as it is for controller, since !ActiveWeb will use reflection to determine the controller to be tested
 
 ==Simulating different HTTP requests==
 {{{
