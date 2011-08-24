@@ -116,7 +116,9 @@ package app.controllers;
  }
 }}}
 
+----
 Note that the package is the same for test as it is for controller, since !ActiveWeb will use reflection to determine the controller to be tested
+----
 
 ==Simulating different HTTP requests==
 {{{
