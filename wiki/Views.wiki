@@ -509,6 +509,8 @@ To be completed:
 
 =System error pages=
 
+==General==
+
 !ActiveWeb will render two system error pages under typical error conditions:
 {{{
 /views/system/404.ftl
@@ -525,3 +527,36 @@ The error.ftl will be rendered in cases:
   * Any internal application problem
   * Internal framework exception
 In all these cases, the definitive exception will be printed to the log. 
+
+==Use custom layouts with system error pages==
+
+By default, error pages are displayed in default layout (/views/layouts/default_layout.ftl). In some cases, you want to conditionally display error pages in different layouts. This can be achieved by turning the default layout for error pages off:
+{{{
+public class AppBootstrap extends Bootstrap {
+    public void init(AppContext context) {
+        Configuration.setUseDefaultLayoutForErrors(false);
+    }
+}
+}}}
+and then using a `<@wrap ..>` tag inside pages:
+{{{
+<@wrap with="/layouts/system_error_layout">
+<h1>404 - Resource Not Found</h1>
+</@wrap>
+}}}
+
+==Exception parameters passed into error views==
+There are two parameters that the framework passes into error views:
+  * message
+  * stack_trace
+
+These can be rendered on a page as any other parameters:
+{{{
+Error message: <span>${message}</span> <br>
+Stack trace:
+<pre>
+${stack_trace}
+</pre>
+}}}
+
+However, this information is only interesting to developers, and usually not displayed to end users. 
