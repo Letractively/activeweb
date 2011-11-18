@@ -506,3 +506,22 @@ To be completed:
   * Custom tag development
 </wiki:comment>
 
+
+=System error pages=
+
+!ActiveWeb will render two system error pages under typical error conditions:
+{{{
+/views/system/404.ftl
+and:
+/views/system/error.ftl
+}}}
+The 404.ftl is rendered in cases resources are not found:
+  * Controller is missing 
+  * Controller has a compilation problem (development mode )
+  * Action method is missing
+  * View template is missing
+The error.ftl will be rendered in cases:
+  * Template has a problem rendering
+  * Any internal application problem
+  * Internal framework exception
+In all these cases, the definitive exception will be printed to the log. 
