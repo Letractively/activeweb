@@ -37,12 +37,12 @@ While `app.controllers` is a default package for controllers, you might want to 
 Standard routing
 
 || *path*                                      || *controller*                                  || *action*           ||  *id*||
-|| /context/package1/books                   || app.controllers.package1.BooksController              || index            ||     ||
-|| /context/package1/books/save              || app.controllers.package1.BooksController              || save             ||    ||
-|| /context/package1/books/save/123          || app.controllers.package1.BooksController              || save             ||  123||
-|| /context/package1/package2/books          || app.controllers.package1.package2.BooksController     || index            ||   ||
-|| /context/package1/package2/books/save     || app.controllers.package1.package2.BooksController     || save             ||    ||
-|| /context/package1/package2/books/save/123 || app.controllers.package1.package2.BooksController     || save             ||  123||
+|| /context/package1/books                   || app.controllers.package1.!BooksController              || index            ||     ||
+|| /context/package1/books/save              || app.controllers.package1.!BooksController              || save             ||    ||
+|| /context/package1/books/save/123          || app.controllers.package1.!BooksController              || save             ||  123||
+|| /context/package1/package2/books          || app.controllers.package1.package2.!BooksController     || index            ||   ||
+|| /context/package1/package2/books/save     || app.controllers.package1.package2.!BooksController     || save             ||    ||
+|| /context/package1/package2/books/save/123 || app.controllers.package1.package2.!BooksController     || save             ||  123||
 
 RESTful routing supports sub-packaging exactly the same as standard. 
 
@@ -50,6 +50,6 @@ RESTful routing supports sub-packaging exactly the same as standard.
 
 When matching a path to a controller class, !ActiveWeb converts a name of a controller from underscore or hyphenated format to !CamelCase:
 || *path*                                      || *controller*                             || 
-|| /context/books                            || app.controllers.package1.BooksController         ||
+|| /context/books                            || app.controllers.package1.!BooksController         ||
 || /context/student_books                    || app.controllers.package1.!StudentBooksController  ||
 || /context/student-books                    || app.controllers.package1.!StudentBooksController  ||
