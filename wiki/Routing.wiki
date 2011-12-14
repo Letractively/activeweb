@@ -9,9 +9,9 @@ NOTE: the "context" in all URIs is a web application context, which is usually a
 
 
 || *path*                                  || *controller*                || *action*           ||  *id*||
-|| /context/books                          || app.controllers.Books     || index            ||  ||
-|| /context/books/save                     || app.controllers.Books     || save             ||   ||
-|| /context/books/save/123                 || app.controllers.Books     || save             ||  123||
+|| /context/books                          || app.controllers.BooksController     || index            ||  ||
+|| /context/books/save                     || app.controllers.BooksController     || save             ||   ||
+|| /context/books/save/123                 || app.controllers.BooksController     || save             ||  123||
 
 In standard routing, the HTTP method is not considered, but you might get an exception of you send an HTTP method to an action that is configured for a different HTTP method. Routing and action HTTP methods are independent in case of standard routing.
 For standard routing, there is no need to do anything, it works by default
@@ -37,12 +37,12 @@ While `app.controllers` is a default package for controllers, you might want to 
 Standard routing
 
 || *path*                                      || *controller*                                  || *action*           ||  *id*||
-|| /context/package1/books                   || app.controllers.package1.Books              || index            ||     ||
-|| /context/package1/books/save              || app.controllers.package1.Books              || save             ||    ||
-|| /context/package1/books/save/123          || app.controllers.package1.Books              || save             ||  123||
-|| /context/package1/package2/books          || app.controllers.package1.package2.Books     || index            ||   ||
-|| /context/package1/package2/books/save     || app.controllers.package1.package2.Books     || save             ||    ||
-|| /context/package1/package2/books/save/123 || app.controllers.package1.package2.Books     || save             ||  123||
+|| /context/package1/books                   || app.controllers.package1.BooksController              || index            ||     ||
+|| /context/package1/books/save              || app.controllers.package1.BooksController              || save             ||    ||
+|| /context/package1/books/save/123          || app.controllers.package1.BooksController              || save             ||  123||
+|| /context/package1/package2/books          || app.controllers.package1.package2.BooksController     || index            ||   ||
+|| /context/package1/package2/books/save     || app.controllers.package1.package2.BooksController     || save             ||    ||
+|| /context/package1/package2/books/save/123 || app.controllers.package1.package2.BooksController     || save             ||  123||
 
 RESTful routing supports sub-packaging exactly the same as standard. 
 
