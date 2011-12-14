@@ -9,9 +9,9 @@ NOTE: the "context" in all URIs is a web application context, which is usually a
 
 
 || *path*                                  || *controller*                || *action*           ||  *id*||
-|| /context/books                          || app.controllers.BooksController     || index            ||  ||
-|| /context/books/save                     || app.controllers.BooksController     || save             ||   ||
-|| /context/books/save/123                 || app.controllers.BooksController     || save             ||  123||
+|| /context/books                          || app.controllers.!BooksController     || index            ||  ||
+|| /context/books/save                     || app.controllers.!BooksController     || save             ||   ||
+|| /context/books/save/123                 || app.controllers.!BooksController     || save             ||  123||
 
 In standard routing, the HTTP method is not considered, but you might get an exception of you send an HTTP method to an action that is configured for a different HTTP method. Routing and action HTTP methods are independent in case of standard routing.
 For standard routing, there is no need to do anything, it works by default
