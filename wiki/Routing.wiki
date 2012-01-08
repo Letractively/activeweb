@@ -97,7 +97,7 @@ Using built-in segments, you can reorder where controller, action and Id appear 
 {{{
 /(action)/{controller}/{id}
 }}}
-When such a route is specoified, this URI:
+When such a route is specified, this URI:
 {{{
 /show/photo/123
 }}}
