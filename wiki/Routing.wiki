@@ -53,3 +53,59 @@ When matching a path to a controller class, !ActiveWeb converts a name of a cont
 || /context/books                            || app.controllers.package1.!BooksController         ||
 || /context/student_books                    || app.controllers.package1.!StudentBooksController  ||
 || /context/student-books                    || app.controllers.package1.!StudentBooksController  ||
+
+==Custom routing==
+
+Besides standard and RESTful, !ActiveWeb also offers custom routing. Custom routing allows configure custom URIs to 
+be forwarded to specific controllers and actions. 
+
+
+===Custom routing configuration===
+As with any other types of configuration, !ActiveWeb route configuration is done in code, rather that property or XML files:
+
+{{{
+public class RouteConfig extends AbstractRouteConfig {
+    public void init(AppContext appContext) {
+        route("/myposts").to(PostsController.class);
+        route("/{action}/{controller}/{id}");
+        route("/{action}/greeting/{name}").to(HelloController.class);
+    }
+}
+}}}
+
+Custom routing is based on URI segments, which are chunks of URIs submitted in the request separated by slashes. 
+For example the following URI has three segments:
+{{{
+/greeting/show/bob
+}}}
+
+The above URI has three segments: "greeting", "show", "bob".
+
+!ActiveWeb defines three types of segments:
+  * Built in
+  * Static 
+  * User (or dynamic)
+
+===Built-in segments===
+
+!ActiveWeb defines three built-in segments:
+  * `{controller}`
+  * `{action}`
+  * `{id}`
+
+Using built-in segments, you can reorder where controller, action and Id appear on the URI:
+{{{
+/(action)/{controller}/{id}
+}}}
+When such a route is specoified, this URI:
+{{{
+/show/photo/123
+}}}
+Will be routed to: `app.controllers.PhotoController#show` with ID ==123.
+
+===Static segments ===
+Static segments are simply plain text without the braces. The are matched one to one with the incoming request. Example:
+{{{
+        route("/{action}/greeting/{name}").to(HelloController.class);
+}}}
+In the snippet above, "greeting" is a static segment. 
