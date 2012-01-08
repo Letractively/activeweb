@@ -109,3 +109,25 @@ Static segments are simply plain text without the braces. The are matched one to
 route("/{action}/greeting/{name}").to(HelloController.class);
 }}}
 In the snippet above, "greeting" is a static segment. 
+
+===User/dynamic segments===
+
+User segments are any text in braces in configuration which are then converted to parameters that can be retrieved inside controllers and filters. Here is an example:
+{{{
+route("/{action}/greeting/{name}").to(HelloController.class);
+}}}
+
+where "name" is a placeholder whose value will be available in controller:
+
+URL submitted: 
+{{{
+/show/greeting/alex
+}}}
+will be routed to controller `app.controllers.HelloController#show` and value `name` will be available:
+{{{
+public class HelloController extends AppCOntroller{
+  public void show(){
+    String name = param("name");
+  }
+}
+}}}
