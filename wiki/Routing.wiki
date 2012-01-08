@@ -127,7 +127,7 @@ URL submitted:
 }}}
 will be routed to controller `app.controllers.HelloController#show` and value `name` will be available:
 {{{
-public class HelloController extends AppCOntroller{
+public class HelloController extends AppController{
   public void show(){
     String name = param("name");
   }
