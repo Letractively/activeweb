@@ -1,5 +1,7 @@
 #summary learn ActiveWeb routing
-=Introduction =
+<wiki:toc max_depth="3" />
+
+==Introduction ==
 
 Routing in !ActiveWeb is an act of matching an incoming request URL to a controller and action. Current implementation supports built-in standard routing and built-in REST - based routing. 
 
