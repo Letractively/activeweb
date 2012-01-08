@@ -106,6 +106,6 @@ Will be routed to: `app.controllers.PhotoController#show` with ID ==123.
 ===Static segments ===
 Static segments are simply plain text without the braces. The are matched one to one with the incoming request. Example:
 {{{
-        route("/{action}/greeting/{name}").to(HelloController.class);
+route("/{action}/greeting/{name}").to(HelloController.class);
 }}}
 In the snippet above, "greeting" is a static segment. 
