@@ -133,3 +133,6 @@ public class HelloController extends AppController{
   }
 }
 }}}
+
+===RouteConfig reloaded===
+The class `app.config.RouteConfig` is recompiled and reloaded in development environment in case a system property "active_reload" is set to true.  This makes it easy and fun to play with the routes during development. 
