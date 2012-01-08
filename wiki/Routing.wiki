@@ -58,8 +58,7 @@ When matching a path to a controller class, !ActiveWeb converts a name of a cont
 
 ==Custom routing==
 
-Besides standard and RESTful, !ActiveWeb also offers custom routing. Custom routing allows configure custom URIs to 
-be forwarded to specific controllers and actions. 
+Besides standard and RESTful, !ActiveWeb also offers custom routing. Custom routing provides ability to configure custom URIs to be forwarded to specific controllers and actions. 
 
 
 ===Custom routing configuration===
