@@ -139,7 +139,7 @@ You can include an Http method used in the request into the routing rule:
 route("/{action}/greeting/{name}").to(HelloController.class).get();
 }}}
 
-In this example, this route will only match the incoming request if the Http method of the request is GET. There are four corresponding methods: get(), post(), put() and delete. They can be used in isolation or in combination. For instance, this route:
+In this example, this route will only match the incoming request if the Http method of the request is GET. There are four corresponding methods: get(), post(), put() and delete(). They can be used in isolation or in combination. For instance, this route:
 
 {{{
 route("/{action}/greeting").to(HelloController.class).get().post();
