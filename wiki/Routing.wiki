@@ -133,5 +133,36 @@ public class HelloController extends AppController{
 }
 }}}
 
+===Http method - based routing===
+You can include an Http method used in the request into the routing rule:
+{{{
+route("/{action}/greeting/{name}").to(HelloController.class).get();
+}}}
+
+In this example, this route will only match the incoming request if the Http method of the request is GET. There are four corresponding methods: get(), post(), put() and delete. They can be used in isolation or in combination. For instance, this route:
+
+{{{
+route("/{action}/greeting").to(HelloController.class).get().post();
+}}}
+
+will match these requests:
+
+GET:
+{{{
+/show/greeting
+}}}
+
+POST:
+{{{
+/save/greeting
+}}}
+
+Of course the action "save" needs to have a @POST annotation for this to work. Annotations are independent of routing rules. 
+
+----
+Default Http method used in routing rules is get().
+----
+
+
 === !RouteConfig reloaded===
 The class `app.config.RouteConfig` is recompiled and reloaded in development environment in case a system property "active_reload" is set to true.  This makes it easy and fun to play with the routes during development. 
