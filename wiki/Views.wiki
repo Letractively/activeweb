@@ -33,12 +33,14 @@ public class FreeMarkerConfig extends AbstractFreeMarkerConfig {
     public void init() {
         //this is to override a strange FreeMarker default processing of numbers 
         getConfiguration().setNumberFormat("0.##");
+        getConfiguration().setTemplateExceptionHandler( TemplateExceptionHandler.RETHROW_HANDLER);
     }
 }
 }}}
 `
 This class extends `AbstractFreeMarkerConfig`, which provides an instance `freemarker.template.Configuration` class, allowing to perform configuration on !FreeMarker.
 The line of code presented above are recommended default configuration. 
+The second line will configure !FreeMarker to throw an exception instead of writing it to a browser. This will ensure that the users will not see details of internal system error conditions. 
 
 
 
