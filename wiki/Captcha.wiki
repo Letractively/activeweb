@@ -47,3 +47,5 @@ Core that generates it can be found here:
 http://code.google.com/p/activeweb/source/browse/trunk/activeweb/src/main/java/org/javalite/activeweb/Captcha.java
 
 This class can be easily modified to make the Captcha harder or easier to read.
+
+An example of using Captcha can be found in the [http://code.google.com/p/activeweb/source/browse/trunk/#trunk%2Fexamples%2Fkitchensink Kitchensink] sample application.
