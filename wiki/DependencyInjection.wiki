@@ -56,20 +56,15 @@ Whenever you need a service inside a controller, you will use an `@Inject` annot
 
 {{{
 1. public class HelloController extends AppController {
-2. 
+2.     @Inject
 3.     private Greeter greeter;
 4. 
 5.     public void index(){
 6.         view("message", greeter.greet());
 7.     }
-8. 
-9.     @Inject
-10.    public void setGreeter( Greeter greeter) {
-11.        this.greeter = greeter;
-12.    }
-13. }
+8. }
 }}}
-The `setGreeter(greeter)` (line 10) method is called by the framework and injects an instance of a `GreeterImpl` onto the `HelloController` controller just before it executes an action. Once the controller has a reference to the service, it can consume it (line 6).
+The `greeter` (line 3) method is set by the framework and injected an instance of a `GreeterImpl` onto the `HelloController` controller just before it executes an action. Once the controller has a reference to the service, it can consume it (line 6).
 
 =Mocking and testing=
 
