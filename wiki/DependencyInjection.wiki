@@ -66,6 +66,15 @@ Whenever you need a service inside a controller, you will use an `@Inject` annot
 }}}
 The `greeter` (line 3) method is set by the framework and injected an instance of a `GreeterImpl` onto the `HelloController` controller just before it executes an action. Once the controller has a reference to the service, it can consume it (line 6).
 
+Where can you inject dependencies this way? There are three general application components that are injected dependencies:
+
+  * *Controllers*
+  * *Controller Filters*
+  * *Custom Tags*
+
+The technique is exactly the same, just add @Inject annotation that requires a service from a Guice module, and you can use it in code inside the component
+
+
 =Mocking and testing=
 
 In testing, it is typical to replace real implementation of services with mocks. For explanation of mocks and stubs, follow this link [http://martinfowler.com/articles/mocksArentStubs.html].
@@ -110,7 +119,7 @@ Once we have this done, we can inject the mock module during the test and test o
 7.     public void shouldInjectMockService(){
 8. 
 9.         request().get("index");
-10.         a(assigns().get("message")).shouldBeEqual("Hello from class app.services.GreeterMock");
+10.        a(assigns().get("message")).shouldBeEqual("Hello from class app.services.GreeterMock");
 11.     }
 12. }
 }}}
