@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary How to configure Jetty and Tomcat Maven plugins for ActiveWeb
 
 = Jetty by default =
 
