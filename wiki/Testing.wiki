@@ -345,5 +345,16 @@ In other words, think of AppIntegrationSpec as the same with DBIntegrationSpec, 
 *None of the !IntegrationSpecs require  the same naming convention as !ControllerSpec or DBCOntrollerSpec.*
 ----
 
+= Testing Views=
+It is possible to test just a view template with !ActiveWeb. There is a special class for that called !ViewSpec. Here is an example of such a test:
+
+{{{
+
+To be continued
+}}}
+
+
+
+
 =Conclusion=
 This collection of super classes allows to write very thorough set of tests covering application functionality
