@@ -355,8 +355,12 @@ Name: ${name}
 The view test might look something like this:
 
 {{{
-public void shouldRenderShow(){
-   a(render("/person/show", "name", "John").shouldEqual("Name: John");
+
+public class PersonSpec extends ViewSpec{
+   @Test
+   public void shouldRenderShow(){
+      a(render("/person/show", "name", "John").shouldEqual("Name: John");
+   }
 }
 }}}
 
