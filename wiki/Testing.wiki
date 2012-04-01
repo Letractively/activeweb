@@ -356,7 +356,7 @@ The view test might look something like this:
 
 {{{
 public void shouldRenderShow(){
-   a(render("/person/show", "name", "John").shouldEqual("John");
+   a(render("/person/show", "name", "John").shouldEqual("Name: John");
 }
 }}}
 
