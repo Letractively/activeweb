@@ -348,7 +348,7 @@ In other words, think of AppIntegrationSpec as the same with DBIntegrationSpec, 
 = Testing Views=
 It is possible to test just a view template with !ActiveWeb. There is a special class for that called !ViewSpec. Here is an example of a template to be tested:
 
-Template file name `/person/show.ftl`):
+Template file name `/person/show.ftl`:
 {{{
 Name: ${name}
 }}}
