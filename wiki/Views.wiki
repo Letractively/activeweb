@@ -411,10 +411,33 @@ function onError(status, responseText){
  
  In this example, the link is making an Ajax call to a controlled action which does not exists. This causes onError() function to be triggered.
 
-=Flash tag=
+=flash tag=
 
 Please, see: [FlashTag]
 
+
+=select tag=
+Select tag is to generate the `<select>` HTML tag based on data passed in dynamically into a view.
+Parameters:
+ * *list* - this is a mandatory parameter, and it needs to be type of java.util.List filled with instances of SelectOption
+In addition to the collection, you can also add body to the tag. For instance, if you write the tag like this:
+{{{
+   <@select list=books>
+       <option value="3">A Tale of Two Cities</option>
+   </@>
+}}}   
+And pass this data from controller:
+{{{
+       view("books", list(new SelectOption(1, "The Hitchhiker's Guide to the Galaxy"), new SelectOption(2, "All Quiet on Western Front", true)));
+}}}
+   
+then the output from the tag will be:
+{{{
+<select><option value="3">A Tale of Two Cities</option>
+<option value="1">The Hitchhiker&aposs Guide to the Galaxy</option><option value="2" selected="true">All Quiet on Western Front</option></select><option value="3">A Tale of Two Cities</option>
+}}}
+  
+Which means that the generated code is appended to hand-written body.
 
 
 =form tag=
