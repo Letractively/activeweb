@@ -53,6 +53,7 @@ And then update this dependency to use the toolsjar variable:
 
 You have two choices here. You can either make a change to the jetty-env.xml file to get jetty working, or you can switch to use the tomcat plugin instead of jetty. Here's the details for both.
 
+==Jetty plugin==
 To get jetty to work update your jetty-env.xml file like this:
 
 {{{
@@ -64,6 +65,7 @@ To get jetty to work update your jetty-env.xml file like this:
 </Configure>
 }}}
 
+==Tomcat plugin==
 Or alternatively switch to the Tomcat plugin in pom.xml. The only oddity about Tomcat plugin is that it is pinned to the "compile" phase, which means that unlike Jetty it will not run instrumentation automatically.
 Other then that, no issues with Tomcat plugin on MaxOS. Here is the configuration:
 
