@@ -7,7 +7,7 @@ The simple !ActiveWeb project available for download here demonstrates some main
 =Pre-requisites=
 
   * Java :)
-  * Maven 2
+  * Maven 2/3
   * MySQL
 
 Create two empty schemas in MySQL DB:
