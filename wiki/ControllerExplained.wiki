@@ -383,9 +383,9 @@ public class UploadController extends AppController{
         
         if (iterator.hasNext()){
             FormItem item = iterator.next();
-            String name = item.getName();
+            String name = item.getFileName();
             if(item.isFile()){
-                InputStream in = item.getInputStream());
+                InputStream in = item.getInputStream();
                 ///process data
             }               
         }
