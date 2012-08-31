@@ -98,7 +98,6 @@ The content of the default_layout from a startup project looks like this (few li
 14. </html>
 }}}
 
-
 Line 3 has a `yield` tag, for explanation, please see section below. 
 Line 7 includes a header.ftl, which is another template with code for the top portion of your site. It is not strictly necessary, since you can copy all code
 from header directly into layout, but it is a good practice to keep it in a separate file. 
@@ -316,8 +315,78 @@ more content...
 
 
 
-LinkTo tag and unobtrusive !JavaScript
 
+
+
+
+
+=message tag=
+
+
+The message tag is designed to display messages in view templates. Message values are defined in resource bundle called "activeweb_messages". This means that this tag will be looking for file called activeweb_messages.properties as default name and others, such as activeweb_messages_fr_FR.properties in case French locale was specified.
+Examples:
+
+==Simple usage==
+Given that there is a file activeweb_messages.properties with content: 
+{{{
+greeting=Hello!
+}}}
+    
+and tag code:
+{{{
+<@message key="greeting"/>   
+}}} 
+
+then the output will be:
+{{{
+Hello!
+}}}
+    
+==Message with parameters==
+Lets say a message in resource bundle is declared like this:
+{{{
+meeting=Meeting will take place on {0} at {1}
+}}}
+   
+You can then specify the tag with parameters:
+{{{
+<@message key="meeting" param0="Wednesday" param1="2:00 PM"/>
+}}}
+   
+When a view template renders, the outcome will be:
+{{{
+Meeting will take place on Wednesday at 2:00 PM
+}}}
+   
+==Defaulting to key if value not found==
+In case a resource bundle does not have a key specified, the key is rendered as value verbatim:
+<@message key="greeting"/>
+    
+The output:
+{{{
+greeting
+}}}
+    
+==Detection of locale from request==
+If there is a locale on the request supplied by the agent, then this locale is automatically picked up by this tag. For instance, if a browser supplies locale "fr_FR" and there is a corresponding resource bundle: "activeweb_messages_fr_FR.properties", with this property:
+{{{
+greeting=Bonjour!
+}}}
+   
+then this tag:
+{{{
+<@message key="greeting"/>   
+}}}
+will produce:
+{{{
+Bonjour!
+}}}
+   
+==Overriding request locale==
+There is a "locale" argument you can pass to the tag to override the locale from request:
+{{{
+<@message key="greeting" locale="de_DE"/>
+}}}
 
 
 =link_to tag and unobtrusibe !JavaScript=
