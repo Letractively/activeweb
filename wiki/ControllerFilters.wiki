@@ -59,7 +59,7 @@ public class AppControllerConfig{
 The `exceptFor` method, takes a vararg, so you can pass multiple controllers there. 
 
 
-==Adding controller filters==
+==Adding controller filters to specific controllers==
 
 To add filters to specific controllers:
 
