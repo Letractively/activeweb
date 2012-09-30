@@ -41,6 +41,24 @@ public class AppControllerConfig{
 }}}
 
 
+==Adding global filters to all controllers, except some==
+
+In some cases,  you need to add filters to all controllers, except a few. 
+For example, you might have a security filter, and there is no point to add it to non-secure controllers, or you have a DBConnectionFilter, and you do not want to open connections for controllers which you know will not use a DB connection (expensive resource). Then you can exclude some controllers from global filters:
+
+{{{
+public class AppControllerConfig{
+  public void init(AppContext context) {
+    addGlobalFilters(new TimingFilter());
+    addGlobalFilters(new DBConnectionFilter()).exceptFor(HomeController.class);
+  }
+
+}
+}}}
+
+The `exceptFor` method, takes a vararg, so you can pass multiple controllers there. 
+
+
 ==Adding controller filters==
 
 To add filters to specific controllers:
