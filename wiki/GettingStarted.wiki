@@ -8,7 +8,7 @@ The simple !ActiveWeb project available for download here demonstrates some main
 
   * Java :)
   * Maven 2/3
-  * MySQL
+  * MySQL (only required for this startup program, not a real dependency for ActiveWeb)
 
 Create two empty schemas in MySQL DB:
   * simple_development
