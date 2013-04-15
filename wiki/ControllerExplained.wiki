@@ -36,7 +36,7 @@ public class GreetingController extends AppController{
 
 The HTTP specification defines methods: GET, POST, DELETE, PUT, CONNECT and HEAD. Currently ActiveWeb supports  GET, POST, DELETE, PUT, as the most used methods. 
 
-An HTTP request is not only mapped to an action, but also its HTTP method must correspond to an action's HTTP method. Action HTTP methods are configured with annotations, {{{@GET, @POST, @PUT, and @DELETE}}}. 
+An HTTP request is not only mapped to an action, but also its HTTP method must correspond to an action's HTTP method. Action HTTP methods are configured with annotations, {{{@GET, @POST, @PUT, and @DELETE, @HEAD}}}. 
 ----
 <font color="navy">
 However, if annotation is missing, an action is mapped to HTTP GET method by default
