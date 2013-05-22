@@ -57,27 +57,27 @@ In the configuration above, there are three system properties configured:
 
 In some cases you might want to develop on Tomcat. This is useful if your target deployment in production is also Tomcat, and you might want to catch some Tomcat-related problems sooner rather than later. Here is default configuration for Tomcat:
 {{{
-            <plugin>
-                   <groupId>org.apache.tomcat.maven</groupId>
-                   <artifactId>tomcat7-maven-plugin</artifactId>
-                   <version>2.0-beta-1</version>
-                   <configuration>
-                       <systemProperties>
-                           <activejdbc.log/>
-                           <active_reload>true</active_reload>
-                           <activeweb.log.request>true</activeweb.log.request>
-                       </systemProperties>
-                   </configuration>
-                   <dependencies>
-                       <dependency>
-                                   <groupId>com.sun</groupId>
-                                   <artifactId>tools</artifactId>
-                                   <version>1.5.0</version>
-                                   <scope>system</scope>
-                                   <systemPath>${java.home}/../lib/tools.jar</systemPath>
-                               </dependency>
-                   </dependencies>
-               </plugin>
+<plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.0-beta-1</version>
+                <configuration>
+                    <systemProperties>
+                        <activejdbc.log/>
+                        <active_reload>true</active_reload>
+                        <activeweb.log.request>true</activeweb.log.request>
+                    </systemProperties>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.sun</groupId>
+                        <artifactId>tools</artifactId>
+                        <version>1.5.0</version>
+                        <scope>system</scope>
+                        <systemPath>${java.home}/../lib/tools.jar</systemPath>
+                    </dependency>
+                </dependencies>
+            </plugin>
 
 }}}
 
