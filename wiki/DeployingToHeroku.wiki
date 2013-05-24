@@ -104,8 +104,7 @@ import java.util.Properties;
  *
  * Heroku sets the production database url into an environment variable named DATABASE_URL.
  *
- * This class is called from the initialize step of the maven build to parse the url into a properties file
- * that liquibase and the DbConfig class in ActiveWeb can use
+ * This class is parses that at runtime for ActiveWeb to use in DbConfig.java
  */
 public class HerokuDbUrlParser {
 
