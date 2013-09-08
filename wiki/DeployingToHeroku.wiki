@@ -251,6 +251,56 @@ Also had to disable running of Selenium tests in my POM.
 
 TODO
 
+= Heroku SSL support =
+
+There's two things you need to do after you've enabled your SSL endpoint add-on in heroku. The first is to force traffic from regular http to https. This is easily done in a filter with methods like these 
+
+{{{
+ /**
+     * http://stackoverflow.com/questions/7185074/heroku-nodejs-http-to-https-ssl-forced-redirect
+     */
+    private boolean isHttpsRequest() {
+        String header = header("x-forwarded-proto");
+        return header != null && header.equals("https");
+    }
+
+    private void redirectToHttps() {
+        flash(Constants.PJAX_FORCE_RELOAD, true);
+        StringBuilder newUrl = getHttpsUrl();
+        redirect(newUrl.toString());
+    }
+}}}
+
+The next is to rewrite incoming requests so they appear as though they came straight from the client, eventhough they've been routed through the SSL endpoint. The best way I found to do this was with the XForwardedFilter from Xebia. To enable put this in your pom:
+
+{{{
+        <dependency>
+            <groupId>fr.xebia.web</groupId>
+            <artifactId>xebia-servlet-extras</artifactId>
+            <version>1.0.8</version>
+        </dependency>
+}}}
+
+and then add this to your web.xml above the dispatcher's filter-mapping:
+
+{{{
+ <filter>
+        <filter-name>XForwardedFilter</filter-name>
+        <filter-class>fr.xebia.servlet.filter.XForwardedFilter</filter-class>
+        <init-param>
+            <param-name>protocolHeader</param-name>
+            <param-value>x-forwarded-proto</param-value>
+        </init-param>
+    </filter>
+
+    <!-- This must be before the dispatcher so that it is executed first in the filter chain -->
+    <filter-mapping>
+        <filter-name>XForwardedFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+}}}
+
 = Summary =
 
 That should be it, go ahead and push to your git repo, let Heroku do its thing and see if you get a new build live on the web. Then enjoy continuous deployment!
