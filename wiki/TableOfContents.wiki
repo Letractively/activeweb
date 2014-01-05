@@ -1,14 +1,6 @@
-[http://code.google.com/p/activeweb Home]
-  * FiveMinuteGuideToActiveWeb
-  * GettingStarted
-  * MvcPattern
-  * [StructureOfActiveWebProject Structure of ActiveWeb project]
-  * [ControllerExplained Controllers explained]
-  * [DependencyInjection Dependency injection]
-  * [DatabaseConfiguration]
-  * [DatabaseMigrations]
-  * [ControllerFilters]
-  * [Testing]
-  * [Views]
-  * [Routing]
-  * Captcha
+
+<h1>
+<font color="red"> These wiki pages are deprecated. For the most up-to-date information, please refer  to: <a href="http://javalite.io">!JavaLite Official Site</a></font>
+</h1>
+
+
