@@ -1,1 +1,1 @@
-ActiveJDBC sources have moved to Github: https://github.com/javalite/activejdbc
+ActiveJDBC sources have moved to Github: https://github.com/javalite/activeweb
